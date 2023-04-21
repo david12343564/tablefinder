@@ -1,0 +1,29 @@
+header{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 20px;
+}
+
+.logo img{
+    width: 20px;
+    height: 20px;
+}
+
+.logo span{
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login button{
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

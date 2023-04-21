@@ -1,0 +1,51 @@
+footer{
+    background-color: #ffffff;
+    padding: 50px 0;
+}
+
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-container img{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.logo-container span{
+    font-size: 26px;
+    margin-right: 10px;
+}
+
+.slogan{
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.list-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-container ul{
+    list-style: none;
+    margin: 30px;
+    padding: 0;
+}
+
+.list-container ul li{
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
