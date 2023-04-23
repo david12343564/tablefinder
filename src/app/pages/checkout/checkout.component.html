@@ -1,1 +1,57 @@
-<p>checkout works!</p>
+<div class="checkoutContainer">
+    <div id="checkoutHeader">
+        <section id="title">
+            <p>Secure your reservation</p>
+        </section>
+        <section id="covidNotice">
+            <p>
+                <fa-icon [icon]="faHospital" size="2x"></fa-icon>
+                Compruebe las últimas restricciones de COVID-19 antes de reservar.
+                <a href="/">Más Información</a>
+            </p>
+        </section>
+    </div>
+
+    <div id="checkoutContent" class="fila">
+        <div id="checkoutForm" class="columna-100 columna-tablet-50 columna-desktop-70">
+            75%
+        </div>
+        <div id="checkoutDetail" class="columna-100 columna-tablet-50 columna-desktop-30">
+            <section id="restaurantCard">
+                <div class="tarjeta">
+                    <section id="restaurantImage">
+                        <img src="assets/listado/list_res1.jpg" alt="dwedwedwedwed">
+                    </section>
+                    <div class="cuerpo">
+                        <section class="restaurantName">La Taberna del Dragón</section>
+                        <section id="restaurantStars">
+                            <fa-icon [icon]="faStar" [styles]="{ stroke: '#F2994A', color: '#F2994A' }"
+                                size="lg"></fa-icon>
+                            <fa-icon [icon]="faStar" [styles]="{ stroke: '#F2994A', color: '#F2994A' }"
+                                size="lg"></fa-icon>
+                            <fa-icon [icon]="faStar" [styles]="{ stroke: '#F2994A', color: '#F2994A' }"
+                                size="lg"></fa-icon>
+                            <fa-icon [icon]="faStar" [styles]="{ stroke: '#F2994A', color: '#F2994A' }"
+                                size="lg"></fa-icon>
+                            <fa-icon [icon]="faStarHalf" [styles]="{ stroke: '#F2994A', color: '#F2994A' }"
+                                size="lg"></fa-icon>
+                        </section>
+                    </div>
+                    <div class="pie">
+                        <section id="restaurantDetalles">
+                            <section id="noRefund"> Non refundable </section>
+                            <section id="restaurantStars"> Sunday, March 18, 2023 </section>
+                            <section id="restaurantStars"> 2 adultos, 1 niño </section>
+                        </section>
+                    </div>
+                </div>
+            </section>
+            <section id="botonAccion">
+                <button>
+                    Siguiente: Datos personales
+                </button>
+            </section>
+        </div>
+    </div>
+
+</div>

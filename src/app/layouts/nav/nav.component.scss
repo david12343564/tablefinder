@@ -1,0 +1,33 @@
+header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 20px;
+}
+
+.logo img {
+    width: 30px;
+    height: 30px;
+}
+
+.logo span {
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login {
+    margin-right: 30px; // Añade un margen a la derecha
+
+    button {
+        background-color: #007bff;
+        color: white;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}

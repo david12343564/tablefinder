@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import '/src/sass/mixins';
+
+html,
+body {
+    @include default;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+header,
+footer {
+    width: 100%;
+}
+
+main {
+    margin: 0 auto;
+    background-color: $color-background;
+}
+
+a {
+    color: #2F80ED;
+}
