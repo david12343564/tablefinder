@@ -119,36 +119,81 @@
     cursor: pointer;
   }
 
+  .reviews-title{
+    margin-left: 50px;
+    font-size: 24px;
+  }
+
+  .container {
+    margin-top: 35px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+  }
   
   .reviews {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 50px;
-    width: 100%;
-    background-color: #ffffff;
+    flex-direction: row;
+    flex-basis: 60%;
   }
   
-  .reviews h3 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .reviews .review {
+  .review {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
     align-items: center;
-    padding: 20px;
-    width: 80%;
-    background-color: #f2f2f2;
-    border-radius: 5px;
+    width: 400px;
     margin-bottom: 20px;
+    margin-right: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
+
+ 
   
-  .reviews .review img {
+  .profile-pic {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  .rating {
+    font-size: 20px;
+    color: #f2b01e;
+    margin-bottom: 5px;
+  }
+  
+  .star {
+    margin-right: 5px;
+  }
+  
+  .reservations {
+    flex-basis: 30%;
+  }
+  
+  h3 {
+    margin-top: 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li {
+    margin-bottom: 20px;
+  }
+  li span{
+    margin-right: 10px;
+  }
+  
+  .reserve-btn {
+    background-color: #2b68db;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
   }
