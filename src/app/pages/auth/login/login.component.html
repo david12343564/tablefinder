@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Sign In</h1>
+    <form [formGroup]="formLogin">
+        <label for="email">Correo electrónico</label>
+        <input type="text" id="email" name="email" formControlName="email">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" formControlName="password">
+        <button [disabled]="formLogin.invalid" type="submit">Iniciar Sesión</button>
+        <p>Aun no tienes una cuenta?<a routerLink="/register">Registrate</a></p>
+    </form>
+</div>

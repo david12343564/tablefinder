@@ -1,85 +1,190 @@
-.container {
-    max-width: 1200px;
-    margin: auto;
-}
 
-header {
+  .restaurant-photo{
+    background-color: lightgrey;
     display: flex;
-    flex-wrap: wrap;
-    height: 50vh;
-}
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+  }
 
-header img {
-    height: 100%;
+  .restaurant-photo img{
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+  }
+
+  .restaurant-info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 30px;
+  }
+  
+  .restaurant-data {
+    margin-left: 50px;
     width: 50%;
-    object-fit: cover;
-}
+    padding: 10px;
+  }
+  
+  .restaurant-data h1 {
+    font-size: 30px;
+    margin: 5px;
+  }
+  
+  .restaurant-data p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+    
+  .rating {
+    font-size: 20px;
+    color: #f2b01e;
+    margin-bottom: 5px;
+    margin-left: 5px;
+  }
+  
+  .star {
+    margin-right: 5px;
+  }
 
-.restaurant-info {
-    display: flex;
-    height: 25vh;
-}
+  .location-info{
+    margin-top: 8px;
+    padding-left: 5px;
 
-.restaurant-info h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
+  }
 
-.reviews {
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-}
+  .location-info span{
+    padding-left: 2px;
+    color: rgb(144, 138, 138);
+    font-size: 14px;
 
-.map {
-    height: 50vh;
-    width: 100%;
-    background-color: #f2f2f2;
-}
+  }
 
-.search-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 10vh;
-}
-
-.user-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 15vh;
-    margin-top: 2rem;
-}
-
-.table-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 20vh;
-    margin-top: 2rem;
-}
-
-.table-option {
-    flex: 1;
-    background-color: #f2f2f2;
-    padding: 1rem;
-    margin: 0.5rem;
+  .description{
+    padding-left: 20px;
+  }
+  
+  .restaurante-mapa {
+    width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-}
-
-.table-option h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.table-option button {
-    background-color: #007bff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .restaurante-mapa img {
+    border-radius: 10px;
+    width: 70%;
+    height: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .reservation-details {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 400px;
+  }
+  
+  table {
+    border-collapse: collapse;
+  }
+  
+  td {
+    padding: 20px;
+  }
+  
+  .reservation-container {
+    width: 150px;
+    height: 40px;
+    background-color: lightgray;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+  }
+  
+  .reservacion-info button {
+    margin-top: 20px;
+    background-color: #2b68db;
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 10px;
     cursor: pointer;
-}
+  }
+
+  .reviews-title{
+    margin-left: 50px;
+    font-size: 24px;
+  }
+
+  .container {
+    margin-top: 35px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+  }
+  
+  .reviews {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 60%;
+  }
+  
+  .review {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 400px;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+
+ 
+  
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+    
+  .reservations {
+    flex-basis: 30%;
+  }
+  
+  h3 {
+    margin-top: 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li {
+    margin-bottom: 20px;
+  }
+  li span{
+    margin-right: 10px;
+  }
+  
+  .reserve-btn {
+    background-color: #2b68db;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+  }
