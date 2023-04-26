@@ -1,1 +1,44 @@
-<p>home works!</p>
+<div class="img-container">
+    <img src="assets/home/home1.png" alt="home1" class="background-img" />
+    <div class="text-container">
+        <span class="text-img1">Disfruta en tu restaurante favorito</span>
+        <span class="text-img2">
+            Planifique y reserve en los mejores restaurantes con nuestros
+            consejos de expertos, sugerencias e información sobre comida e
+            inspiración
+        </span>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Dónde" class="search-input" />
+        <input type="date" placeholder="Fecha" class="search-input" />
+        <input type="time" placeholder="Hora" class="search-input" />
+        <input type="number" placeholder="Personas" class="search-input" />
+        <button class="search-btn">Buscar</button>
+    </div>
+</div>
+<div class="container">
+    <h1>Disfruta en tu restaurante soñado</h1>
+    <span>
+        Planifique y reserve en alguno de los mejores restaurantes de la zona, garantizados por nuestro equipo de
+        expertos.
+    </span>
+    <div class="card-container">
+        <div class="card" *ngFor="let restaurante of restaurantes">
+            <img src="{{ restaurante.imagen }}" alt="{{ restaurante.nombre }}" class="card-img" />
+            <div class="card-info">
+                <h3>{{ restaurante.nombre }}</h3>
+                <span class="rating">{{ restaurante.rating }} Estrellas</span>
+            </div>
+        </div>
+    </div>
+    <h1>Restaurantes Populares</h1>
+    <div class="card-container">
+        <div class="card" *ngFor="let favRestaurantes of favRestaurantes">
+            <img src="{{ favRestaurantes.imagen }}" alt="{{ favRestaurantes.nombre }}" class="card-img" />
+            <div class="card-info">
+                <h3>{{ favRestaurantes.nombre }}</h3>
+                <span class="rating">{{ favRestaurantes.rating }} Estrellas</span>
+            </div>
+        </div>
+    </div>
+</div>
