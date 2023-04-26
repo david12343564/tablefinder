@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faHospital } from '@fortawesome/free-regular-svg-icons';
+import { faHospital} from '@fortawesome/free-regular-svg-icons';
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

@@ -6,6 +6,8 @@ import { DetailsComponent } from './pages/details/details.component';
 import { SearchComponent } from './pages/search/search.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component'; 
+
 
 const routes: Routes = [
   {path: '', component:HomeComponent},
@@ -13,7 +15,8 @@ const routes: Routes = [
   {path: 'detalles', component:DetailsComponent},
   {path: 'search',component:SearchComponent},
   {path: 'login', component:LoginComponent},
-  {path: 'register',component:RegisterComponent}
+  {path: 'register',component:RegisterComponent},
+  {path: 'checkout', component: CheckoutComponent}
 ];
 
 @NgModule({
