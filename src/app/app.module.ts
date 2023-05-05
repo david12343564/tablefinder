@@ -12,6 +12,7 @@ import { DetailsComponent } from './pages/details/details.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SearchComponent,
     DetailsComponent,
     CheckoutComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    NoticeCovidComponent
   ],
   imports: [
     BrowserModule,
