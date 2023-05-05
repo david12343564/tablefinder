@@ -31,7 +31,7 @@ import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.compon
     ReservationsComponent,
     NoticeCovidComponent,
     LoginComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +39,7 @@ import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.compon
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    HttpClientModule,,
+    HttpClientModule,
     FontAwesomeModule
   ],
   providers: [],
