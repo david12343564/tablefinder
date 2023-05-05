@@ -12,6 +12,7 @@ export class CheckoutComponent {
   faStar = faStar;
   faStarHalf = faStarHalf;
 
+
   
   public openCity(evt:any) {
     var i, tablinks;
