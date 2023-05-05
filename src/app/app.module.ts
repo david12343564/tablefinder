@@ -16,6 +16,7 @@ import { ReservationsComponent } from './pages/reservations/reservations.compone
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DetailsComponent,
     CheckoutComponent,
     ReservationsComponent,
+    NoticeCovidComponent,
     LoginComponent,
     RegisterComponent,
-
   ],
   imports: [
     BrowserModule,
