@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Credenciales } from 'src/app/shared/interfaces/credenciales';
+
 import { LoginService } from 'src/app/shared/services/login.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { PrivilegiosService } from 'src/app/shared/services/privilegios.service';
-
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ import { PrivilegiosService } from 'src/app/shared/services/privilegios.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
+  
   formLogin: FormGroup
 
   constructor(
@@ -25,9 +25,13 @@ export class LoginComponent {
     private privilegioService: PrivilegiosService
   ) {
     this.formLogin = formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['',Validators.required]
-    })
+    });
+    
+    this.privilegioService.isRestaurant.subscribe((privilegio: boolean) => {
+      this.isRestaurant = privilegio;
+    });
   }
 
   isRestaurant: boolean = false;
