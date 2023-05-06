@@ -11,12 +11,12 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(credenciales: Credenciales): Observable<any> {
-    return this.httpClient.post('http://localhost:3000/login', credenciales);
+  login(credenciales: Credenciales, isRestaurant: boolean): Observable<any> {
+    return this.httpClient.post('http://localhost:3000/login/' + (isRestaurant?'restaurante': 'cliente'), credenciales);
   }
 
-  googleLogin(idToken: string): Observable<any> {
-    const url = 'http://localhost:3000/login/google';
+  googleLogin(idToken: string, isRestaurant: boolean): Observable<any> {
+    const url = 'http://localhost:3000/login/'+ (isRestaurant?'restaurante': 'cliente') +'/google';
     return this.httpClient.post(url, { googleToken: idToken})
   }
 }

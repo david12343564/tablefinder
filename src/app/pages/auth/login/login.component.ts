@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Credenciales } from 'src/app/shared/interfaces/credenciales';
+
 import { LoginService } from 'src/app/services/login.service';
 import { TokenService } from 'src/app/services/token.service';
+import { PrivilegiosService } from 'src/app/services/privilegios.service';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +17,30 @@ export class LoginComponent {
   
   formLogin: FormGroup
 
-  constructor(formBuilder: FormBuilder, private loginService: LoginService,
-    private tokenService: TokenService, private router: Router){
+  constructor(
+    formBuilder: FormBuilder, 
+    private loginService: LoginService,
+    private tokenService: TokenService, 
+    private router: Router,
+    private privilegioService: PrivilegiosService
+  ) {
     this.formLogin = formBuilder.group({
       email: ['', Validators.required],
       password: ['',Validators.required]
-    })
+    });
+    
+    this.privilegioService.isRestaurant.subscribe((privilegio: boolean) => {
+      this.isRestaurant = privilegio;
+    });
   }
 
-  
+  isRestaurant: boolean = false;
   credenciales:  Credenciales = { email: '', password: '' };
 
   iniciarSesion() {
     console.log(this.credenciales)
-    this.loginService.login(this.credenciales).subscribe((data: any) => {
+    console.log(this.isRestaurant)
+    this.loginService.login(this.credenciales, this.isRestaurant).subscribe((data: any) => {
       // Recibimos el token
       this.tokenService.setToken(data.token);
       // Enviar a tareas
