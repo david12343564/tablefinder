@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Credenciales } from '../shared/interfaces/credenciales'; 
+import { Credenciales } from 'src/app/shared/interfaces/credenciales';
 
 import { Observable } from 'rxjs';
 

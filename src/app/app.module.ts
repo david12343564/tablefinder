@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +17,6 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
-
 import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.component';
 
 @NgModule({

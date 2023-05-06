@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TokenService } from 'src/app/services/token.service'; 
-import { LoginService } from 'src/app/services/login.service'; 
+import { TokenService } from 'src/app/shared/services/token.service'; 
+import { LoginService } from 'src/app/shared/services/login.service'; 
 
 
 @Component({
