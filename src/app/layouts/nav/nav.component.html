@@ -6,7 +6,12 @@
         </div>
     
 
-    <div class="login">
-        <a routerLink="/auth"><button>Iniciar sesión</button></a>
+    <div class="login" *ngIf="!(router.url.includes('auth') || router.url.includes('login') || router.url.includes('register'))">        
+        <a routerLink="/auth" *ngIf="!logueado"><button>Iniciar sesión</button></a>
+
+        <a (click)="cerrarSesion()" *ngIf="logueado">
+            <img *ngIf="logueado" src="assets/profilePic.jpg" class="circle">
+        </a>
     </div>
+
 </header>
