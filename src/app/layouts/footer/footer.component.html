@@ -1,4 +1,4 @@
-<footer>
+<footer *ngIf="!(router.url.includes('auth') || router.url.includes('login') || router.url.includes('register'))">
     <div class="footer-container">
         <div class="logo-container">
             <div class="logo-name">

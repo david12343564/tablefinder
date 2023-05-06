@@ -1,11 +1,16 @@
 <div class="container">
     <h1>Sign In</h1>
-    <form [formGroup]="formLogin">
+    <form [formGroup]="formLogin" (submit)="iniciarSesion()">
+
         <label for="email">Correo electrónico</label>
-        <input type="text" id="email" name="email" formControlName="email">
+        <input type="email" id="email" name="email" formControlName="email" [(ngModel)]="credenciales.email">
+        
         <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" formControlName="password">
+        <input type="password" id="password" name="password" formControlName="password" [(ngModel)]="credenciales.password">
+        
         <button [disabled]="formLogin.invalid" type="submit">Iniciar Sesión</button>
+       
         <p>Aun no tienes una cuenta?<a routerLink="/register">Registrate</a></p>
+    
     </form>
 </div>

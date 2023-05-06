@@ -1,3 +1,6 @@
+@use 'sass:math';
+@import '/src/sass/mixins';
+
 header {
     background-color: white;
     display: flex;
@@ -19,10 +22,10 @@ header {
 }
 
 .login {
-    margin-right: 30px; // Añade un margen a la derecha
+    margin-right: 30px; 
 
     button {
-        background-color: #007bff;
+        background-color: #2F80ED;
         color: white;
         font-size: 18px;
         padding: 10px 20px;
@@ -30,4 +33,15 @@ header {
         border-radius: 5px;
         cursor: pointer;
     }
+    img {
+        @include defaultPic;
+        
+        &[class*="circle"]{ 
+            @extend img;
+            height: $img-profile;
+            width: $img-profile;
+            border-radius: 50%;
+        }   
+    }
 }
+

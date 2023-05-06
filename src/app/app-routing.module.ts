@@ -7,6 +7,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component'; 
+import { ReservationsComponent } from './pages/reservations/reservations.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'search',component:SearchComponent},
   {path: 'login', component:LoginComponent},
   {path: 'register',component:RegisterComponent},
-  {path: 'checkout', component: CheckoutComponent}
+  {path: 'checkout', component: CheckoutComponent},
+  {path: 'reservations', component: ReservationsComponent}
 ];
 
 @NgModule({
