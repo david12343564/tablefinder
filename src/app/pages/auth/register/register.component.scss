@@ -1,6 +1,6 @@
 .container {
 	background-color: #FFF;
-	margin: 10% auto;
+	margin: 5% auto;
 	max-width: 400px;
 	padding: 20px;
 	text-align: start;
@@ -31,7 +31,7 @@ input[type="text"], input[type="password"] {
 }
 
 button[type="submit"] {
-	background-color: #0275d8;
+	background-color: #2F80ED;
 	border: none;
 	border-radius: 5px;
 	color: #FFF;
@@ -41,19 +41,25 @@ button[type="submit"] {
 	
 }
 
-button[type="submit"]:hover {
-	background-color: #1A4F72;
+button[type="submit"] {
+	&:hover { background-color: #2567bd; }
+	&:disabled { background-color: grey; pointer-events: none; }
 }
 
 .container p{
     text-align: center;
     font-size: 14px;
-    color: rgb(114, 110, 110);
+	color: #4F4F4F;
     margin-bottom: 20px;
+	&.error{ color: #E43B3F; }
 }
 
 .container .already{
     color: black;
+}
+
+.container .privacidad{
+    font-size: 12px;
 }
 
 

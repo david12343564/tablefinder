@@ -25,7 +25,7 @@ export class LoginComponent {
     private privilegioService: PrivilegiosService
   ) {
     this.formLogin = formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['',Validators.required]
     });
     
@@ -35,16 +35,18 @@ export class LoginComponent {
   }
 
   isRestaurant: boolean = false;
+  invalidReq: boolean = false;
   credenciales:  Credenciales = { email: '', password: '' };
 
   iniciarSesion() {
-    console.log(this.credenciales)
-    console.log(this.isRestaurant)
     this.loginService.login(this.credenciales, this.isRestaurant).subscribe((data: any) => {
+      this.invalidReq = false;
       // Recibimos el token
       this.tokenService.setToken(data.token);
       // Enviar a tareas
       this.router.navigate(['/']);
+    }, error => {
+      this.invalidReq = true;
     });
   }
 
