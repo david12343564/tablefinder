@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators} from '@angular/forms'
+import { Router } from '@angular/router';
+
+import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { Credenciales } from 'src/app/shared/interfaces/credenciales';
+
+import { LoginService } from 'src/app/services/login.service';
+import { TokenService } from 'src/app/services/token.service';
+import { PrivilegiosService } from 'src/app/services/privilegios.service';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +14,40 @@ import { FormGroup, FormBuilder, Validators} from '@angular/forms'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  
   formLogin: FormGroup
 
-  constructor(formBuilder: FormBuilder){
+  constructor(
+    formBuilder: FormBuilder, 
+    private loginService: LoginService,
+    private tokenService: TokenService, 
+    private router: Router,
+    private privilegioService: PrivilegiosService
+  ) {
     this.formLogin = formBuilder.group({
-      email: ['', Validators.required,Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       password: ['',Validators.required]
-    })
+    });
+    
+    this.privilegioService.isRestaurant.subscribe((privilegio: boolean) => {
+      this.isRestaurant = privilegio;
+    });
+  }
+
+  isRestaurant: boolean = false;
+  invalidReq: boolean = false;
+  credenciales:  Credenciales = { email: '', password: '' };
+
+  iniciarSesion() {
+    this.loginService.login(this.credenciales, this.isRestaurant).subscribe((data: any) => {
+      this.invalidReq = false;
+      // Recibimos el token
+      this.tokenService.setToken(data.token);
+      // Enviar a tareas
+      this.router.navigate(['/']);
+    }, error => {
+      this.invalidReq = true;
+    });
   }
 
 }

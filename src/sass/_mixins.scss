@@ -5,6 +5,7 @@ $default-padding: 10px;
 $default-borderRadius: 6px;
 $default-margin: 32px;
 $img-small: 150px;
+$img-profile: 30px;
 $img-medium: $img-small + 50px;
 $img-large: $img-medium + 50px;
 
@@ -33,6 +34,10 @@ $img-large: $img-medium + 50px;
     margin-bottom: $default-padding;
     width: 100%;
     font-family: $font-family;
+}
+
+@mixin defaultPic{
+    object-fit: cover;
 }
 
 @mixin default{

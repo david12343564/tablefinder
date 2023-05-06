@@ -6,8 +6,8 @@
          atraer a clientes ofreciendo una experiencia
                  premium libre de filas
       </p>
-      <a routerLink="/login"><button class="btn-blue">Log in</button></a>
-      <p class="register-link">¿No tienes una cuenta? <a class="comensales" href="#">Regístrate aquí</a></p>
+      <a routerLink="/login"><button (click)="setPrivilegio(false)" class="btn-blue">Log in</button></a>
+      <p class="register-link">¿No tienes una cuenta? <a class="comensales" href="/register">Regístrate aquí</a></p>
     </div>
     <div class="right-side">
       <h2>Para <span class="restauranteros">Restauranteros</span> </h2>
@@ -15,8 +15,8 @@
         del mercado. Te ayudamos a identificar y
        atraer a clientes ofreciendo una experiencia
                premium libre de filas</p>
-      <a routerLink="/login"><button class="btn-green">Log in</button></a>
-      <p class="register-link">¿No tienes una cuenta? <a class="restauranteros" href="#">Contacta con nuestro equipo de ventas</a></p>
+      <a routerLink="/login"><button (click)="setPrivilegio(true)" class="btn-green">Log in</button></a>
+      <p class="register-link">¿No tienes una cuenta? <a class="restauranteros" >Contacta con nuestro equipo de ventas</a></p>
     </div>
   </section>
   
