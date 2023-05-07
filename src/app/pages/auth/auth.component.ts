@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { PrivilegiosService } from 'src/app/services/privilegios.service';
+import { PrivilegiosService } from 'src/app/shared/services/privilegios.service';
 
 @Component({
   selector: 'app-auth',
@@ -12,13 +12,13 @@ export class AuthComponent {
   constructor(
     private privilegioService: PrivilegiosService
   ) {
-    
+
     this.privilegioService.isRestaurant.subscribe((privilegio: boolean) => {
       this.isRestaurant = privilegio;
     });
 
   }
-  
+
   isRestaurant: boolean = false;
 
   setPrivilegio(privielgio: boolean) {

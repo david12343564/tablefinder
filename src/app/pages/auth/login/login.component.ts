@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Credenciales } from 'src/app/shared/interfaces/credenciales';
 
-import { LoginService } from 'src/app/services/login.service';
-import { TokenService } from 'src/app/services/token.service';
-import { PrivilegiosService } from 'src/app/services/privilegios.service';
+import { LoginService } from 'src/app/shared/services/login.service';
+import { TokenService } from 'src/app/shared/services/token.service';
+import { PrivilegiosService } from 'src/app/shared/services/privilegios.service';
 
 @Component({
   selector: 'app-login',
