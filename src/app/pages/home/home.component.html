@@ -27,7 +27,7 @@
             <img src="{{ restaurante.imagen }}" alt="{{ restaurante.nombre }}" class="card-img" />
             <div class="card-info">
                 <h3>{{ restaurante.nombre }}</h3>
-                <span class="rating">{{ restaurante.getRating() }} Estrellas</span>
+                <span class="rating">{{ formatRating(restaurante.getRating()) }} Estrellas</span>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
             <img src="{{ restaurante.imagen }}" alt="{{ restaurante.nombre }}" class="card-img" />
             <div class="card-info">
                 <h3>{{ restaurante.nombre }}</h3>
-                <span class="rating">{{ restaurante.getRating() }} Estrellas</span>
+                <span class="rating">{{ formatRating(restaurante.getRating()) }} Estrellas</span>
             </div>
         </div>
     </div>

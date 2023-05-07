@@ -20,11 +20,6 @@ export class HomeComponent {
     this.restauranteService.listarRestaurantes().subscribe(
       (restaurantes: Restaurante[]) => {
         console.log('Datos recibidos de la API:', restaurantes);
-        // asignar la ruta local de la imagen a cada restaurante
-        restaurantes.forEach((restaurante) => {
-          // ruta de ejemplo de la imagen en PC
-          restaurante.imagen = '/assets/cafe.jpg';
-        });
 
         // Ordena los restaurantes según su contadorCalif en orden descendente
         restaurantes.sort((a, b) => b.contadorCalif - a.contadorCalif);
@@ -36,6 +31,7 @@ export class HomeComponent {
         const restaurantesFiltrados = restaurantes.filter(
           (restaurante) => restaurante.getRating() >= 4.5 && restaurante.getRating() <= 5
         );
+        console.log('Restaurantes filtrados:', restaurantesFiltrados);
 
         // función para obtener una muestra aleatoria de los restaurantes filtrados
         const getRandomSample = (arr: Restaurante[], n: number) => {
@@ -47,14 +43,16 @@ export class HomeComponent {
           }
           while (n--) {
             const x = Math.floor(Math.random() * len);
-            result[n] = arr[x in taken ? taken[x] : x];
+            const elem = arr[x in taken ? taken[x] : x];
+            result[n] = new Restaurante(elem); // Crear una nueva instancia de Restaurante aquí
             taken[x] = --len in taken ? taken[len] : len;
           }
           return result;
         };
 
-        // Asigna la muestra aleatoria a favRestaurantes (reemplaza el "3" con el número de restaurantes favoritos que deseas mostrar)
-        this.favRestaurantes = getRandomSample(restaurantesFiltrados, 8);
+        // Asigna la muestra aleatoria a favRestaurantes 
+        this.favRestaurantes = getRandomSample(restaurantesFiltrados, Math.min(8, restaurantesFiltrados.length));
+
       },
       (error) => {
         console.error('Error al obtener restaurantes:', error);
@@ -62,5 +60,8 @@ export class HomeComponent {
     );
   }
 
-
+  formatRating(rating: number): string {
+    const rounded = Math.round(rating * 100) / 100;
+    return rounded % 1 === 0 ? rounded.toFixed(0) : rounded.toFixed(2);
+  }
 }
