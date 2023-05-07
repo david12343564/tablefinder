@@ -24,9 +24,12 @@ const routes: Routes = [
   {path: 'detalles', component:DetailsComponent},
   {path: 'search',component:SearchComponent},
   
-  // vistas privadas
+  // vistas privadas Cliente
   {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
   {path: 'reservations', component: ReservationsComponent, canActivate: [AuthGuard]}
+
+  //vistas privadas Restaurante
+
 ];
 
 @NgModule({

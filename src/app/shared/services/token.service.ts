@@ -9,7 +9,7 @@ export class TokenService {
 
   authStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor() { 
+  constructor() {
     this.authStatus.next(this.isAuth());
   }
 

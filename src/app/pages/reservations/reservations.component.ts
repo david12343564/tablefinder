@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TokenService } from 'src/app/services/token.service';
-import { ReservationService } from 'src/app/services/reservation.service';
-import { Reservation } from 'src/app/shared/interfaces/reservation';
-import { PrivilegiosService } from 'src/app/services/privilegios.service';
+import { TokenService } from 'src/app/shared/services/token.service'; 
+import { ReservationService } from 'src/app/shared/services/reservation.service'; 
+import { Reservation } from 'src/app/shared/interfaces/reservation'; 
+import { PrivilegiosService } from 'src/app/shared/services/privilegios.service'; 
 
 @Component({
   selector: 'app-reservations',
