@@ -1,11 +1,12 @@
 <header>
-    
-        <div class="logo">
-            <a href="/"><img src="assets/logo1.jpg" alt="Empresa"></a>
-            <span>Tablefinder</span>
-        </div>
-    
-    <div class="login" *ngIf="!(router.url.includes('auth') || router.url.includes('login') || router.url.includes('register'))">        
+
+    <div class="logo">
+        <a href="/"><img src="assets/logo1.jpg" alt="Empresa"></a>
+        <span>Tablefinder</span>
+    </div>
+
+    <div class="login"
+        *ngIf="!(router.url.includes('auth') || router.url.includes('login') || router.url.includes('register'))">
         <a routerLink="/auth" *ngIf="!logueado"><button>Iniciar sesión</button></a>
 
         <div class="dropdown" style="float:right;" *ngIf="logueado">

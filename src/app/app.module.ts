@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { 
+import {
   SocialLoginModule,
   SocialAuthServiceConfig,
   GoogleLoginProvider,
-  GoogleSigninButtonModule 
+  GoogleSigninButtonModule
 } from '@abacritt/angularx-social-login';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +23,6 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.component';
 import { CardComponent } from './pages/reservations/card/card.component';
 
