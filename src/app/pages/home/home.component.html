@@ -27,17 +27,17 @@
             <img src="{{ restaurante.imagen }}" alt="{{ restaurante.nombre }}" class="card-img" />
             <div class="card-info">
                 <h3>{{ restaurante.nombre }}</h3>
-                <span class="rating">{{ restaurante.rating }} Estrellas</span>
+                <span class="rating">{{ restaurante.getRating() }} Estrellas</span>
             </div>
         </div>
     </div>
     <h1>Restaurantes Populares</h1>
     <div class="card-container">
-        <div class="card" *ngFor="let favRestaurantes of favRestaurantes">
-            <img src="{{ favRestaurantes.imagen }}" alt="{{ favRestaurantes.nombre }}" class="card-img" />
+        <div class="card" *ngFor="let restaurante of favRestaurantes">
+            <img src="{{ restaurante.imagen }}" alt="{{ restaurante.nombre }}" class="card-img" />
             <div class="card-info">
-                <h3>{{ favRestaurantes.nombre }}</h3>
-                <span class="rating">{{ favRestaurantes.rating }} Estrellas</span>
+                <h3>{{ restaurante.nombre }}</h3>
+                <span class="rating">{{ restaurante.getRating() }} Estrellas</span>
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
-import { TokenService } from 'src/app/shared/services/token.service'; 
+import { TokenService } from 'src/app/shared/services/token.service';
 import { LoginService } from 'src/app/shared/services/login.service';
 import { PrivilegiosService } from 'src/app/shared/services/privilegios.service';
 
@@ -14,7 +14,7 @@ import { PrivilegiosService } from 'src/app/shared/services/privilegios.service'
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
-  
+
   constructor(
     private tokenService: TokenService,
     private privilegioService: PrivilegiosService,
@@ -24,12 +24,13 @@ export class NavComponent {
   ) {
     this.tokenService.authStatus.subscribe((status: boolean) => {
       this.logueado = status;
+    });
     this.privilegioService.isRestaurant.subscribe((privilegio: boolean) => {
       this.isRestaurant = privilegio;
     });
-    
+
     this.socialAuthService.authState.subscribe((user: SocialUser) => {
-      if(user) {
+      if (user) {
         console.log('Usuario de Google', user);
         this.loginService.googleLogin(user.idToken, this.isRestaurant).subscribe(response => {
           this.tokenService.setToken(response.token);
@@ -38,7 +39,7 @@ export class NavComponent {
       }
     });
   }
-  
+
 
   logueado: boolean = false;
   isRestaurant: boolean = false;

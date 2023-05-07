@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Restaurante } from 'src/app/shared/interfaces/restaurante';
 
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpService } from './http.service';
 import { map } from 'rxjs/operators';
 
@@ -16,36 +16,15 @@ export class RestauranteService {
 
   constructor(private httpService: HttpService) { }
 
-  listarRestaurantes() {
+  listarRestaurantes(): Observable<Restaurante[]> {
     const url: string = environment.apiUrl + '/restaurantes';
-    return this.httpService.get(url);
+    return this.httpService.get<Restaurante[]>(url).pipe(
+      map((restaurantesData: any[]) =>
+        restaurantesData.map(
+          (restauranteData: any) => new Restaurante(restauranteData)
+        )
+      ),
+    );
   }
-
-  resenasPorRestaurante(restauranteId: string) {
-    const url: string = environment.apiUrl + '/resenas?restaurante=' + restauranteId;
-    return this.httpService.get(url);
-  }
-
-
-
-  //  listarRestaurantes() {
-  //   return this.http.get<Restaurante[]>(this.apiUrl);
-  // }
-
-  // obtenerRestaurante(id: string) {
-  //   return this.http.get<Restaurante>(`${this.apiUrl}/${id}`);
-  // }
-
-  // crearRestaurante(restaurante: Restaurante) {
-  //   return this.http.post(this.apiUrl, restaurante);
-  // }
-
-  // actualizarRestaurante(id: string, restaurante: Partial<Restaurante>) {
-  //   return this.http.put(`${this.apiUrl}/${id}`, restaurante);
-  // }
-
-  // eliminarRestaurante(id: string) {
-  //   return this.http.delete(`${this.apiUrl}/${id}`);
-  // }
 
 }

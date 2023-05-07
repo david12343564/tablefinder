@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Cliente } from 'src/app/shared/interfaces/cliente';
-import { LoginService } from 'src/app/services/login.service';
-import { TokenService } from 'src/app/services/token.service';
+import { LoginService } from 'src/app/shared/services/login.service';
+import { TokenService } from 'src/app/shared/services/token.service';
 
 @Component({
   selector: 'app-register',
@@ -28,9 +28,9 @@ export class RegisterComponent {
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required]
     },
-    {
-      validator: this.confirmPassword('password', 'repeatPassword'),
-    }
+      {
+        validator: this.confirmPassword('password', 'repeatPassword'),
+      }
     )
   }
 
@@ -41,7 +41,7 @@ export class RegisterComponent {
     email: '',
     password: ''
   }
-  
+
   confirmPassword(password: string, matchingPassword: string) {
     return (formGroup: FormGroup) => {
       const control = formGroup.controls[password];
@@ -56,14 +56,14 @@ export class RegisterComponent {
     };
   }
 
-  registrar() {     
+  registrar() {
     this.loginService.register(this.cliente).subscribe((data: any) => {
       // Recibimos el token
       this.tokenService.setToken(data.token);
       // Enviar a home
       this.router.navigate(['/']);
-    }); 
-    
+    });
+
   }
 
 

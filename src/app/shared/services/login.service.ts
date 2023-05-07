@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Credenciales } from '../shared/interfaces/credenciales';
-import { Cliente } from '../shared/interfaces/cliente';
+import { Credenciales } from 'src/app/shared/interfaces/credenciales';
+import { Cliente } from 'src/app/shared/interfaces/cliente';
 
 import { Observable } from 'rxjs';
 
