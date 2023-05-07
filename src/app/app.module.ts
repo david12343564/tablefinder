@@ -24,6 +24,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.component';
+import { CardComponent } from './pages/reservations/card/card.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.compon
     ReservationsComponent,
     NoticeCovidComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
