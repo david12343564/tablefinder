@@ -1,0 +1,32 @@
+<div *ngIf="!isRestaurant" class="checkoutContainer">
+    <div id="checkoutHeader">
+        <section id="title">
+            <p>Mis reservaciones futuras</p>
+        </section>
+    </div>
+
+    <div id="reservacionFutura" >
+
+        <app-small-card [reservaciones]="reservacionesFuturas" [isFuture]="true"></app-small-card>
+
+    </div>
+    
+    <div id="checkoutHeader">
+        <section id="title">
+            <p>Mis reservaciones pasadas</p>
+        </section>
+    </div>
+
+    
+    <div id="reservacionPasada">
+
+        <app-small-card [reservaciones]="reservacionesPasadas" [isFuture]="false"></app-small-card>
+
+    </div>
+
+    <div id="reservacionBanner">
+        <app-notice-covid></app-notice-covid>
+    </div>
+    
+
+</div>

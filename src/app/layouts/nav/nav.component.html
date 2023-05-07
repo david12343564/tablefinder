@@ -13,7 +13,7 @@
             <button class="dropbtn"><img src="assets/profilePic.jpg" class="circle"></button>
             <div class="dropdown-content">
                 <a href="/reservations" *ngIf="!isRestaurant"> Mis reservaciones</a>
-                <a href="#" *ngIf="isRestaurant"> Mi actividad</a>
+                <a href="/actividad" *ngIf="isRestaurant"> Mi actividad</a>
                 <a (click)="cerrarSesion()">Salir</a>
             </div>
         </div>

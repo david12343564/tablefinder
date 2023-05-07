@@ -11,6 +11,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 
 import { AuthGuard } from './shared/guards/auth.guard'; 
+import { ActividadComponent } from './pages/actividad/actividad.component';
 
 
 const routes: Routes = [
@@ -26,9 +27,10 @@ const routes: Routes = [
   
   // vistas privadas Cliente
   {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
-  {path: 'reservations', component: ReservationsComponent, canActivate: [AuthGuard]}
+  {path: 'reservations', component: ReservationsComponent, canActivate: [AuthGuard]},
 
   //vistas privadas Restaurante
+  {path: 'actividad', component: ActividadComponent, canActivate: [AuthGuard]}
 
 ];
 

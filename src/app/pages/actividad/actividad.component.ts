@@ -4,13 +4,14 @@ import { ReservationService } from 'src/app/shared/services/reservation.service'
 import { Reservation } from 'src/app/shared/interfaces/reservation'; 
 import { PrivilegiosService } from 'src/app/shared/services/privilegios.service'; 
 
-@Component({
-  selector: 'app-reservations',
-  templateUrl: './reservations.component.html',
-  styleUrls: ['./reservations.component.scss']
-})
-export class ReservationsComponent implements OnInit {
 
+@Component({
+  selector: 'app-actividad',
+  templateUrl: './actividad.component.html',
+  styleUrls: ['./actividad.component.scss']
+})
+export class ActividadComponent implements OnInit  {
+  
   reservaciones: Array<Reservation> = [];
   reservacionesPasadas: Array<Reservation> = [];
   reservacionesFuturas: Array<Reservation> = [];
@@ -25,11 +26,9 @@ export class ReservationsComponent implements OnInit {
   }
   
   isRestaurant: boolean = false;
-  
   month = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 
            "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ]
-  day = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
-
+  
   ngOnInit(): void {
     this.reservationService.getReservations(this.isRestaurant).subscribe((data: any) => {
       this.reservaciones = data;
@@ -38,13 +37,13 @@ export class ReservationsComponent implements OnInit {
       console.log(this.reservacionesFuturas)
     });
   }
-  
+    
   sortReservaciones() {
     const today = new Date();
     this.reservaciones.forEach((item: Reservation) => {
       let fecha = new Date(item.fecha)
       item.fecha = new Date(item.fecha)
-      item.dia = this.day[fecha.getDay()] + ', ' + fecha.getDate() + ' de ' + this.month[fecha.getMonth()] + ', ' + fecha.getFullYear()
+      item.dia = fecha.getDate() + ' de ' + this.month[fecha.getMonth()] + ', ' + fecha.getFullYear()
       item.hora = fecha.getHours() + ':' +  fecha.getMinutes()
       if (item.fecha < today) {
         this.reservacionesPasadas.push(item)
@@ -53,7 +52,6 @@ export class ReservationsComponent implements OnInit {
       }
     });
   }
-
-
+  
 
 }
