@@ -1,0 +1,17 @@
+<div *ngFor="let reserva of reservaciones" id="reservacionContent" class="fila" >
+    <div id="reservacionImage" class="columna-30" >
+        <img src="assets/listado/list_res1.jpg" >
+    </div>
+    <div id="reservacionInformacion" class="columna-50" >
+        <section id="reservacionName">{{reserva.idCliente}}</section>
+        <section id="reservacionDetalles"> 
+            <section id="reservacionFecha">Fecha: {{reserva.dia}} </section>
+            <section id="reservacionPersonas">Hora: {{ reserva.hora}} </section>
+            <section id="reservacionPersonas">Mesa: {{reserva.mesa}} </section>
+        </section>
+    </div>
+    <div id="botonAccion" class="columna-20" >              
+        <button *ngIf="isFuture"> Tu código </button>
+        <button *ngIf="!isFuture"> Tu experiencia </button>
+    </div>
+</div>  

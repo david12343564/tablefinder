@@ -24,6 +24,7 @@ import { ReservationsComponent } from './pages/reservations/reservations.compone
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.component';
+import { CardComponent } from './pages/reservations/card/card.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.compon
     ReservationsComponent,
     NoticeCovidComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
