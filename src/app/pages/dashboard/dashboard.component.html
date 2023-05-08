@@ -1,0 +1,68 @@
+<div class="restaurant" *ngIf="isRestaurant">
+    <div class="restaurant-photo">
+        <img src="assets/resta.jpg" alt="Restaurante">
+    </div>
+
+    <div class="restaurant-info">
+        <div class="restaurant-data">
+            <h1>Porfirios</h1>
+            <div class="rating">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+            </div>
+            <div class="location-info">
+                <span>🚩</span>
+                <span>Punto Sao Paulo 2334A, Guadalajara, Jalisco</span>
+            </div>
+
+            <div class="description">
+                <h4>Overview</h4>
+                <p>Somos un lugar que renueva el concepto de cocina urbana contemporánea,
+                    combinando recetas caseras con acentos tomados de todos los rincones de México,
+                    llevando lo mejor DE LA CALLE A TU MESA.</p>
+            </div>
+
+
+        </div>
+        <div class="restaurante-mapa">
+            <img src="assets/mapa.jpg" alt="Mapa del restaurante">
+            <div class="reservacion-info" style="width: 70%;">
+                <div><button class="reservacion-info button">Actualizar Información</button></div>
+                <div><button class="reservacion-info button">Agregar Mesa</button></div>
+                <div><button class="reservacion-info button">Agregar Platillo</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mesasDisponibles">
+        <div id="checkoutHeader">
+            <section id="title">
+                <p>Mesas disponibles</p>
+            </section>
+        </div>
+
+        <div id="reservacionFutura">
+            <app-mesa-card></app-mesa-card>
+        </div>
+
+    </div>
+    
+    <div id="mesasDisponibles">
+        <div id="checkoutHeader">
+            <section id="title">
+                <p>Menú disponibles</p>
+            </section>
+        </div>
+
+        <div id="reservacionFutura">
+            <app-mesa-card></app-mesa-card>
+        </div>
+
+    </div>
+
+</div>
+
+<app-no-auth *ngIf="isRestaurant" ></app-no-auth>

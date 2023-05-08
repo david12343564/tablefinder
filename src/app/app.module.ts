@@ -27,6 +27,9 @@ import { NoticeCovidComponent } from './layouts/notice-covid/notice-covid.compon
 import { CardComponent } from './pages/reservations/card/card.component';
 import { ActividadComponent } from './pages/actividad/actividad.component';
 import { SmallCardComponent } from './pages/actividad/small-card/small-card.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MesaCardComponent } from './pages/dashboard/mesa-card/mesa-card.component';
+import { NoAuthComponent } from './pages/no-auth/no-auth.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { SmallCardComponent } from './pages/actividad/small-card/small-card.comp
     RegisterComponent,
     CardComponent,
     ActividadComponent,
-    SmallCardComponent
+    SmallCardComponent,
+    DashboardComponent,
+    MesaCardComponent,
+    NoAuthComponent
   ],
   imports: [
     BrowserModule,

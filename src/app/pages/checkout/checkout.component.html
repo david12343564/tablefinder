@@ -1,4 +1,4 @@
-<div class="checkoutContainer">
+<div class="checkoutContainer" *ngIf="!isRestaurant">
     <div id="checkoutHeader">
         <section id="title">
             <p>Asegura tu reservación</p>
@@ -153,3 +153,5 @@
     </div>
 
 </div>
+
+<app-no-auth *ngIf="isRestaurant" ></app-no-auth>

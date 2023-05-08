@@ -43,6 +43,7 @@ export class LoginComponent {
       this.invalidReq = false;
       // Recibimos el token
       this.tokenService.setToken(data.token);
+      this.privilegioService.setRole();
       // Enviar a tareas
       this.router.navigate(['/']);
     }, error => {
