@@ -1,7 +1,8 @@
 <header>
 
     <div class="logo">
-        <a href="/"><img src="assets/logo1.jpg" alt="Empresa"></a>
+        <a href="/" *ngIf="!isRestaurant"><img src="assets/logo1.jpg" alt="Empresa"></a>
+        <a href="/dashboard" *ngIf="isRestaurant"><img src="assets/logo1.jpg" alt="Empresa"></a>
         <span>Tablefinder</span>
     </div>
 

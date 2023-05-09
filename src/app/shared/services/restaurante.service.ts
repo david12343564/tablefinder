@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
 import { Restaurante } from 'src/app/shared/interfaces/restaurante';
+import { TokenService } from './token.service'; 
 
 import { Observable } from 'rxjs';
 import { HttpService } from './http.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 
@@ -14,10 +16,14 @@ import { map } from 'rxjs/operators';
 })
 export class RestauranteService {
 
-  constructor(private httpService: HttpService) { }
+  constructor(
+    private httpClient: HttpClient, 
+    private httpService: HttpService,
+    private tokenService: TokenService
+  ) { }
 
   listarRestaurantes(): Observable<Restaurante[]> {
-    const url: string = environment.apiUrl + '/restaurantes';
+    const url: string = environment.apiUrl + '/restaurantes/all';
     return this.httpService.get<Restaurante[]>(url).pipe(
       map((restaurantesData: any[]) =>
         restaurantesData.map((restauranteData: any) => {
@@ -28,4 +34,12 @@ export class RestauranteService {
       ),
     );
   }
+  
+  getReservations(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': this.tokenService.getToken()
+    });
+    return this.httpClient.get('http://localhost:3000/restaurantes', { headers });
+  }
+
 }

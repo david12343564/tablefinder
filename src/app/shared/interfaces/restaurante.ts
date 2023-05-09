@@ -1,10 +1,22 @@
 import { Horario } from './horario';
 
+export interface BasicRestaurante {
+    nombre: string;
+    direccion: string;
+    descripcion: string;
+    telefono: string;
+    imagen: string;
+    totalCalif: number;
+    contadorCalif: number;
+    calificacion: number;
+}
+
 export class Restaurante {
     _id: string = '';
     nombre: string = '';
     email: string = '';
     direccion: string = '';
+    descripcion: string = '';
     telefono: string = '';
     password: string = '';
     horario: Horario = {

@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class CardComponent {
 
-  @Input() reservaciones: any[] = [];
+  @Input() reservaciones: any[] = [{hello: ""}];
   @Input() isFuture: boolean = false;
 
 }

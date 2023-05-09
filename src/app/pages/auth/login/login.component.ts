@@ -31,21 +31,24 @@ export class LoginComponent {
     
     this.privilegioService.isRestaurant.subscribe((privilegio: boolean) => {
       this.isRestaurant = privilegio;
+      console.log(this.isRestaurant)  
     });
   }
 
   isRestaurant: boolean = false;
+  nextDashboard: boolean = false;
   invalidReq: boolean = false;
   credenciales:  Credenciales = { email: '', password: '' };
 
   iniciarSesion() {
     this.loginService.login(this.credenciales, this.isRestaurant).subscribe((data: any) => {
+      this.nextDashboard = this.isRestaurant;
       this.invalidReq = false;
       // Recibimos el token
       this.tokenService.setToken(data.token);
       this.privilegioService.setRole();
       // Enviar a tareas
-      this.router.navigate(['/']);
+      this.nextDashboard ? this.router.navigate(['/dashboard']) : this.router.navigate(['/'])
     }, error => {
       this.invalidReq = true;
     });

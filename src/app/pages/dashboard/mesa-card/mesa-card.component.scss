@@ -1,5 +1,10 @@
+@use 'sass:math';
+@import '/src/sass/mixins';
+
 #mesaCard {
     margin: 5px 1%;
+    box-shadow: 0 4px 37px rgba(0, 0, 0, 0.15);
+    border-radius: $default-borderRadius;
 }
 
     .modificarMesa {
@@ -14,13 +19,34 @@
         cursor: pointer;
     }
 
+    .eliminarMesa {
+        margin: 2%;
+        width: 98%;
+        background-color: rgba(228, 59, 63, 0.1);
+        color: #E43B3F;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 0px 10px;
+        cursor: pointer;
+    }
+
 #infoMesa{
     margin: 5px 1%;
     font-size: 14px;
     &.center{
-        display:flex;
         justify-content: center;
     }
+    &.primero{
+        margin-left:10px;
+    }
+}
+
+p {
+    font-size: 14px;
+    margin: 0px;
+    margin: 5px 0px;
+    color: #4F4F4F;
 }
 
 .fila {
@@ -57,5 +83,23 @@
         content: "";
         display: table;
         clear: both;
+    }
+}
+
+@include tablet {    
+    .fila {
+        > div.columna-tablet-100 { width: 100%; }
+        > div.columna-tablet-70  { width: 70%; }
+        > div.columna-tablet-50  { width: 48%; }
+        > div.columna-tablet-30  { width: 30%; }
+    }
+}
+
+@include desktop {
+    .fila {
+        > div.columna-desktop-100 { width: 100%; }
+        > div.columna-desktop-70  { width: 70%; }
+        > div.columna-desktop-50  { width: 50%; }
+        > div.columna-desktop-30  { width: 30%; }
     }
 }

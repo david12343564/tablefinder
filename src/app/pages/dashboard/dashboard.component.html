@@ -5,24 +5,23 @@
 
     <div class="restaurant-info">
         <div class="restaurant-data">
-            <h1>Porfirios</h1>
+            <h1>{{restaurante.nombre}}</h1>
             <div class="rating">
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9733;</span>
-                <span class="star">&#9734;</span>
+                <fa-icon [icon]="restaurante.calificacion <= 1 ? faStarHalf : faStar" *ngIf="restaurante.calificacion >= 0" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                <fa-icon [icon]="restaurante.calificacion <= 2 ? faStarHalf : faStar" *ngIf="restaurante.calificacion >= 1" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                <fa-icon [icon]="restaurante.calificacion <= 3 ? faStarHalf : faStar" *ngIf="restaurante.calificacion >= 2" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                <fa-icon [icon]="restaurante.calificacion <= 4 ? faStarHalf : faStar" *ngIf="restaurante.calificacion >= 3" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                <fa-icon [icon]="restaurante.calificacion <= 5 ? faStarHalf : faStar" *ngIf="restaurante.calificacion >= 4" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                <span>{{restaurante.calificacion}} ({{restaurante.contadorCalif}} Reseñas)</span>
             </div>
             <div class="location-info">
                 <span>🚩</span>
-                <span>Punto Sao Paulo 2334A, Guadalajara, Jalisco</span>
+                <span>{{restaurante.direccion}}</span>
             </div>
 
             <div class="description">
                 <h4>Overview</h4>
-                <p>Somos un lugar que renueva el concepto de cocina urbana contemporánea,
-                    combinando recetas caseras con acentos tomados de todos los rincones de México,
-                    llevando lo mejor DE LA CALLE A TU MESA.</p>
+                <p>{{restaurante.descripcion}}</p>
             </div>
 
 
@@ -30,7 +29,7 @@
         <div class="restaurante-mapa">
             <img src="assets/mapa.jpg" alt="Mapa del restaurante">
             <div class="reservacion-info" style="width: 70%;">
-                <div><button class="reservacion-info button">Actualizar Información</button></div>
+                <div><a routerLink="/editar"><button class="reservacion-info button">Actualizar Información</button></a></div>
                 <div><button class="reservacion-info button">Agregar Mesa</button></div>
                 <div><button class="reservacion-info button">Agregar Platillo</button></div>
             </div>
@@ -45,7 +44,7 @@
         </div>
 
         <div id="reservacionFutura">
-            <app-mesa-card></app-mesa-card>
+            <app-mesa-card [mesas]="mesas"></app-mesa-card>
         </div>
 
     </div>
@@ -56,13 +55,49 @@
                 <p>Menú disponibles</p>
             </section>
         </div>
+        
+        <div id="checkoutHeader">
+            <section id="subtitle">
+                <p>Bebida</p>
+            </section>
+        </div>
 
         <div id="reservacionFutura">
-            <app-mesa-card></app-mesa-card>
+            <app-comida-card [productos]="productosBebida"></app-comida-card>
+        </div>
+        
+        <div id="checkoutHeader">
+            <section id="subtitle">
+                <p>Entradas</p>
+            </section>
+        </div>
+
+        <div id="reservacionFutura">
+            <app-comida-card [productos]="productosEntrada"></app-comida-card>
+        </div>
+        
+        <div id="checkoutHeader">
+            <section id="subtitle">
+                <p>Plato Fuerte</p>
+            </section>
+        </div>
+
+        <div id="reservacionFutura">
+            <app-comida-card [productos]="productosPlatoFuerte"></app-comida-card>
+        </div>
+
+        <div id="checkoutHeader">
+            <section id="subtitle">
+                <p>Postre</p>
+            </section>
+        </div>
+
+        <div id="reservacionFutura">
+            <app-comida-card [productos]="productosPostre"></app-comida-card>
         </div>
 
     </div>
 
 </div>
 
-<app-no-auth *ngIf="isRestaurant" ></app-no-auth>
+<app-no-auth *ngIf="!isRestaurant" ></app-no-auth>

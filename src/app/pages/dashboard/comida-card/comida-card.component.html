@@ -1,0 +1,23 @@
+
+<div class="fila">    
+    <div *ngFor="let producto of productos" id="comidaCard" class="columna-100 columna-tablet-50 columna-desktop-30" > 
+        <div id="imgComida">
+            <div id="reservacionImage" >
+                <img src="assets/listado/list_res1.jpg" >
+            </div>
+        </div>
+        <div class="fila" >
+            <div id="infoComida" class="columna-30 "> 
+                <strong style="font-size: 16px;">{{producto.nombre}}</strong>
+                <br><br> ${{producto.precio}}
+            </div>
+            <div id="infoComida" class="columna-30 " style="color:#4F4F4F"> 
+                {{producto.descripcion}}
+            </div>
+            <div id="infoComida" class="columna-30 center" > 
+                <div style="margin-bottom: 2px;"><button class="modificarComida">Modificar</button></div>
+                <div><button class="eliminarComida">Eliminar</button></div>
+            </div>
+        </div>
+    </div>  
+</div>

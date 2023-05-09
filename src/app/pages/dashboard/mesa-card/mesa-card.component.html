@@ -1,55 +1,18 @@
 
 <div class="fila">    
-    <div id="mesaCard" class="columna-30" > 
+    <div  *ngFor="let mesa of mesas" id="mesaCard" class="columna-100 columna-tablet-50 columna-desktop-30" > 
         <div class="fila" >
-            <div id="infoMesa" class="columna-30 " > 
-                Mesa 1 
+            <div id="infoMesa" class="columna-30 primero" > 
+                {{mesa.nombreMesa}}
             </div>
             <div id="infoMesa" class="columna-30 " > 
-                Max 15 personas 
+                Max {{mesa.capacidad}} personas
+                <p>${{mesa.precio}}</p>
             </div>
             <div id="infoMesa" class="columna-30 center" > 
-                <button class="modificarMesa">Modificar</button>
+                <div style="margin-bottom: 2px;"><button class="modificarMesa">Modificar</button></div>
+                <div><button class="eliminarMesa">Eliminar</button></div>
             </div>
         </div>
     </div> 
-    <div id="mesaCard" class="columna-30" > 
-        <div class="fila" >
-            <div id="infoMesa" class="columna-30 " > 
-                Mesa 1 
-            </div>
-            <div id="infoMesa" class="columna-30 " > 
-                Max 15 personas 
-            </div>
-            <div id="infoMesa" class="columna-30 center" > 
-                <button class="modificarMesa">Modificar</button>
-            </div>
-        </div>
-    </div> 
-    <div id="mesaCard" class="columna-30" > 
-        <div class="fila" >
-            <div id="infoMesa" class="columna-30 " > 
-                Mesa 1 
-            </div>
-            <div id="infoMesa" class="columna-30 " > 
-                Max 15 personas 
-            </div>
-            <div id="infoMesa" class="columna-30 center" > 
-                <button class="modificarMesa">Modificar</button>
-            </div>
-        </div>
-    </div> 
-    <div id="mesaCard" class="columna-30" > 
-        <div class="fila" >
-            <div id="infoMesa" class="columna-30 " > 
-                Mesa 1 
-            </div>
-            <div id="infoMesa" class="columna-30 " > 
-                Max 15 personas 
-            </div>
-            <div id="infoMesa" class="columna-30 center" > 
-                <button class="modificarMesa">Modificar</button>
-            </div>
-        </div>
-    </div>
 </div>

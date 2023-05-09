@@ -30,6 +30,8 @@ import { SmallCardComponent } from './pages/actividad/small-card/small-card.comp
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MesaCardComponent } from './pages/dashboard/mesa-card/mesa-card.component';
 import { NoAuthComponent } from './pages/no-auth/no-auth.component';
+import { ComidaCardComponent } from './pages/dashboard/comida-card/comida-card.component';
+import { EditarComponent } from './pages/editar/editar.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { NoAuthComponent } from './pages/no-auth/no-auth.component';
     SmallCardComponent,
     DashboardComponent,
     MesaCardComponent,
-    NoAuthComponent
+    NoAuthComponent,
+    ComidaCardComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { ActividadComponent } from './pages/actividad/actividad.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NoAuthComponent } from './pages/no-auth/no-auth.component';
+import { EditarComponent } from './pages/editar/editar.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
 
   //vistas privadas Restaurante
   {path: 'actividad', component: ActividadComponent, canActivate: [AuthGuard]},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'editar', component: EditarComponent, canActivate: [AuthGuard]},
 
 ];
 
