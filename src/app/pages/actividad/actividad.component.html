@@ -1,13 +1,13 @@
-<div class="checkoutContainer" *ngIf="!isRestaurant">
+<div class="checkoutContainer" *ngIf="isRestaurant">
     <div id="checkoutHeader">
         <section id="title">
             <p>Mis reservaciones futuras</p>
         </section>
     </div>
 
-    <div id="reservacionFutura" class="fila">
+    <div id="reservacionFutura" >
 
-        <app-card [reservaciones]="reservacionesFuturas" [isFuture]="true"></app-card>
+        <app-small-card [reservaciones]="reservacionesFuturas" [isFuture]="true"></app-small-card>
 
     </div>
     
@@ -18,9 +18,9 @@
     </div>
 
     
-    <div id="reservacionPasada" class="fila">
+    <div id="reservacionPasada">
 
-        <app-card [reservaciones]="reservacionesPasadas" [isFuture]="false"></app-card>
+        <app-small-card [reservaciones]="reservacionesPasadas" [isFuture]="false"></app-small-card>
 
     </div>
 
@@ -31,4 +31,4 @@
 
 </div>
 
-<app-no-auth *ngIf="isRestaurant" ></app-no-auth>
+<app-no-auth *ngIf="!isRestaurant" ></app-no-auth>

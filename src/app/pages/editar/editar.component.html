@@ -1,0 +1,71 @@
+<div class="editarContainer" *ngIf="isRestaurant">
+    <div id="editarHeader">
+        <section id="title">
+            <p>La taberna del dragón</p>
+        </section>
+    </div>
+
+    <div id="editarContent">
+        <section id="detalleCard">
+            <div class="tarjeta">
+                <div class="cabeza" >
+                    <section id="detalles">
+                        <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }" size="lg"></fa-icon>
+                        <section id="detalle"> Descripción </section>
+                    </section>
+                </div>
+                <div class="cuerpo">
+                    <textarea type="text" formControlName="nombre" placeholder="Opcional" name="Text1"></textarea>
+                    
+                    <div id="actualizar" class="center" > 
+                        <button class="modificarComida">Actualizar Descripción</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="detalleCard">
+            <div class="tarjeta">
+                <div class="cabeza">
+                    <section id="detalles">
+                        <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }" size="lg"></fa-icon>
+                        <section id="detalle"> Ubicación </section>
+                    </section>
+                </div>
+                <div class="cuerpo">
+                    <input type="text" id="text" name="text" > 
+                    <div id="imgRestaurant">
+                        <div id="restaurantImage" >
+                            <img src="assets/listado/list_res1.jpg" >
+                        </div>
+                    </div>
+                    
+                    <div id="actualizar" class="center" > 
+                        <button class="modificarComida">Actualizar Ubicación</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="detalleCard">
+            <div class="tarjeta">
+                <div class="cabeza">
+                    <section id="detalles">
+                        <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }" size="lg"></fa-icon>
+                        <section id="detalle"> Foto de portada </section>
+                    </section>
+                </div>
+                <div class="cuerpo">
+                    <div id="imgRestaurant">
+                        <div id="restaurantImage" >
+                            <img src="assets/listado/list_res1.jpg" >
+                        </div>
+                    </div>
+                    
+                    <div id="actualizar" class="center" > 
+                        <button class="modificarComida">Seleccionar Imagen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <app-no-auth *ngIf="!isRestaurant"></app-no-auth>

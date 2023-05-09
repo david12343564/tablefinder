@@ -1,7 +1,8 @@
 <header>
 
     <div class="logo">
-        <a href="/"><img src="assets/logo1.jpg" alt="Empresa"></a>
+        <a href="/" *ngIf="!isRestaurant"><img src="assets/logo1.jpg" alt="Empresa"></a>
+        <a href="/dashboard" *ngIf="isRestaurant"><img src="assets/logo1.jpg" alt="Empresa"></a>
         <span>Tablefinder</span>
     </div>
 
@@ -13,7 +14,7 @@
             <button class="dropbtn"><img src="assets/profilePic.jpg" class="circle"></button>
             <div class="dropdown-content">
                 <a href="/reservations" *ngIf="!isRestaurant"> Mis reservaciones</a>
-                <a href="#" *ngIf="isRestaurant"> Mi actividad</a>
+                <a href="/actividad" *ngIf="isRestaurant"> Mi actividad</a>
                 <a (click)="cerrarSesion()">Salir</a>
             </div>
         </div>

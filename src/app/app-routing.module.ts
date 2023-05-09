@@ -11,6 +11,10 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 
 import { AuthGuard } from './shared/guards/auth.guard'; 
+import { ActividadComponent } from './pages/actividad/actividad.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NoAuthComponent } from './pages/no-auth/no-auth.component';
+import { EditarComponent } from './pages/editar/editar.component';
 
 
 const routes: Routes = [
@@ -18,15 +22,22 @@ const routes: Routes = [
   {path: '', component:HomeComponent},
   //login, register
   {path: 'auth', component:AuthComponent},
+  {path: 'noAuth', component:NoAuthComponent},
   {path: 'login', component:LoginComponent},
   {path: 'register',component:RegisterComponent},
   // vistas publicas
   {path: 'detalles', component:DetailsComponent},
   {path: 'search',component:SearchComponent},
   
-  // vistas privadas
+  // vistas privadas Cliente
   {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
-  {path: 'reservations', component: ReservationsComponent, canActivate: [AuthGuard]}
+  {path: 'reservations', component: ReservationsComponent, canActivate: [AuthGuard]},
+
+  //vistas privadas Restaurante
+  {path: 'actividad', component: ActividadComponent, canActivate: [AuthGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'editar', component: EditarComponent, canActivate: [AuthGuard]},
+
 ];
 
 @NgModule({

@@ -1,0 +1,26 @@
+<div class="fila">
+    <div id="actividadCard" *ngFor="let reserva of reservaciones" class="columna-30" >
+        <div  id="reservacionContent" >
+            <div id="reservacionInformacion">
+                <section id="reservacionName">{{reserva.idCliente}}</section>
+                <section id="restaurantStars"> 
+                    <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
+                    <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
+                    <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
+                    <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
+                    <fa-icon [icon]="faStarHalf" [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
+                </section>
+                <section id="reservacionDetalles"> 
+                    <section id="reservacionFecha">Fecha: {{reserva.dia}} </section>
+                    <section id="reservacionPersonas">Hora: {{ reserva.hora}} </section>
+                    <section id="reservacionPersonas">Mesa: {{reserva.mesa}} </section>
+                    <div id="botonAccion" >          
+                        <button *ngIf="isFuture"> Detalles </button>    
+                        <button *ngIf="!isFuture"> Detalles </button>
+                    </div>
+                </section>
+                
+            </div>
+        </div>  
+    </div>
+</div>

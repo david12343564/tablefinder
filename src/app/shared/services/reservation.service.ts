@@ -14,11 +14,11 @@ export class ReservationService {
     private tokenService: TokenService
   ) { }
   
-  getReservations(): Observable<any> {
+  getReservations(isRestaurant: boolean): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': this.tokenService.getToken()
     });
-    return this.httpClient.get('http://localhost:3000/reservaciones/cliente', { headers });
+    return this.httpClient.get('http://localhost:3000/reservaciones/' + (isRestaurant ? 'restaurante' : 'cliente'), { headers });
   }
 
 }

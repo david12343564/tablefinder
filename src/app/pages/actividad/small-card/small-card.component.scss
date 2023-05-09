@@ -1,0 +1,112 @@
+@use 'sass:math';
+@import '/src/sass/mixins';
+
+.checkoutContainer {
+    width: 90%;
+    background-color: rgba(255, 255, 255, 1);
+    margin: 5%;
+
+    #title {
+        color: rgba(25, 25, 25, 1);
+        font-size: 32px;
+        font-style: Semibold;
+        font-weight: 600;
+    }
+}
+#actividadCard{
+    margin: 1.5%;
+    margin-top: 0px;
+}
+
+#reservacionContent{
+    margin-top: 20px;  
+    min-height: 250px;
+    box-shadow: 0 4px 37px rgba(0, 0, 0, 0.15);
+    border-radius: $default-borderRadius;
+
+
+    #botonAccion{
+        display: table;
+        margin: 0 auto;
+        button{
+            margin: 3%;
+            width: 100%;
+            height: 30px;
+            color: #FFFFFF;
+            border-radius: $default-borderRadius;
+            background-color: #2F80ED;
+            border: none;
+            text-align: center;
+            display: inline-block;
+        }
+    }
+
+    #reservacionInformacion{
+        padding: 3%;
+        position: relative;
+        min-width: 200px;
+
+        #reservacionDetalles {
+            section {padding-top: 2px; padding-bottom: 2px;}
+            width: 95%;
+            color: #4F4F4F;            
+            position: absolute;
+            top: 200%;
+            font-size: $font-small; 
+        }
+
+        #reservacionName { 
+            font-size: $font-small; 
+            display: table;
+            margin: 0 auto;
+        }
+        #restaurantStars{
+            display: table;
+            margin: 0 auto;
+        }
+
+    }
+}
+
+#reservacionBanner {
+    margin-top: 50px
+}
+
+
+.fila{
+    width: 100%;
+    min-height: 1px;
+    > div[class ^="columna-"]{
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    > div.columna-70 { width: 70%; }
+    > div.columna-50 { width: 50%; }
+    > div.columna-40 { width: 40%; }
+    > div.columna-30 { width: 30%; }
+    > div.columna-20 { width: 20%; }
+    &::after{
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@include tablet {    
+    .fila {
+        > div.columna-tablet-100 { width: 100%; }
+        > div.columna-tablet-70  { width: 70%; }
+        > div.columna-tablet-50  { width: 50%; }
+        > div.columna-tablet-30  { width: 30%; }
+    }
+}
+
+@include desktop {
+    .fila {
+        > div.columna-desktop-100 { width: 100%; }
+        > div.columna-desktop-70  { width: 70%; }
+        > div.columna-desktop-50  { width: 50%; }
+        > div.columna-desktop-30  { width: 30%; }
+    }
+}

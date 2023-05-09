@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
@@ -6,6 +6,7 @@ import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { LoginService } from 'src/app/shared/services/login.service';
 import { PrivilegiosService } from 'src/app/shared/services/privilegios.service';
+import { Subscriber } from 'rxjs';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { PrivilegiosService } from 'src/app/shared/services/privilegios.service'
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent {
+export class NavComponent  {
 
   constructor(
     private tokenService: TokenService,
@@ -25,8 +26,9 @@ export class NavComponent {
     this.tokenService.authStatus.subscribe((status: boolean) => {
       this.logueado = status;
     });
-    this.privilegioService.isRestaurant.subscribe((privilegio: boolean) => {
-      this.isRestaurant = privilegio;
+    
+    this.privilegioService.isRestaurant.subscribe((status: boolean) => {
+      this.isRestaurant = status;
     });
 
     this.socialAuthService.authState.subscribe((user: SocialUser) => {
