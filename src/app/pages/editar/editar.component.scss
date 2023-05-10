@@ -68,7 +68,14 @@
     }
 }
 
-input{
+#tiempoCard{
+    .tarjeta .cuerpo{
+        text-align: left;
+
+    }
+}
+
+input[type="text"]{
     width: 98%;
 	border-radius: 5px;
 	background-color: white;
@@ -124,6 +131,7 @@ input{
     > div.columna-70 { width: 70%; }
     > div.columna-50 { width: 50%; }
     > div.columna-30 { width: 30%; }
+    > div.columna-0 { display: none; }
     &::after{
         content: "";
         display: table;
@@ -131,12 +139,33 @@ input{
     }
 }
 
+
+.tab{
+    overflow: hidden;
+    
+    button {
+        height: 30px;
+        background-color: #F4F4F4;
+        color: #333333;
+        border: none;
+        text-align: center;
+        display: inline-block;
+    }
+        
+    button.active {
+        outline: 0;
+        border-bottom: 3px solid #2F80ED; 
+    }
+}
+
+
 @include tablet {    
     .fila {
         > div.columna-tablet-100 { width: 100%; }
         > div.columna-tablet-70  { width: 70%; }
         > div.columna-tablet-50  { width: 50%; }
         > div.columna-tablet-30  { width: 30%; }
+        > div.columna-tablet-33  { width: 33.3%; display: block;}
     }
 }
 

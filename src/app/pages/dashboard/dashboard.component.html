@@ -1,4 +1,4 @@
-<div class="restaurant" *ngIf="isRestaurant">
+<div class="restaurant" *ngIf="isRestaurant" >
     <div class="restaurant-photo">
         <img src="assets/resta.jpg" alt="Restaurante">
     </div>
@@ -15,13 +15,27 @@
                 <span>{{restaurante.calificacion}} ({{restaurante.contadorCalif}} Reseñas)</span>
             </div>
             <div class="location-info">
-                <span>🚩</span>
-                <span>{{restaurante.direccion}}</span>
+                <fa-icon [icon]="faMapPin" [styles]="{ stroke: '#2F80ED', color: '#2F80ED' }" > </fa-icon>
+                <span>  {{restaurante.direccion}}</span>
             </div>
 
             <div class="description">
-                <h4>Overview</h4>
+                <h4>Descripción</h4>
                 <p>{{restaurante.descripcion}}</p>
+            </div>
+            
+            <div class="horario">
+                <h4>Horario</h4>
+                <div class="fila">    
+                    <div class="columna-50" > <p>Lunes: {{horario['lunes'][0]}}{{horario['lunes'][1]}}</p> </div>
+                    <div class="columna-50" > <p>Martes: {{horario['martes'][0]}}{{horario['martes'][1]}}</p> </div>
+                    <div class="columna-50" > <p>Miercoles: {{horario['miercoles'][0]}}{{horario['miercoles'][1]}}</p> </div>
+                    <div class="columna-50" > <p>Jueves: {{horario['jueves'][0]}}{{horario['jueves'][1]}}</p> </div>
+                    <div class="columna-50" > <p>Viernes: {{horario['viernes'][0]}}{{horario['viernes'][1]}}</p> </div>
+                    <div class="columna-50" > <p>Sabado: {{horario['sabado'][0]}}{{horario['sabado'][1]}}</p> </div>
+                    <div class="columna-50" > <p>Domingo: {{horario['domingo'][0]}}{{horario['domingo'][1]}}</p> </div>
+                </div>
+                 
             </div>
 
 

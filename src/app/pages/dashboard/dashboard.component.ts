@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 import { PrivilegiosService } from 'src/app/shared/services/privilegios.service';
 import { RestauranteService } from 'src/app/shared/services/restaurante.service';
@@ -9,7 +9,7 @@ import { BasicRestaurante } from 'src/app/shared/interfaces/restaurante';
 import { Producto } from 'src/app/shared/interfaces/producto';
 import { Mesa } from 'src/app/shared/interfaces/mesa';
 
-import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faStarHalf, faMapPin } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +20,9 @@ export class DashboardComponent {
   
   faStar = faStar;
   faStarHalf = faStarHalf;
+  faMapPin = faMapPin;
+
+  @Output() onSelected: EventEmitter<any> = new EventEmitter();
 
   isRestaurant: boolean = false;
   mesas: Array<Mesa> = []; 
@@ -28,10 +31,29 @@ export class DashboardComponent {
   productosEntrada: Array<Producto> = [];
   productosPlatoFuerte: Array<Producto> = [];
   productosPostre: Array<Producto> = [];
+  
+  horario: {[index: string]:any} = {
+    lunes: ['00:00','00:00'],
+    martes: ['00:00','00:00'],
+    miercoles: ['00:00','00:00'],
+    jueves: ['00:00','00:00'],
+    viernes: ['00:00','00:00'],
+    sabado: ['00:00','00:00'],
+    domingo: ['00:00','00:00'],
+  }
   restaurante: BasicRestaurante = { nombre: '', descripcion: '', 
                                     direccion:'', calificacion: 0,
                                     telefono: '', imagen: '', 
-                                    totalCalif: 0, contadorCalif: 0
+                                    totalCalif: 0, contadorCalif: 0,
+                                    horario:{
+                                      lunes: [0, 0],
+                                      martes: [0, 0],
+                                      miercoles: [0, 0],
+                                      jueves: [0, 0],
+                                      viernes: [0, 0],
+                                      sabado: [0, 0],
+                                      domingo: [0, 0],
+                                    }
                                   };
 
   constructor(
@@ -49,6 +71,7 @@ export class DashboardComponent {
     this.restauranteService.getReservations().subscribe((data: any) => {
       this.restaurante = data
       this.restaurante.calificacion = Number((data.contadorCalif === 0) ? '0' : (data.totalCalif / data.contadorCalif).toFixed(2))
+      this.getHorario()
       console.log(this.restaurante)
     });
     this.mesaService.getMesas().subscribe((data:any) => {
@@ -76,5 +99,26 @@ export class DashboardComponent {
       console.log(this.productos)
     })
   }
-
+  
+  getHorario():void {    
+    Object.entries(this.restaurante.horario).forEach(
+      ([key, value]) => {
+        console.log(key, value)
+        this.horario[key][0] = '0000' + value[0].toString()
+        this.horario[key][1] = '0000' + value[1].toString()
+        let size_0 = this.horario[key][0].length
+        let size_1 = this.horario[key][1].length
+        this.horario[key][0] = this.horario[key][0].substring(size_0-4,size_0-2) 
+                     + ':' + this.horario[key][0].substring(size_0-2,size_0) + ' - '
+        this.horario[key][1] = this.horario[key][1].substring(size_1-4,size_1-2) 
+                     + ':' + this.horario[key][1].substring(size_1-2,size_1)
+                    
+        if (this.horario[key][0] == '00:00 - ' && this.horario[key][1] == '00:00'){
+          this.horario[key][0] = 'Cerrado'; this.horario[key][1] = '';
+        } else if (this.horario[key][0] == '01:00 - ' && this.horario[key][1] == '23:59'){
+          this.horario[key][0] = 'Abierto 24 hrs'; this.horario[key][1] = '';
+        }
+      });
+  }
+  
 }

@@ -9,6 +9,7 @@ export interface BasicRestaurante {
     totalCalif: number;
     contadorCalif: number;
     calificacion: number;
+    horario: Horario;
 }
 
 export class Restaurante {

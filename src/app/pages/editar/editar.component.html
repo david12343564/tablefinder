@@ -1,12 +1,12 @@
 <div class="editarContainer" *ngIf="isRestaurant">
     <div id="editarHeader">
         <section id="title">
-            <p>La taberna del dragón</p>
+            <p>{{restaurante.nombre}}</p>
         </section>
     </div>
 
     <div id="editarContent">
-        <section id="detalleCard">
+        <section id="descripcionCard">
             <div class="tarjeta">
                 <div class="cabeza" >
                     <section id="detalles">
@@ -15,7 +15,9 @@
                     </section>
                 </div>
                 <div class="cuerpo">
-                    <textarea type="text" formControlName="nombre" placeholder="Opcional" name="Text1"></textarea>
+                    <textarea type="text" formControlName="nombre" 
+                    value="Dile a tus futuros clientes lo grandioso que es tu restaurante"  
+                    name="Text1"> {{restaurante.descripcion}} </textarea>
                     
                     <div id="actualizar" class="center" > 
                         <button class="modificarComida">Actualizar Descripción</button>
@@ -23,7 +25,62 @@
                 </div>
             </div>
         </section>
-        <section id="detalleCard">
+        <section id="tiempoCard">
+            <div class="tarjeta">
+                <div class="cabeza" >
+                    <section id="detalles">
+                        <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }" size="lg"></fa-icon>
+                        <section id="detalle"> Horario de servicio</section>
+                    </section>
+                </div>
+                <div class="cuerpo">
+                    <div class="tab">
+                        <button class="tablinks active" (click)="openTime($event, 'lunes')">Lunes</button>
+                        <button class="tablinks" (click)="openTime($event, 'martes')">Martes</button>
+                        <button class="tablinks" (click)="openTime($event, 'miercoles')">Miercoles</button>
+                        <button class="tablinks" (click)="openTime($event, 'jueves')">Jueves</button>
+                        <button class="tablinks" (click)="openTime($event, 'viernes')">Viernes</button>
+                        <button class="tablinks" (click)="openTime($event, 'sabado')">Sabado</button>
+                        <button class="tablinks" (click)="openTime($event, 'domingo')">Domingo</button>
+                    </div>
+                    
+                    <div id="London" class="tabcontent"  [style.display.]=" displayContent['lunes'] ">
+                        <app-horario [horario]="horario['lunes']" [dia]="'Lunes'"></app-horario>
+                    </div>
+                    
+                    <div id="Paris" class="tabcontent" [style.display]="displayContent['martes']">
+                        <app-horario [horario]="horario['martes']" [dia]="'Martes'"></app-horario>
+                    </div>
+                    
+                    <div id="miercoles" class="tabcontent" [style.display]="displayContent['miercoles']">
+                        <app-horario [horario]="horario['miercoles']" [dia]="'Miercoles'"></app-horario>
+                    </div>
+                    
+                    <div id="jueves" class="tabcontent" [style.display]="displayContent['jueves']">
+                        <app-horario [horario]="horario['jueves']" [dia]="'Jueves'"></app-horario>
+                    </div>
+                    
+                    <div id="viernes" class="tabcontent" [style.display]="displayContent['viernes']">
+                        <app-horario [horario]="horario['viernes']" [dia]="'Viernes'"></app-horario>
+                    </div>
+                    
+                    <div id="sabado" class="tabcontent" [style.display]="displayContent['sabado']">
+                        <app-horario [horario]="horario['sabado']" [dia]="'Sabado'"></app-horario>
+                    </div>
+                    
+                    <div id="domingo" class="tabcontent" [style.display]="displayContent['domingo']">
+                        <app-horario [horario]="horario['domingo']" [dia]="'Domingo'"></app-horario>
+                    </div>
+
+                    
+                    <div id="actualizar" class="center" > 
+                        <button class="modificarComida">Actualizar Horario</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section id="ubicacionCard">
             <div class="tarjeta">
                 <div class="cabeza">
                     <section id="detalles">
@@ -32,7 +89,7 @@
                     </section>
                 </div>
                 <div class="cuerpo">
-                    <input type="text" id="text" name="text" > 
+                    <input type="text" id="text" name="text" value="{{restaurante.direccion}}"> 
                     <div id="imgRestaurant">
                         <div id="restaurantImage" >
                             <img src="assets/listado/list_res1.jpg" >
@@ -45,7 +102,7 @@
                 </div>
             </div>
         </section>
-        <section id="detalleCard">
+        <section id="fotoCard">
             <div class="tarjeta">
                 <div class="cabeza">
                     <section id="detalles">

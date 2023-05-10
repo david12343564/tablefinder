@@ -32,6 +32,7 @@ import { MesaCardComponent } from './pages/dashboard/mesa-card/mesa-card.compone
 import { NoAuthComponent } from './pages/no-auth/no-auth.component';
 import { ComidaCardComponent } from './pages/dashboard/comida-card/comida-card.component';
 import { EditarComponent } from './pages/editar/editar.component';
+import { HorarioComponent } from './pages/editar/horario/horario.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { EditarComponent } from './pages/editar/editar.component';
     MesaCardComponent,
     NoAuthComponent,
     ComidaCardComponent,
-    EditarComponent
+    EditarComponent,
+    HorarioComponent
   ],
   imports: [
     BrowserModule,
