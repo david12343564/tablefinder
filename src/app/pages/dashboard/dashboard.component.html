@@ -43,9 +43,15 @@
         <div class="restaurante-mapa">
             <img src="assets/mapa.jpg" alt="Mapa del restaurante">
             <div class="reservacion-info" style="width: 70%;">
-                <div><a routerLink="/editar"><button class="reservacion-info button">Actualizar Información</button></a></div>
-                <div><button class="reservacion-info button">Agregar Mesa</button></div>
-                <div><button class="reservacion-info button">Agregar Platillo</button></div>
+                <div><a routerLink="/editar">
+                    <button class="reservacion-info button">Actualizar Información</button>
+                </a></div>
+                <div> <a routerLink="/mesa" >
+                    <button class="reservacion-info button">Agregar Mesa</button>
+                </a></div>
+                <div> <a routerLink="/comida">
+                    <button class="reservacion-info button">Agregar Platillo</button>
+                </a></div>
             </div>
         </div>
     </div>
@@ -58,7 +64,7 @@
         </div>
 
         <div id="reservacionFutura">
-            <app-mesa-card [mesas]="mesas"></app-mesa-card>
+            <app-mesa-card (deleteMesaEvent)="eventMesa($event)" [mesas]="mesas"></app-mesa-card>
         </div>
 
     </div>
@@ -77,7 +83,7 @@
         </div>
 
         <div id="reservacionFutura">
-            <app-comida-card [productos]="productosBebida"></app-comida-card>
+            <app-comida-card (deleteProductoEvent)="eventProducto($event)" [productos]="productosBebida"></app-comida-card>
         </div>
         
         <div id="checkoutHeader">
@@ -87,7 +93,7 @@
         </div>
 
         <div id="reservacionFutura">
-            <app-comida-card [productos]="productosEntrada"></app-comida-card>
+            <app-comida-card (deleteProductoEvent)="eventProducto($event)" [productos]="productosEntrada"></app-comida-card>
         </div>
         
         <div id="checkoutHeader">
@@ -97,7 +103,7 @@
         </div>
 
         <div id="reservacionFutura">
-            <app-comida-card [productos]="productosPlatoFuerte"></app-comida-card>
+            <app-comida-card (deleteProductoEvent)="eventProducto($event)" [productos]="productosPlatoFuerte"></app-comida-card>
         </div>
 
         <div id="checkoutHeader">
@@ -107,7 +113,7 @@
         </div>
 
         <div id="reservacionFutura">
-            <app-comida-card [productos]="productosPostre"></app-comida-card>
+            <app-comida-card (deleteProductoEvent)="eventProducto($event)" [productos]="productosPostre"></app-comida-card>
         </div>
 
     </div>

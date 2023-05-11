@@ -15,6 +15,8 @@ import { ActividadComponent } from './pages/actividad/actividad.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NoAuthComponent } from './pages/no-auth/no-auth.component';
 import { EditarComponent } from './pages/editar/editar.component';
+import { NuevaMesaComponent } from './pages/dashboard/nueva-mesa/nueva-mesa.component';
+import { NuevaComidaComponent } from './pages/dashboard/nueva-comida/nueva-comida.component';
 
 
 const routes: Routes = [
@@ -37,6 +39,10 @@ const routes: Routes = [
   {path: 'actividad', component: ActividadComponent, canActivate: [AuthGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'editar', component: EditarComponent, canActivate: [AuthGuard]},
+  {path: 'mesa', component: NuevaMesaComponent, canActivate: [AuthGuard]},
+  {path: 'mesa/:id', component: NuevaMesaComponent, canActivate: [AuthGuard]},
+  {path: 'comida', component: NuevaComidaComponent, canActivate: [AuthGuard]},
+  {path: 'comida/:id', component: NuevaComidaComponent, canActivate: [AuthGuard]},
 
 ];
 

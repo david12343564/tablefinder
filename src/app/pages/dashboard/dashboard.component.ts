@@ -22,8 +22,6 @@ export class DashboardComponent {
   faStarHalf = faStarHalf;
   faMapPin = faMapPin;
 
-  @Output() onSelected: EventEmitter<any> = new EventEmitter();
-
   isRestaurant: boolean = false;
   mesas: Array<Mesa> = []; 
   productos: Array<Producto> = [];
@@ -66,6 +64,7 @@ export class DashboardComponent {
       this.isRestaurant = status;
     });
   }
+
   
   ngOnInit(): void {
     this.restauranteService.getReservations().subscribe((data: any) => {
@@ -120,5 +119,40 @@ export class DashboardComponent {
         }
       });
   }
+
+  eventMesa($event:any) {
+    this.mesaService.getMesas().subscribe((data:any) => {
+      this.mesas = data
+      console.log(this.mesas)
+    })
+  }
+  
+  eventProducto($event:any) {
+    this.productoService.getProductos().subscribe((data:any) => {
+      this.productos = data
+      this.productosPostre = [];
+      this.productosPlatoFuerte = [];
+      this.productosEntrada = [];
+      this.productosBebida = [];
+      console.log(this.mesas)
+      
+      this.productos.forEach((item: Producto) => {
+        switch (item.categoria){
+          case 'postre':
+            this.productosPostre.push(item);
+            break;
+          case 'platoFuerte':
+            this.productosPlatoFuerte.push(item);
+            break;
+          case 'entrada':
+            this.productosEntrada.push(item);
+            break;
+          case 'bebida':
+            this.productosBebida.push(item);
+            break;
+        }})
+    })
+  }
+  
   
 }

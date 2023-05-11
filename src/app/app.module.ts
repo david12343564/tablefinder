@@ -33,6 +33,8 @@ import { NoAuthComponent } from './pages/no-auth/no-auth.component';
 import { ComidaCardComponent } from './pages/dashboard/comida-card/comida-card.component';
 import { EditarComponent } from './pages/editar/editar.component';
 import { HorarioComponent } from './pages/editar/horario/horario.component';
+import { NuevaMesaComponent } from './pages/dashboard/nueva-mesa/nueva-mesa.component';
+import { NuevaComidaComponent } from './pages/dashboard/nueva-comida/nueva-comida.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { HorarioComponent } from './pages/editar/horario/horario.component';
     NoAuthComponent,
     ComidaCardComponent,
     EditarComponent,
-    HorarioComponent
+    HorarioComponent,
+    NuevaMesaComponent,
+    NuevaComidaComponent
   ],
   imports: [
     BrowserModule,

@@ -30,7 +30,7 @@ export class ActividadComponent implements OnInit  {
            "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ]
   
   ngOnInit(): void {
-    this.reservationService.getReservations(this.isRestaurant).subscribe((data: any) => {
+    this.reservationService.getReservations(true).subscribe((data: any) => {
       this.reservaciones = data;
       this.sortReservaciones();
       console.log(this.reservacionesPasadas)

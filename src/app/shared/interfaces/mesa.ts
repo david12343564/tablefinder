@@ -1,7 +1,6 @@
 export interface Mesa {
-    _id: string;
-    capacidad: string;
+    _id?: string;
+    capacidad: number;
     nombreMesa: string;
-    precio: string;
-    status: string;
+    precio: number;
 }

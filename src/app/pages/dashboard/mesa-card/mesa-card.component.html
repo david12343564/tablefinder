@@ -10,8 +10,10 @@
                 <p>${{mesa.precio}}</p>
             </div>
             <div id="infoMesa" class="columna-30 center" > 
-                <div style="margin-bottom: 2px;"><button class="modificarMesa">Modificar</button></div>
-                <div><button class="eliminarMesa">Eliminar</button></div>
+                <div style="margin-bottom: 2px;" > <a routerLink="/mesa/{{mesa._id}}">
+                    <button (click)="setMesa(mesa)" class="modificarMesa">Modificar</button>
+                </a></div>
+                <div><button (click)="eliminarMesa(mesa._id)" class="eliminarMesa">Eliminar</button></div>
             </div>
         </div>
     </div> 
