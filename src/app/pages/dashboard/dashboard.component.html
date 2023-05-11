@@ -27,13 +27,48 @@
             <div class="horario">
                 <h4>Horario</h4>
                 <div class="fila">    
-                    <div class="columna-50" > <p>Lunes: {{horario['lunes'][0]}}{{horario['lunes'][1]}}</p> </div>
-                    <div class="columna-50" > <p>Martes: {{horario['martes'][0]}}{{horario['martes'][1]}}</p> </div>
-                    <div class="columna-50" > <p>Miercoles: {{horario['miercoles'][0]}}{{horario['miercoles'][1]}}</p> </div>
-                    <div class="columna-50" > <p>Jueves: {{horario['jueves'][0]}}{{horario['jueves'][1]}}</p> </div>
-                    <div class="columna-50" > <p>Viernes: {{horario['viernes'][0]}}{{horario['viernes'][1]}}</p> </div>
-                    <div class="columna-50" > <p>Sabado: {{horario['sabado'][0]}}{{horario['sabado'][1]}}</p> </div>
-                    <div class="columna-50" > <p>Domingo: {{horario['domingo'][0]}}{{horario['domingo'][1]}}</p> </div>
+                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.lunes[0], restaurante.horario.lunes[1])"> <p>Lunes: Cerrado</p></div>
+                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.lunes[0], restaurante.horario.lunes[1])"> <p>Lunes: Abierto 24 hrs</p></div>
+                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.lunes[0], restaurante.horario.lunes[1])">
+                        <p>Lunes: {{restaurante.horario.lunes[0]}} - {{restaurante.horario.lunes[1]}}</p>
+                    </div>
+                    
+                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.martes[0], restaurante.horario.martes[1])"> <p>Martes: Cerrado</p></div>
+                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.martes[0], restaurante.horario.martes[1])"> <p>Martes: Abierto 24 hrs</p></div>
+                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.martes[0], restaurante.horario.martes[1])">
+                        <p>Martes: {{restaurante.horario.martes[0]}} - {{restaurante.horario.martes[1]}}</p>
+                    </div>
+                    
+                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])"> <p>Miércoles: Cerrado</p></div>
+                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])"> <p>Miércoles: Abierto 24 hrs</p></div>
+                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])">
+                        <p>Miércoles: {{restaurante.horario.miercoles[0]}} - {{restaurante.horario.miercoles[1]}}</p>
+                    </div>
+                    
+                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.jueves[0], restaurante.horario.jueves[1])"> <p>Jueves: Cerrado</p></div>
+                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.jueves[0], restaurante.horario.jueves[1])"> <p>Jueves: Abierto 24 hrs</p></div>
+                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.jueves[0], restaurante.horario.jueves[1])">
+                        <p>Jueves: {{restaurante.horario.jueves[0]}} - {{restaurante.horario.jueves[1]}}</p>
+                    </div>
+                    
+                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.viernes[0], restaurante.horario.viernes[1])"> <p>Viernes: Cerrado</p></div>
+                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.viernes[0], restaurante.horario.viernes[1])"> <p>Viernes: Abierto 24 hrs</p></div>
+                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.viernes[0], restaurante.horario.viernes[1])">
+                        <p>Viernes: {{restaurante.horario.viernes[0]}} - {{restaurante.horario.viernes[1]}}</p>
+                    </div>
+
+                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.sabado[0], restaurante.horario.sabado[1])"> <p>Sábado: Cerrado</p></div>
+                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.sabado[0], restaurante.horario.sabado[1])"> <p>Sábado: Abierto 24 hrs</p></div>
+                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.sabado[0], restaurante.horario.sabado[1])">
+                        <p>Sábado: {{restaurante.horario.sabado[0]}} - {{restaurante.horario.sabado[1]}}</p>
+                    </div>
+                    
+                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.domingo[0], restaurante.horario.domingo[1])"> <p>Domingo: Cerrado</p></div>
+                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.domingo[0], restaurante.horario.domingo[1])"> <p>Domingo: Abierto 24 hrs</p></div>
+                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.domingo[0], restaurante.horario.domingo[1])">
+                        <p>Domingo: {{restaurante.horario.domingo[0]}} - {{restaurante.horario.domingo[1]}}</p>
+                    </div>
+
                 </div>
                  
             </div>

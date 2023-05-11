@@ -1,9 +1,9 @@
 export interface Horario {
-    lunes: [number, number];
-    martes: [number, number];
-    miercoles: [number, number];
-    jueves: [number, number];
-    viernes: [number, number];
-    sabado: [number, number];
-    domingo: [number, number];
+    lunes: [string, string];
+    martes: [string, string];
+    miercoles: [string, string];
+    jueves: [string, string];
+    viernes: [string, string];
+    sabado: [string, string];
+    domingo: [string, string];
 }

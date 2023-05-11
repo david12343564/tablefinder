@@ -32,7 +32,6 @@ import { MesaCardComponent } from './pages/dashboard/mesa-card/mesa-card.compone
 import { NoAuthComponent } from './pages/no-auth/no-auth.component';
 import { ComidaCardComponent } from './pages/dashboard/comida-card/comida-card.component';
 import { EditarComponent } from './pages/editar/editar.component';
-import { HorarioComponent } from './pages/editar/horario/horario.component';
 import { NuevaMesaComponent } from './pages/dashboard/nueva-mesa/nueva-mesa.component';
 import { NuevaComidaComponent } from './pages/dashboard/nueva-comida/nueva-comida.component';
 
@@ -58,7 +57,6 @@ import { NuevaComidaComponent } from './pages/dashboard/nueva-comida/nueva-comid
     NoAuthComponent,
     ComidaCardComponent,
     EditarComponent,
-    HorarioComponent,
     NuevaMesaComponent,
     NuevaComidaComponent
   ],

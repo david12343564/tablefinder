@@ -6,123 +6,440 @@
     </div>
 
     <div id="editarContent">
-        <section id="descripcionCard">
-            <div class="tarjeta">
-                <div class="cabeza" >
-                    <section id="detalles">
-                        <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }" size="lg"></fa-icon>
-                        <section id="detalle"> Descripción </section>
-                    </section>
-                </div>
-                <div class="cuerpo">
-                    <textarea type="text" formControlName="nombre" 
-                    value="Dile a tus futuros clientes lo grandioso que es tu restaurante"  
-                    name="Text1"> {{restaurante.descripcion}} </textarea>
-                    
-                    <div id="actualizar" class="center" > 
-                        <button class="modificarComida">Actualizar Descripción</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="tiempoCard">
-            <div class="tarjeta">
-                <div class="cabeza" >
-                    <section id="detalles">
-                        <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }" size="lg"></fa-icon>
-                        <section id="detalle"> Horario de servicio</section>
-                    </section>
-                </div>
-                <div class="cuerpo">
-                    <div class="tab">
-                        <button class="tablinks active" (click)="openTime($event, 'lunes')">Lunes</button>
-                        <button class="tablinks" (click)="openTime($event, 'martes')">Martes</button>
-                        <button class="tablinks" (click)="openTime($event, 'miercoles')">Miercoles</button>
-                        <button class="tablinks" (click)="openTime($event, 'jueves')">Jueves</button>
-                        <button class="tablinks" (click)="openTime($event, 'viernes')">Viernes</button>
-                        <button class="tablinks" (click)="openTime($event, 'sabado')">Sabado</button>
-                        <button class="tablinks" (click)="openTime($event, 'domingo')">Domingo</button>
-                    </div>
-                    
-                    <div id="London" class="tabcontent"  [style.display.]=" displayContent['lunes'] ">
-                        <app-horario [horario]="horario['lunes']" [dia]="'Lunes'"></app-horario>
-                    </div>
-                    
-                    <div id="Paris" class="tabcontent" [style.display]="displayContent['martes']">
-                        <app-horario [horario]="horario['martes']" [dia]="'Martes'"></app-horario>
-                    </div>
-                    
-                    <div id="miercoles" class="tabcontent" [style.display]="displayContent['miercoles']">
-                        <app-horario [horario]="horario['miercoles']" [dia]="'Miercoles'"></app-horario>
-                    </div>
-                    
-                    <div id="jueves" class="tabcontent" [style.display]="displayContent['jueves']">
-                        <app-horario [horario]="horario['jueves']" [dia]="'Jueves'"></app-horario>
-                    </div>
-                    
-                    <div id="viernes" class="tabcontent" [style.display]="displayContent['viernes']">
-                        <app-horario [horario]="horario['viernes']" [dia]="'Viernes'"></app-horario>
-                    </div>
-                    
-                    <div id="sabado" class="tabcontent" [style.display]="displayContent['sabado']">
-                        <app-horario [horario]="horario['sabado']" [dia]="'Sabado'"></app-horario>
-                    </div>
-                    
-                    <div id="domingo" class="tabcontent" [style.display]="displayContent['domingo']">
-                        <app-horario [horario]="horario['domingo']" [dia]="'Domingo'"></app-horario>
-                    </div>
+        <form [formGroup]="formDatos" (submit)="mofidicarRestaurant()">
 
-                    
-                    <div id="actualizar" class="center" > 
-                        <button class="modificarComida">Actualizar Horario</button>
+            <section id="descripcionCard">
+                <div class="tarjeta">
+                    <div class="cabeza">
+                        <section id="detalles">
+                            <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }"
+                                size="lg"></fa-icon>
+                            <section id="detalle"> <label for="descripcion">Descripción</label> </section>
+                        </section>
                     </div>
+                    <div class="cuerpo">
+                        <textarea type="text" formControlName="descripcion"
+                            placeholder="Dile a tus futuros clientes lo grandioso que es tu restaurante"
+                            name="descripcion" [(ngModel)]="infoRestaurant['descripcion']">  </textarea>
+                    </div>
+                </div>
+            </section>
 
+            <section id="tiempoCard">
+                <div class="tarjeta">
+                    <div class="cabeza">
+                        <section id="detalles">
+                            <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }"
+                                size="lg"></fa-icon>
+                            <section id="detalle"> Horario de servicio</section>
+                        </section>
+                    </div>
+                    <div class="cuerpo">
+                        <div class="tab">
+                            <button type="button" class="tablinks active"
+                                (click)="openTime($event, 'lunes')">Lunes</button>
+                            <button type="button" class="tablinks" (click)="openTime($event, 'martes')">Martes</button>
+                            <button type="button" class="tablinks"
+                                (click)="openTime($event, 'miercoles')">Miercoles</button>
+                            <button type="button" class="tablinks" (click)="openTime($event, 'jueves')">Jueves</button>
+                            <button type="button" class="tablinks"
+                                (click)="openTime($event, 'viernes')">Viernes</button>
+                            <button type="button" class="tablinks" (click)="openTime($event, 'sabado')">Sabado</button>
+                            <button type="button" class="tablinks"
+                                (click)="openTime($event, 'domingo')">Domingo</button>
+                        </div>
+
+                        <div id="lunes" class="tabcontent" [style.display.]=" displayContent['lunes'] ">
+                            <section>
+                                <input type="radio" id="allDayLunes" formControlName="typeLunes" name="typeLunes"
+                                    value="allDay" [checked]="infoRestaurant['typeLunes']=='allDay'"
+                                    [(ngModel)]="infoRestaurant['typeLunes']">
+                                <input type="radio" id="noOpenLunes" formControlName="typeLunes" name="typeLunes"
+                                    value="noOpen" [checked]="infoRestaurant['typeLunes']=='noOpen'"
+                                    [(ngModel)]="infoRestaurant['typeLunes']">
+                                <input type="radio" id="horarioLunes" formControlName="typeLunes" name="typeLunes"
+                                    value="horario" [checked]="infoRestaurant['typeLunes']=='horario'"
+                                    [(ngModel)]="infoRestaurant['typeLunes']">
+
+                                <div class="fila selectOption">
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Lunes" for="allDayLunes" id="allDay_Lunes"
+                                            [class.active]="infoRestaurant['typeLunes']=='allDay'">
+                                            Abierto las 24 horas
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Lunes" for="noOpenLunes" id="noOpen_Lunes"
+                                            [class.active]="infoRestaurant['typeLunes']=='noOpen'">
+                                            Cerrado
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Lunes" for="horarioLunes" id="horario_Lunes"
+                                            [class.active]="infoRestaurant['typeLunes']=='horario'">
+                                            Horario
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="fila" id="Lunes">
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="aperturaLunes">Lunes - Apertura </label>
+                                        <input type="time" id="aperturaLunes" formControlName="aperturaLunes"
+                                            name="aperturaLunes" [(ngModel)]="infoRestaurant.horario.lunes[0]" required>
+                                    </div>
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="cierreLunes">Lunes - Apertura </label>
+                                        <input type="time" id="cierreLunes" formControlName="cierreLunes"
+                                            name="cierreLunes" [(ngModel)]="infoRestaurant.horario.lunes[1]" required>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <div id="martes" class="tabcontent" [style.display]="displayContent['martes']">
+                            <section>
+                                <input type="radio" id="allDayMartes" formControlName="typeMartes" name="typeMartes"
+                                    value="allDay" [checked]="infoRestaurant['typeMartes']=='allDay'"
+                                    [(ngModel)]="infoRestaurant['typeMartes']">
+                                <input type="radio" id="noOpenMartes" formControlName="typeMartes" name="typeMartes"
+                                    value="noOpen" [checked]="infoRestaurant['typeMartes']=='noOpen'"
+                                    [(ngModel)]="infoRestaurant['typeMartes']">
+                                <input type="radio" id="horarioMartes" formControlName="typeMartes" name="typeMartes"
+                                    value="horario" [checked]="infoRestaurant['typeMartes']=='horario'"
+                                    [(ngModel)]="infoRestaurant['typeMartes']">
+
+                                <div class="fila selectOption">
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Martes" for="allDayMartes" id="allDay_Martes"
+                                            [class.active]="infoRestaurant['typeMartes']=='allDay'">
+                                            Abierto las 24 horas
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Martes" for="noOpenMartes" id="noOpen_Martes"
+                                            [class.active]="infoRestaurant['typeMartes']=='noOpen'">
+                                            Cerrado
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Martes" for="horarioMartes" id="horario_Martes"
+                                            [class.active]="infoRestaurant['typeMartes']=='horario'">
+                                            Horario
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="fila" id="Martes">
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="aperturaMartes">Martes - Apertura </label>
+                                        <input type="time" id="aperturaMartes" formControlName="aperturaMartes"
+                                            name="aperturaMartes" [(ngModel)]="infoRestaurant.horario.martes[0]" required>
+                                    </div>
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="cierreMartes">Martes - Apertura </label>
+                                        <input type="time" id="cierreMartes" formControlName="cierreMartes"
+                                            name="cierreMartes" [(ngModel)]="infoRestaurant.horario.martes[1]" required>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+
+                        <div id="miercoles" class="tabcontent" [style.display]="displayContent['miercoles']">
+                            <section>
+                                <input type="radio" id="allDayMiercoles" formControlName="typeMiercoles" name="typeMiercoles"
+                                    value="allDay" [checked]="infoRestaurant['typeMiercoles']=='allDay'"
+                                    [(ngModel)]="infoRestaurant['typeMiercoles']">
+                                <input type="radio" id="noOpenMiercoles" formControlName="typeMiercoles" name="typeMiercoles"
+                                    value="noOpen" [checked]="infoRestaurant['typeMiercoles']=='noOpen'"
+                                    [(ngModel)]="infoRestaurant['typeMiercoles']">
+                                <input type="radio" id="horarioMiercoles" formControlName="typeMiercoles" name="typeMiercoles"
+                                    value="horario" [checked]="infoRestaurant['typeMiercoles']=='horario'"
+                                    [(ngModel)]="infoRestaurant['typeMiercoles']">
+
+                                <div class="fila selectOption">
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Miercoles" for="allDayMiercoles" id="allDay_Miercoles"
+                                            [class.active]="infoRestaurant['typeMiercoles']=='allDay'">
+                                            Abierto las 24 horas
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Miercoles" for="noOpenMiercoles" id="noOpen_Miercoles"
+                                            [class.active]="infoRestaurant['typeMiercoles']=='noOpen'">
+                                            Cerrado
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Miercoles" for="horarioMiercoles" id="horario_Miercoles"
+                                            [class.active]="infoRestaurant['typeMiercoles']=='horario'">
+                                            Horario
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="fila" id="Miercoles">
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="aperturaMiercoles">Miercoles - Apertura </label>
+                                        <input type="time" id="aperturaMiercoles" formControlName="aperturaMiercoles"
+                                            name="aperturaMiercoles" [(ngModel)]="infoRestaurant.horario.miercoles[0]" required>
+                                    </div>
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="cierreMiercoles">Miercoles - Apertura </label>
+                                        <input type="time" id="cierreMiercoles" formControlName="cierreMiercoles"
+                                            name="cierreMiercoles" [(ngModel)]="infoRestaurant.horario.miercoles[1]" required>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+
+                        <div id="jueves" class="tabcontent" [style.display]="displayContent['jueves']">
+                            <section>
+                                <input type="radio" id="allDayJueves" formControlName="typeJueves" name="typeJueves"
+                                    value="allDay" [checked]="infoRestaurant['typeJueves']=='allDay'"
+                                    [(ngModel)]="infoRestaurant['typeJueves']">
+                                <input type="radio" id="noOpenJueves" formControlName="typeJueves" name="typeJueves"
+                                    value="noOpen" [checked]="infoRestaurant['typeJueves']=='noOpen'"
+                                    [(ngModel)]="infoRestaurant['typeJueves']">
+                                <input type="radio" id="horarioJueves" formControlName="typeJueves" name="typeJueves"
+                                    value="horario" [checked]="infoRestaurant['typeJueves']=='horario'"
+                                    [(ngModel)]="infoRestaurant['typeJueves']">
+
+                                <div class="fila selectOption">
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Jueves" for="allDayJueves" id="allDay_Jueves"
+                                            [class.active]="infoRestaurant['typeJueves']=='allDay'">
+                                            Abierto las 24 horas
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Jueves" for="noOpenJueves" id="noOpen_Jueves"
+                                            [class.active]="infoRestaurant['typeJueves']=='noOpen'">
+                                            Cerrado
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Jueves" for="horarioJueves" id="horario_Jueves"
+                                            [class.active]="infoRestaurant['typeJueves']=='horario'">
+                                            Horario
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="fila" id="Jueves">
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="aperturaJueves">Jueves - Apertura </label>
+                                        <input type="time" id="aperturaJueves" formControlName="aperturaJueves"
+                                            name="aperturaJueves" [(ngModel)]="infoRestaurant.horario.jueves[0]" required>
+                                    </div>
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="cierreJueves">Jueves - Apertura </label>
+                                        <input type="time" id="cierreJueves" formControlName="cierreJueves"
+                                            name="cierreJueves" [(ngModel)]="infoRestaurant.horario.jueves[1]" required>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+
+                        <div id="viernes" class="tabcontent" [style.display]="displayContent['viernes']">
+                            <section>
+                                <input type="radio" id="allDayViernes" formControlName="typeViernes" name="typeViernes"
+                                    value="allDay" [checked]="infoRestaurant['typeViernes']=='allDay'"
+                                    [(ngModel)]="infoRestaurant['typeViernes']">
+                                <input type="radio" id="noOpenViernes" formControlName="typeViernes" name="typeViernes"
+                                    value="noOpen" [checked]="infoRestaurant['typeViernes']=='noOpen'"
+                                    [(ngModel)]="infoRestaurant['typeViernes']">
+                                <input type="radio" id="horarioViernes" formControlName="typeViernes" name="typeViernes"
+                                    value="horario" [checked]="infoRestaurant['typeViernes']=='horario'"
+                                    [(ngModel)]="infoRestaurant['typeViernes']">
+
+                                <div class="fila selectOption">
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Viernes" for="allDayViernes" id="allDay_Viernes"
+                                            [class.active]="infoRestaurant['typeViernes']=='allDay'">
+                                            Abierto las 24 horas
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Viernes" for="noOpenViernes" id="noOpen_Viernes"
+                                            [class.active]="infoRestaurant['typeViernes']=='noOpen'">
+                                            Cerrado
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Viernes" for="horarioViernes" id="horario_Viernes"
+                                            [class.active]="infoRestaurant['typeViernes']=='horario'">
+                                            Horario
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="fila" id="Viernes">
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="aperturaViernes">Viernes - Apertura </label>
+                                        <input type="time" id="aperturaViernes" formControlName="aperturaViernes"
+                                            name="aperturaViernes" [(ngModel)]="infoRestaurant.horario.viernes[0]" required>
+                                    </div>
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="cierreViernes">Viernes - Apertura </label>
+                                        <input type="time" id="cierreViernes" formControlName="cierreViernes"
+                                            name="cierreViernes" [(ngModel)]="infoRestaurant.horario.viernes[1]" required>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+
+                        <div id="sabado" class="tabcontent" [style.display]="displayContent['sabado']">
+                            <section>
+                                <input type="radio" id="allDaySabado" formControlName="typeSabado" name="typeSabado"
+                                    value="allDay" [checked]="infoRestaurant['typeSabado']=='allDay'"
+                                    [(ngModel)]="infoRestaurant['typeSabado']">
+                                <input type="radio" id="noOpenSabado" formControlName="typeSabado" name="typeSabado"
+                                    value="noOpen" [checked]="infoRestaurant['typeSabado']=='noOpen'"
+                                    [(ngModel)]="infoRestaurant['typeSabado']">
+                                <input type="radio" id="horarioSabado" formControlName="typeSabado" name="typeSabado"
+                                    value="horario" [checked]="infoRestaurant['typeSabado']=='horario'"
+                                    [(ngModel)]="infoRestaurant['typeSabado']">
+
+                                <div class="fila selectOption">
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Sabado" for="allDaySabado" id="allDay_Sabado"
+                                            [class.active]="infoRestaurant['typeSabado']=='allDay'">
+                                            Abierto las 24 horas
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Sabado" for="noOpenSabado" id="noOpen_Sabado"
+                                            [class.active]="infoRestaurant['typeSabado']=='noOpen'">
+                                            Cerrado
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Sabado" for="horarioSabado" id="horario_Sabado"
+                                            [class.active]="infoRestaurant['typeSabado']=='horario'">
+                                            Horario
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="fila" id="Sabado">
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="aperturaSabado">Sabado - Apertura </label>
+                                        <input type="time" id="aperturaSabado" formControlName="aperturaSabado"
+                                            name="aperturaSabado" [(ngModel)]="infoRestaurant.horario.sabado[0]" required>
+                                    </div>
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="cierreSabado">Sabado - Apertura </label>
+                                        <input type="time" id="cierreSabado" formControlName="cierreSabado"
+                                            name="cierreSabado" [(ngModel)]="infoRestaurant.horario.sabado[1]" required>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+
+                        <div id="domingo" class="tabcontent" [style.display]="displayContent['domingo']">
+                            <section>
+                                <input type="radio" id="allDayDomingo" formControlName="typeDomingo" name="typeDomingo"
+                                    value="allDay" [checked]="infoRestaurant['typeDomingo']=='allDay'"
+                                    [(ngModel)]="infoRestaurant['typeDomingo']">
+                                <input type="radio" id="noOpenDomingo" formControlName="typeDomingo" name="typeDomingo"
+                                    value="noOpen" [checked]="infoRestaurant['typeDomingo']=='noOpen'"
+                                    [(ngModel)]="infoRestaurant['typeDomingo']">
+                                <input type="radio" id="horarioDomingo" formControlName="typeDomingo" name="typeDomingo"
+                                    value="horario" [checked]="infoRestaurant['typeDomingo']=='horario'"
+                                    [(ngModel)]="infoRestaurant['typeDomingo']">
+
+                                <div class="fila selectOption">
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Domingo" for="allDayDomingo" id="allDay_Domingo"
+                                            [class.active]="infoRestaurant['typeDomingo']=='allDay'">
+                                            Abierto las 24 horas
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Domingo" for="noOpenDomingo" id="noOpen_Domingo"
+                                            [class.active]="infoRestaurant['typeDomingo']=='noOpen'">
+                                            Cerrado
+                                        </label>
+                                    </div>
+                                    <div class="columna-tablet-33 columna-100 center">
+                                        <label class="btn-Domingo" for="horarioDomingo" id="horario_Domingo"
+                                            [class.active]="infoRestaurant['typeDomingo']=='horario'">
+                                            Horario
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="fila" id="Domingo">
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="aperturaDomingo">Domingo - Apertura </label>
+                                        <input type="time" id="aperturaDomingo" formControlName="aperturaDomingo"
+                                            name="aperturaDomingo" [(ngModel)]="infoRestaurant.horario.domingo[0]" required>
+                                    </div>
+                                    <div class="columna-tablet-50 columna-100">
+                                        <label for="cierreDomingo">Domingo - Apertura </label>
+                                        <input type="time" id="cierreDomingo" formControlName="cierreDomingo"
+                                            name="cierreDomingo" [(ngModel)]="infoRestaurant.horario.domingo[1]" required>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section id="ubicacionCard">
-            <div class="tarjeta">
-                <div class="cabeza">
-                    <section id="detalles">
-                        <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }" size="lg"></fa-icon>
-                        <section id="detalle"> Ubicación </section>
-                    </section>
-                </div>
-                <div class="cuerpo">
-                    <input type="text" id="text" name="text" value="{{restaurante.direccion}}"> 
-                    <div id="imgRestaurant">
-                        <div id="restaurantImage" >
-                            <img src="assets/listado/list_res1.jpg" >
+            </section>
+            <section id="ubicacionCard">
+                <div class="tarjeta">
+                    <div class="cabeza">
+                        <section id="detalles">
+                            <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }"
+                                size="lg"></fa-icon>
+                            <section id="detalle"> <label for="ubicacion">Ubicación</label> </section>
+                        </section>
+                    </div>
+                    <div class="cuerpo">
+                        <input type="text" formControlName="ubicacion" id="ubicacion" name="ubicacion" name="ubicacion"
+                            [(ngModel)]="infoRestaurant['ubicacion']">
+                        <div id="imgRestaurant">
+                            <div id="restaurantImage">
+                                <img src="assets/listado/list_res1.jpg">
+                            </div>
                         </div>
                     </div>
-                    
-                    <div id="actualizar" class="center" > 
-                        <button class="modificarComida">Actualizar Ubicación</button>
+                </div>
+            </section>
+            <section id="fotoCard">
+                <div class="tarjeta">
+                    <div class="cabeza">
+                        <section id="detalles">
+                            <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }"
+                                size="lg"></fa-icon>
+                            <section id="detalle"> Foto de portada </section>
+                        </section>
                     </div>
-                </div>
-            </div>
-        </section>
-        <section id="fotoCard">
-            <div class="tarjeta">
-                <div class="cabeza">
-                    <section id="detalles">
-                        <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }" size="lg"></fa-icon>
-                        <section id="detalle"> Foto de portada </section>
-                    </section>
-                </div>
-                <div class="cuerpo">
-                    <div id="imgRestaurant">
-                        <div id="restaurantImage" >
-                            <img src="assets/listado/list_res1.jpg" >
+                    <div class="cuerpo">
+                        <div id="imgRestaurant">
+                            <div id="restaurantImage">
+                                <img src="assets/listado/list_res1.jpg">
+                            </div>
+                        </div>
+
+                        <div id="actualizar" class="center">
+                            <button class="modificarComida">Seleccionar imagen</button>
                         </div>
                     </div>
-                    
-                    <div id="actualizar" class="center" > 
-                        <button class="modificarComida">Seleccionar Imagen</button>
-                    </div>
+                </div>
+            </section>
+
+            <div class="fila">
+                <div class="columna-50 buttonCol"> <a routerLink="/dashboard">
+                        <button class="cancel" type="cancel">Cancelar</button>
+                    </a></div>
+                <div class="columna-50 buttonCol">
+                    <button class="guardar" type="submit">Guardar</button>
                 </div>
             </div>
-        </section>
+
+        </form>
     </div>
 
     <app-no-auth *ngIf="!isRestaurant"></app-no-auth>

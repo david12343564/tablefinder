@@ -39,18 +39,27 @@ export class DashboardComponent {
     sabado: ['00:00','00:00'],
     domingo: ['00:00','00:00'],
   }
+  typeHorario = {
+    lunes: 'horario',
+    martes: 'horario',
+    miercoles: 'horario',
+    jueves: 'horario',
+    viernes: 'horario',
+    sabado: 'horario',
+    domingo: 'horario',
+  }
   restaurante: BasicRestaurante = { nombre: '', descripcion: '', 
                                     direccion:'', calificacion: 0,
                                     telefono: '', imagen: '', 
                                     totalCalif: 0, contadorCalif: 0,
                                     horario:{
-                                      lunes: [0, 0],
-                                      martes: [0, 0],
-                                      miercoles: [0, 0],
-                                      jueves: [0, 0],
-                                      viernes: [0, 0],
-                                      sabado: [0, 0],
-                                      domingo: [0, 0],
+                                      lunes: ['00:00', '00:00'],
+                                      martes: ['00:00', '00:00'],
+                                      miercoles: ['00:00', '00:00'],
+                                      jueves: ['00:00', '00:00'],
+                                      viernes: ['00:00', '00:00'],
+                                      sabado: ['00:00', '00:00'],
+                                      domingo: ['00:00', '00:00'],
                                     }
                                   };
 
@@ -67,7 +76,7 @@ export class DashboardComponent {
 
   
   ngOnInit(): void {
-    this.restauranteService.getReservations().subscribe((data: any) => {
+    this.restauranteService.getRestaurant().subscribe((data: any) => {
       this.restaurante = data
       this.restaurante.calificacion = Number((data.contadorCalif === 0) ? '0' : (data.totalCalif / data.contadorCalif).toFixed(2))
       this.getHorario()
@@ -99,25 +108,29 @@ export class DashboardComponent {
     })
   }
   
-  getHorario():void {    
+  getHorario():void {   
+    this.typeHorario.lunes 
     Object.entries(this.restaurante.horario).forEach(
       ([key, value]) => {
-        console.log(key, value)
-        this.horario[key][0] = '0000' + value[0].toString()
-        this.horario[key][1] = '0000' + value[1].toString()
-        let size_0 = this.horario[key][0].length
-        let size_1 = this.horario[key][1].length
-        this.horario[key][0] = this.horario[key][0].substring(size_0-4,size_0-2) 
-                     + ':' + this.horario[key][0].substring(size_0-2,size_0) + ' - '
-        this.horario[key][1] = this.horario[key][1].substring(size_1-4,size_1-2) 
-                     + ':' + this.horario[key][1].substring(size_1-2,size_1)
-                    
+        
         if (this.horario[key][0] == '00:00 - ' && this.horario[key][1] == '00:00'){
           this.horario[key][0] = 'Cerrado'; this.horario[key][1] = '';
         } else if (this.horario[key][0] == '01:00 - ' && this.horario[key][1] == '23:59'){
           this.horario[key][0] = 'Abierto 24 hrs'; this.horario[key][1] = '';
         }
       });
+  }
+
+  isHorario(entrada:string, salida: string){
+    return !this.isCerrado(entrada, salida) && !this.isAllDay(entrada, salida)
+  }
+
+  isCerrado(entrada:string, salida: string){
+    return (entrada == '00:00' && salida == '00:00')
+  }
+  
+  isAllDay(entrada:string, salida: string){
+    return (entrada == '01:00' && salida == '23:59')
   }
 
   eventMesa($event:any) {

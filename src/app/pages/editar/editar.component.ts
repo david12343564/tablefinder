@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
-import { faHospital} from '@fortawesome/free-regular-svg-icons';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { faHospital } from '@fortawesome/free-regular-svg-icons';
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
 import { PrivilegiosService } from 'src/app/shared/services/privilegios.service';
+import { Router } from '@angular/router';
+
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { BasicRestaurante } from 'src/app/shared/interfaces/restaurante';
 import { RestauranteService } from 'src/app/shared/services/restaurante.service';
@@ -16,70 +19,123 @@ export class EditarComponent {
   faStar = faStar;
   faStarHalf = faStarHalf;
 
+  formDatos: FormGroup
+
+  infoRestaurant = {
+    descripcion: '', ubicacion: '', horario: {
+      lunes: ['00:00', '00:00'],
+      martes: ['00:00', '00:00'],
+      miercoles: ['00:00', '00:00'],
+      jueves: ['00:00', '00:00'],
+      viernes: ['00:00', '00:00'],
+      sabado: ['00:00', '00:00'],
+      domingo: ['00:00', '00:00'],
+    },
+    typeLunes: 'horario', typeMartes: 'horario', typeMiercoles: 'horario',
+    typeJueves: 'horario', typeViernes: 'horario', typeSabado: 'horario', typeDomingo: 'horario',      
+  };
+
   isRestaurant: boolean = false;
-  horario: {[index: string]:any} = {
-    lunes: ['00:00','00:00'],
-    martes: ['00:00','00:00'],
-    miercoles: ['00:00','00:00'],
-    jueves: ['00:00','00:00'],
-    viernes: ['00:00','00:00'],
-    sabado: ['00:00','00:00'],
-    domingo: ['00:00','00:00'],
-  }
-  restaurante: BasicRestaurante = { nombre: '', descripcion: '', 
-                                    direccion:'', calificacion: 0,
-                                    telefono: '', imagen: '', 
-                                    totalCalif: 0, contadorCalif: 0,
-                                    horario:{
-                                      lunes: [0, 0],
-                                      martes: [0, 0],
-                                      miercoles: [0, 0],
-                                      jueves: [0, 0],
-                                      viernes: [0, 0],
-                                      sabado: [0, 0],
-                                      domingo: [0, 0],
-                                    }
-                                  };
+  getTime: boolean = false;
+  invalidReq: boolean = false;
+  restaurante: BasicRestaurante = {
+    nombre: '', descripcion: '',
+    direccion: '', calificacion: 0,
+    telefono: '', imagen: '',
+    totalCalif: 0, contadorCalif: 0,
+    horario: {
+      lunes: ['00:00', '00:00'],
+      martes: ['00:00', '00:00'],
+      miercoles: ['00:00', '00:00'],
+      jueves: ['00:00', '00:00'],
+      viernes: ['00:00', '00:00'],
+      sabado: ['00:00', '00:00'],
+      domingo: ['00:00', '00:00'],
+    }
+  };
 
   constructor(
     private restauranteService: RestauranteService,
-    private privilegioService: PrivilegiosService
+    private privilegioService: PrivilegiosService,
+    private router: Router,
+    formBuilder: FormBuilder
   ) {
     this.privilegioService.isRestaurant.subscribe((status: boolean) => {
       this.isRestaurant = status;
     });
-  }
+    this.formDatos = formBuilder.group({
+      descripcion: ['', [Validators.required]],
+      ubicacion: ['', [Validators.required]],
+      aperturaLunes: ['', [Validators.required]],     cierreLunes: ['', [Validators.required]],     typeLunes: ['', [Validators.required]],
+      aperturaMartes: ['', [Validators.required]],    cierreMartes: ['', [Validators.required]],    typeMartes: ['', [Validators.required]],
+      aperturaMiercoles: ['', [Validators.required]], cierreMiercoles: ['', [Validators.required]], typeMiercoles: ['', [Validators.required]],
+      aperturaJueves: ['', [Validators.required]],    cierreJueves: ['', [Validators.required]],    typeJueves: ['', [Validators.required]],
+      aperturaViernes: ['', [Validators.required]],   cierreViernes: ['', [Validators.required]],   typeViernes: ['', [Validators.required]],
+      aperturaSabado: ['', [Validators.required]],    cierreSabado: ['', [Validators.required]],    typeSabado: ['', [Validators.required]],
+      aperturaDomingo: ['', [Validators.required]],   cierreDomingo: ['', [Validators.required]],   typeDomingo: ['', [Validators.required]],      
 
-  ngOnInit(): void {
-    this.restauranteService.getReservations().subscribe((data: any) => {
-      this.restaurante = data
-      this.getHorario();
-      console.log(this.restaurante)
-      console.log(this.horario)
     });
   }
 
-  getHorario():void {    
-    Object.entries(this.restaurante.horario).forEach(
-      ([key, value]) => {
-        console.log(key, value)
-        this.horario[key][0] = '0000' + value[0].toString()
-        this.horario[key][1] = '0000' + value[1].toString()
-        let size_0 = this.horario[key][0].length
-        let size_1 = this.horario[key][1].length
-        this.horario[key][0] = this.horario[key][0].substring(size_0-4,size_0-2) 
-                     + ':' + this.horario[key][0].substring(size_0-2,size_0)
-        this.horario[key][1] = this.horario[key][1].substring(size_1-4,size_1-2) 
-                     + ':' + this.horario[key][1].substring(size_1-2,size_1)
-      });
+  ngOnInit(): void {
+    this.restauranteService.getRestaurant().subscribe((data: any) => {
+      this.restaurante = data
+      this.infoRestaurant.descripcion = this.restaurante.descripcion
+      this.infoRestaurant.ubicacion = this.restaurante.direccion
+      this.infoRestaurant.horario.lunes[0] = this.restaurante.horario.lunes[0]
+      this.infoRestaurant.horario.lunes[1] = this.restaurante.horario.lunes[1]
+      this.infoRestaurant.typeLunes = this.getType(this.restaurante.horario.lunes[0], this.restaurante.horario.lunes[1])
+      this.infoRestaurant.horario.martes[0] = this.restaurante.horario.martes[0]
+      this.infoRestaurant.horario.martes[1] = this.restaurante.horario.martes[1]
+      this.infoRestaurant.typeMartes = this.getType(this.restaurante.horario.martes[0], this.restaurante.horario.martes[1])
+      this.infoRestaurant.horario.miercoles[0] = this.restaurante.horario.miercoles[0]
+      this.infoRestaurant.horario.miercoles[1] = this.restaurante.horario.miercoles[1]
+      this.infoRestaurant.typeMiercoles = this.getType(this.restaurante.horario.miercoles[0], this.restaurante.horario.miercoles[1])
+      this.infoRestaurant.horario.jueves[0] = this.restaurante.horario.jueves[0]
+      this.infoRestaurant.horario.jueves[1] = this.restaurante.horario.jueves[1]
+      this.infoRestaurant.typeJueves = this.getType(this.restaurante.horario.jueves[0], this.restaurante.horario.jueves[1])
+      this.infoRestaurant.horario.viernes[0] = this.restaurante.horario.viernes[0]
+      this.infoRestaurant.horario.viernes[1] = this.restaurante.horario.viernes[1]
+      this.infoRestaurant.typeViernes = this.getType(this.restaurante.horario.viernes[0], this.restaurante.horario.viernes[1])
+      this.infoRestaurant.horario.sabado[0] = this.restaurante.horario.sabado[0]
+      this.infoRestaurant.horario.sabado[1] = this.restaurante.horario.sabado[1]
+      this.infoRestaurant.typeSabado = this.getType(this.restaurante.horario.sabado[0], this.restaurante.horario.sabado[1])
+      this.infoRestaurant.horario.domingo[0] = this.restaurante.horario.domingo[0]
+      this.infoRestaurant.horario.domingo[1] = this.restaurante.horario.domingo[1]
+      this.infoRestaurant.typeDomingo = this.getType(this.restaurante.horario.domingo[0], this.restaurante.horario.domingo[1])
+      console.log(this.restaurante)
+    });
+  }
+  
+  isCerrado(entrada:string, salida: string){
+    return (entrada == '00:00' && salida == '00:00')
+  }
+  
+  isAllDay(entrada:string, salida: string){
+    return (entrada == '01:00' && salida == '23:59')
   }
 
-  displayContent: {[index: string]:any} = {
+  getType(entrada:string, salida: string){
+    return this.isCerrado(entrada, salida) ? 'noOpen' : this.isAllDay(entrada, salida) ? 'allDay' : 'horario'
+  }
+  
+  setTime(entrada:string, salida: string, type:string){
+    switch(type) {
+      case 'noOpen':
+        return ["00:00", "00:00"]
+      case 'allDay':
+        return ["01:00", "23:59"]
+      default:
+        return [entrada, salida]
+      }
+  }
+  
+  displayContent: { [index: string]: any } = {
     lunes: 'block', martes: 'none', miercoles: 'none', jueves: 'none',
     viernes: 'none', sabado: 'none', domingo: 'none'
   }
 
-  public openTime(evt:any, cityName:string) {
+  public openTime(evt: any, cityName: string) {
     var i, tablinks;
     for (let key in this.displayContent) {
       this.displayContent[key] = 'none'
@@ -89,9 +145,35 @@ export class EditarComponent {
     for (i = 0; i < tablinks.length; i++) {
       tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-    
+
     this.displayContent[cityName] = 'block';
     evt.currentTarget.className += " active";
   }
 
+  mofidicarRestaurant() {
+    this.infoRestaurant.horario = {
+      lunes: this.setTime(this.infoRestaurant.horario.lunes[0], this.infoRestaurant.horario.lunes[1], this.infoRestaurant.typeLunes),
+      martes: this.setTime(this.infoRestaurant.horario.martes[0], this.infoRestaurant.horario.martes[1], this.infoRestaurant.typeMartes),
+      miercoles: this.setTime(this.infoRestaurant.horario.miercoles[0], this.infoRestaurant.horario.miercoles[1], this.infoRestaurant.typeMiercoles),
+      jueves: this.setTime(this.infoRestaurant.horario.jueves[0], this.infoRestaurant.horario.jueves[1], this.infoRestaurant.typeJueves),
+      viernes: this.setTime(this.infoRestaurant.horario.viernes[0], this.infoRestaurant.horario.viernes[1], this.infoRestaurant.typeViernes),
+      sabado: this.setTime(this.infoRestaurant.horario.sabado[0], this.infoRestaurant.horario.sabado[1], this.infoRestaurant.typeSabado),
+      domingo: this.setTime(this.infoRestaurant.horario.domingo[0], this.infoRestaurant.horario.domingo[1], this.infoRestaurant.typeDomingo),
+    }
+    console.log({descripcion: this.infoRestaurant.descripcion, ubicacion: this.infoRestaurant.ubicacion, horario: this.infoRestaurant.horario})
+    
+    return this.restauranteService.modifyRestaurante( {
+        descripcion: this.infoRestaurant.descripcion, 
+        ubicacion: this.infoRestaurant.ubicacion, 
+        horario: this.infoRestaurant.horario}
+    ).subscribe((data: any) => { 
+      this.invalidReq = false;
+      this.router.navigate(['/dashboard'])
+     }, error => {
+      this.invalidReq = true;
+    }); 
+    
+  }
+
 }
+
