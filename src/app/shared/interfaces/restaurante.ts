@@ -9,6 +9,7 @@ export interface BasicRestaurante {
     totalCalif: number;
     contadorCalif: number;
     calificacion: number;
+    horario: Horario;
 }
 
 export class Restaurante {
@@ -20,13 +21,13 @@ export class Restaurante {
     telefono: string = '';
     password: string = '';
     horario: Horario = {
-        lunes: [0, 0],
-        martes: [0, 0],
-        miercoles: [0, 0],
-        jueves: [0, 0],
-        viernes: [0, 0],
-        sabado: [0, 0],
-        domingo: [0, 0],
+        lunes: ['00:00', '00:00'],
+        martes: ['00:00', '00:00'],
+        miercoles: ['00:00', '00:00'],
+        jueves: ['00:00', '00:00'],
+        viernes: ['00:00', '00:00'],
+        sabado: ['00:00', '00:00'],
+        domingo: ['00:00', '00:00'],
     };
     imagen: string = '';
     totalCalif: number = 0;

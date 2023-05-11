@@ -35,11 +35,17 @@ export class RestauranteService {
     );
   }
   
-  getReservations(): Observable<any> {
+  getRestaurant(): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': this.tokenService.getToken()
     });
     return this.httpClient.get('http://localhost:3000/restaurantes', { headers });
   }
-
+  
+  modifyRestaurante(producto: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': this.tokenService.getToken()
+    });
+    return this.httpClient.put('http://localhost:3000/restaurantes', producto, { headers })
+  }
 }

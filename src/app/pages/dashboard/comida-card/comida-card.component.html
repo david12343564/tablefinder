@@ -9,15 +9,18 @@
         <div class="fila" >
             <div id="infoComida" class="columna-30 "> 
                 <strong style="font-size: 16px;">{{producto.nombre}}</strong>
-                <br><br> ${{producto.precio}}
             </div>
             <div id="infoComida" class="columna-30 " style="color:#4F4F4F"> 
                 {{producto.descripcion}}
             </div>
             <div id="infoComida" class="columna-30 center" > 
-                <div style="margin-bottom: 2px;"><button class="modificarComida">Modificar</button></div>
-                <div><button class="eliminarComida">Eliminar</button></div>
+                <div style="margin-bottom: 2px;">
+                    <a routerLink="/comida/{{producto._id}}">
+                        <button (click)="setProducto(producto)" class="modificarComida">Modificar</button>
+                    </a>
+                </div>
+                <div><button (click)="eliminarProducto(producto._id)"  class="eliminarComida">Eliminar</button></div>
             </div>
         </div>
-    </div>  
+    </div> 
 </div>

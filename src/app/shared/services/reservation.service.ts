@@ -18,6 +18,7 @@ export class ReservationService {
     const headers = new HttpHeaders({
       'Authorization': this.tokenService.getToken()
     });
+    console.log(isRestaurant)
     return this.httpClient.get('http://localhost:3000/reservaciones/' + (isRestaurant ? 'restaurante' : 'cliente'), { headers });
   }
 

@@ -1,0 +1,58 @@
+<div class="container">
+    <h1 *ngIf="isNew">Agregar Nuevo Platillo</h1>
+    <h1 *ngIf="!isNew">Modificar Platillo</h1>
+
+    <form [formGroup]="formLogin" (submit)="isNew ? nuevaProducto() : mofidicarProducto()">
+
+        <div class="fila">
+            <div class="columna-50 buttonCol">
+                <div id="imgComida">
+                    <div id="reservacionImage">
+                        <img src="assets/listado/list_res1.jpg">
+                    </div>
+                </div>
+                <button class="nuevaImg" type="button">Seleccionar imagen</button>
+            </div>
+            <div class="columna-50 buttonCol">
+
+                <label for="nombre">Nombre del platillo</label>
+                <div class="wrapper">
+                    <input type="text" placeholder="Furai Express Roll" id="nombre" name="nombre"
+                        formControlName="nombre" [(ngModel)]="infoProducto.nombre">
+                </div>
+
+                <label for="descripcion">Descripción del platillo</label>
+                <div class="wrapper">
+                    <textarea type="text" formControlName="descripcion"
+                        placeholder="Rollo empanizado, pepino, queso philadelphia, proteína a elección."
+                        id="descripcion" name="descripcion" [(ngModel)]="infoProducto.descripcion"></textarea>
+                </div>
+
+                <label for="categoria">Descripción del platillo</label>
+                <div class="wrapper">
+                    <select name="categoria" id="categoria" formControlName="categoria"
+                        [(ngModel)]="infoProducto.categoria">
+                        <option value="postre">Postre</option>
+                        <option value="platoFuerte">Plato Fuerte</option>
+                        <option value="entrada">Entrada</option>
+                        <option value="bebida">Bebida</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="fila">
+            <div class="columna-50 buttonCol"> <a routerLink="/dashboard">
+                    <button class="cancel" type="cancel">Cancelar</button>
+                </a></div>
+            <div class="columna-50 buttonCol">
+                <button [disabled]="formLogin.invalid" class="guardar" type="submit">Guardar</button>
+            </div>
+        </div>
+
+        <p *ngIf="invalidReq" class="error">Contraseña o correo inválido</p>
+
+
+    </form>
+
+</div>

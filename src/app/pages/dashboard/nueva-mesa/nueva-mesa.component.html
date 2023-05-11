@@ -1,0 +1,43 @@
+<div class="container">
+    <h1 *ngIf="isNew">Agregar Nueva Mesa</h1>
+    <h1 *ngIf="!isNew">Modificar Mesa</h1>
+
+    <form [formGroup]="formLogin" (submit)="isNew ? nuevaMesa() : mofidicarMesa()">
+
+        <label for="nombreMesa">Nombre de la mesa</label>
+        <input type="text" placeholder="Mesa 1 - Vista a la playa" id="nombreMesa" name="nombreMesa" formControlName="nombreMesa" [(ngModel)]="infoMesa.nombreMesa">
+        
+        <div class="fila">    
+            <div class="columna-50 buttonCol"> 
+                <label for="capacidad">Máximo de personas</label>
+                <div class="wrapper">    
+                    <button class="plusminus" (click)="handleMinus()" type="button">-</button>
+                    <input type="number" class="num" id="capacidad" name="capacidad" formControlName="capacidad" [(ngModel)]="infoMesa.capacidad">
+                    <button class="plusminus" (click)="handlePlus()" type="button">+</button>
+                </div>  
+            </div>
+            <div class="columna-50 buttonCol"> 
+                <label for="precio">Precio por reservación</label>
+                <div class="wrapper">    
+                    <button class="plusminus" (click)="handleMinusPrecio()" type="button">-</button>
+                    <input type="number" class="num" id="precio" name="precio" formControlName="precio" [(ngModel)]="infoMesa.precio">
+                    <button class="plusminus" (click)="handlePlusPrecio()" type="button">+</button>
+                </div>  
+            </div>
+        </div>
+
+        <div class="fila">    
+            <div class="columna-50 buttonCol"> <a routerLink="/dashboard">
+                <button class="cancel" type="cancel">Cancelar</button>
+            </a></div>
+            <div class="columna-50 buttonCol"> 
+                <button [disabled]="formLogin.invalid" class="guardar" type="submit">Guardar</button>
+            </div>
+        </div>
+             
+        <p *ngIf="invalidReq" class="error">Contraseña o correo inválido</p>
+        
+
+    </form>
+    
+</div>
