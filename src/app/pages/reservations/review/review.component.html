@@ -1,0 +1,49 @@
+<div class="container">
+    <h1>{{nombreRestaurante}}</h1>
+
+    <p>{{fechaReservacion}}</p>
+
+    <form [formGroup]="formReview" (submit)="isNew?nuevaResena():modificarResena()">
+
+        <div class="starRating">
+            <div class="star-input">
+                <input type="radio" name="calificacion" id="rating-5" value="5" formControlName="calificacion"
+                    [(ngModel)]="resena.calificacion" [checked]="(resena.calificacion)=='5'">
+                <label for="rating-5" class="fas fa-star">
+                </label>
+                <input type="radio" name="calificacion" id="rating-4" value="4" formControlName="calificacion"
+                    [(ngModel)]="resena.calificacion" [checked]="(resena.calificacion)=='4'">
+                <label for="rating-4" class="fas fa-star">
+                </label>
+                <input type="radio" name="calificacion" id="rating-3" value="3" formControlName="calificacion"
+                    [(ngModel)]="resena.calificacion" [checked]="(resena.calificacion)=='3'">
+                <label for="rating-3" class="fas fa-star">
+                </label>
+                <input type="radio" name="calificacion" id="rating-2" value="2" formControlName="calificacion"
+                    [(ngModel)]="resena.calificacion" [checked]="(resena.calificacion)=='2'">
+
+                <label for="rating-2" class="fas fa-star">
+                </label>
+                <input type="radio" name="calificacion" id="rating-1" value="1" formControlName="calificacion"
+                    [(ngModel)]="resena.calificacion" [checked]="(resena.calificacion)=='1'">
+                <label for="rating-1" class="fas fa-star">
+                </label>
+
+            </div>
+        </div>
+
+        <label for="comentario">Reseña</label>
+        <textarea type="text" placeholder="Tu opinión es importante para nosotros." id="comentario"
+            name="comentario" formControlName="comentario" [(ngModel)]="resena.comentario"></textarea>
+
+        <div class="fila">
+            <div class="columna-50 buttonCol"> <a routerLink="/reservations">
+                    <button class="cancel" type="cancel">Cancelar</button>
+                </a></div>
+            <div class="columna-50 buttonCol">
+                <button  class="guardar" type="submit">Guardar</button>
+            </div>
+        </div>
+    </form>
+
+</div>

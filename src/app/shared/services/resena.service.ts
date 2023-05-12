@@ -26,4 +26,13 @@ export class ResenaService {
   getResenaByReservacion(id: string): Observable<any> {
     return this.httpClient.get('http://localhost:3000/resenas/reservacion/' + id);
   }
+
+  modificarResena(resena: any, id: string): Observable<any> {
+    return this.httpClient.put('http://localhost:3000/resenas/' + id, resena);
+  }
+  
+  addResena(resena: any): Observable<any> {
+    return this.httpClient.post('http://localhost:3000/resenas', resena);
+  }
+  
 }

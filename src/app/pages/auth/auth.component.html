@@ -7,7 +7,7 @@
                  premium libre de filas
       </p>
       <a routerLink="/login"><button (click)="setPrivilegio(false)" class="btn-blue">Log in</button></a>
-      <p class="register-link">¿No tienes una cuenta? <a class="comensales" href="/register">Regístrate aquí</a></p>
+      <p class="register-link">¿No tienes una cuenta? <a class="comensales" (click)="setPrivilegio(false)" routerLink="/register">Regístrate aquí</a></p>
     </div>
     <div class="right-side">
       <h2>Para <span class="restauranteros">Restauranteros</span> </h2>
@@ -16,7 +16,7 @@
        atraer a clientes ofreciendo una experiencia
                premium libre de filas</p>
       <a routerLink="/login"><button (click)="setPrivilegio(true)" class="btn-green">Log in</button></a>
-      <p class="register-link">¿No tienes una cuenta? <a class="restauranteros" >Contacta con nuestro equipo de ventas</a></p>
+      <p class="register-link">¿No tienes una cuenta? <a class="restauranteros" (click)="setPrivilegio(true)" routerLink="/register" >Regístrate aquí</a> </p>
     </div>
   </section>
   
