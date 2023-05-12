@@ -1,0 +1,138 @@
+.container {
+    background-color: #FFF;
+    margin: 10% auto;
+    max-width: 600px;
+    padding: 20px;
+    text-align: start;
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+}
+
+textarea {
+    border-radius: 5px;
+    background-color: #F2F2F2;
+    border: none;
+    padding: 10px;
+    height: 100px;
+    resize: none;
+}
+
+button[type="submit"],
+button[type="cancel"] {
+    background-color: #2F80ED;
+
+    &.cancel {
+        background-color: #E43B3F;
+    }
+
+    &.guardar {
+        background-color: #3FBC73;
+    }
+
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+
+    &:disabled {
+        background-color: grey;
+        pointer-events: none;
+    }
+}
+
+button:hover {
+    background-color: #1A4F72;
+
+    &.cancel {
+        background-color: #a02527;
+    }
+
+    &.guardar {
+        background-color: #309158;
+    }
+}
+
+.container p {
+    text-align: center;
+    color: #4F4F4F;
+    font-size: 14px;
+
+    &.error {
+        color: #E43B3F;
+    }
+}
+
+input {
+    text-align: center;
+    border: 1px solid #6C757D;
+    background-color: #F2F2F2;
+}
+
+.buttonCol {
+    text-align: center;
+    padding: 20px 2%;
+}
+
+.starRating {
+    margin: 20px auto;
+    display: table;
+    width: 350px;
+    input {
+        display: none;
+    }
+    label {
+        padding: 10px;
+        float: right;
+        font-size: 44px;
+        color: #eee;
+    }
+    input:checked~label:before {
+        color: #F2994A !important;
+    }
+}
+
+.starRating input:not(:checked)~label:hover,
+.starRating input:not(:checked)~label:hover~label {
+    color: #f2984a67;
+}
+
+.fila {
+    width: 100%;
+    min-height: 1px;
+
+    >div[class ^="columna-"] {
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    >div.columna-70 {
+        width: 70%;
+    }
+
+    >div.columna-50 {
+        width: 50%;
+    }
+}

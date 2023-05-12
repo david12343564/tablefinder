@@ -3,11 +3,11 @@
         <div id="reservacionContent">
             <section id="reservacionName">{{reserva.nombreComensal}}</section>
             <section *ngIf="!isFuture" id="restaurantStars">
-                <fa-icon [icon]="reserva.calificacionResena < 1 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 0" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
-                <fa-icon [icon]="reserva.calificacionResena < 2 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 1" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
-                <fa-icon [icon]="reserva.calificacionResena < 3 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 2" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
-                <fa-icon [icon]="reserva.calificacionResena < 4 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 3" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
-                <fa-icon [icon]="reserva.calificacionResena < 5 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 4" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+                <fa-icon [icon]="faStar" *ngIf="reserva.calificacionResena > 0" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+                <fa-icon [icon]="faStar" *ngIf="reserva.calificacionResena > 1" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+                <fa-icon [icon]="faStar" *ngIf="reserva.calificacionResena > 2" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+                <fa-icon [icon]="faStar" *ngIf="reserva.calificacionResena > 3" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+                <fa-icon [icon]="faStar" *ngIf="reserva.calificacionResena > 4" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
             </section>
             <section *ngIf="isFuture" id="restaurantStars"> <br> </section>
             <section id="reservacionDetalles">

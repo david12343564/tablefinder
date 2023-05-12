@@ -60,4 +60,9 @@ export class RestauranteService {
     });
     return this.httpClient.put('http://localhost:3000/restaurantes', producto, { headers })
   }
+   
+  getRestaurantPublico(idRestaurant:string): Observable<any> {
+    return this.httpClient.get('http://localhost:3000/restaurantes/' + idRestaurant);
+  }
+  
 }

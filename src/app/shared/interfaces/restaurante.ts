@@ -1,11 +1,12 @@
 import { Horario } from './horario';
 
 export interface BasicRestaurante {
+    email?: string;
+    password?: string;
     nombre: string;
     direccion: string;
     descripcion: string;
-    telefono: string;
-    imagen: string;
+    imgUrl: string;
     totalCalif: number;
     contadorCalif: number;
     calificacion: number;

@@ -21,8 +21,12 @@ export class LoginService {
         return this.httpClient.post(url, { googleToken: idToken })
     }
 
-    register(cliente: Cliente): Observable<any> {
+    registerCliente(cliente: Cliente): Observable<any> {
         return this.httpClient.post('http://localhost:3000/clientes', cliente);
+    }
+    
+    registerRestaurante(restaurante: any): Observable<any> {
+        return this.httpClient.post('http://localhost:3000/restaurantes', restaurante);
     }
 
 }
