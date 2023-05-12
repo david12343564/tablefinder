@@ -1,8 +1,12 @@
 export interface Reservation {
+    nombreComensal?:String,
+    nombreMesa?:String,
+    calificacionResena?:Number,
     fecha: Date,
     dia: string,
+    _id: string,
     hora: string,
-    mesa: string,
+    idMesa: string,
     codigo: String,
     orden: [{
         producto: string,

@@ -28,6 +28,7 @@
     #botonAccion{
         display: table;
         margin: 0 auto;
+        padding-top: 5%;
         button{
             margin: 3%;
             width: 100%;
@@ -45,26 +46,29 @@
         padding: 3%;
         position: relative;
         min-width: 200px;
-
-        #reservacionDetalles {
-            section {padding-top: 2px; padding-bottom: 2px;}
-            width: 95%;
-            color: #4F4F4F;            
-            position: absolute;
-            top: 200%;
-            font-size: $font-small; 
+    }
+    #reservacionDetalles {
+        section {
+            padding-top: 2px;
+            padding-bottom: 2px;
         }
-
-        #reservacionName { 
-            font-size: $font-small; 
-            display: table;
-            margin: 0 auto;
-        }
-        #restaurantStars{
-            display: table;
-            margin: 0 auto;
-        }
-
+    
+        width: 90%;
+        padding: 10% 5%;
+        color: #4F4F4F;
+        font-size: $font-small;
+    }
+    
+    #reservacionName {
+        font-size: $font-medium;
+        display: table;
+        margin: 0 auto;
+        padding: 10px;
+    }
+    
+    #restaurantStars {
+        display: table;
+        margin: 0 auto;
     }
 }
 
@@ -99,6 +103,7 @@
         > div.columna-tablet-70  { width: 70%; }
         > div.columna-tablet-50  { width: 50%; }
         > div.columna-tablet-30  { width: 30%; }
+        > div.columna-tablet-20  { width: 20%; }
     }
 }
 
@@ -108,5 +113,6 @@
         > div.columna-desktop-70  { width: 70%; }
         > div.columna-desktop-50  { width: 50%; }
         > div.columna-desktop-30  { width: 30%; }
+        > div.columna-desktop-20  { width: 20%; }
     }
 }

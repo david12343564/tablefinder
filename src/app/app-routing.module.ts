@@ -17,6 +17,7 @@ import { NoAuthComponent } from './pages/no-auth/no-auth.component';
 import { EditarComponent } from './pages/editar/editar.component';
 import { NuevaMesaComponent } from './pages/dashboard/nueva-mesa/nueva-mesa.component';
 import { NuevaComidaComponent } from './pages/dashboard/nueva-comida/nueva-comida.component';
+import { DetalleReservaComponent } from './pages/actividad/detalle-reserva/detalle-reserva.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
 
   //vistas privadas Restaurante
   {path: 'actividad', component: ActividadComponent, canActivate: [AuthGuard]},
+  {path: 'actividad/:id', component: DetalleReservaComponent, canActivate: [AuthGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'editar', component: EditarComponent, canActivate: [AuthGuard]},
   {path: 'mesa', component: NuevaMesaComponent, canActivate: [AuthGuard]},
