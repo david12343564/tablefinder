@@ -22,6 +22,7 @@ export class AuthComponent {
   isRestaurant: boolean = false;
 
   setPrivilegio(privielgio: boolean) {
+    console.log('setando')
     this.privilegioService.setPrivilegio(privielgio);
   }
 
