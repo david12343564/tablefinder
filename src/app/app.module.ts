@@ -36,6 +36,7 @@ import { NuevaMesaComponent } from './pages/dashboard/nueva-mesa/nueva-mesa.comp
 import { NuevaComidaComponent } from './pages/dashboard/nueva-comida/nueva-comida.component';
 import { DetalleReservaComponent } from './pages/actividad/detalle-reserva/detalle-reserva.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +61,7 @@ import { DetalleReservaComponent } from './pages/actividad/detalle-reserva/detal
     EditarComponent,
     NuevaMesaComponent,
     NuevaComidaComponent,
-    DetalleReservaComponent
+    DetalleReservaComponent,
   ],
   imports: [
     BrowserModule,

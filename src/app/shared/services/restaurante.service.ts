@@ -35,6 +35,17 @@ export class RestauranteService {
     );
   }
 
+  getRestauranteById(id: string): Observable<Restaurante> {
+    const url: string = environment.apiUrl + '/restaurantes/' + id;
+    return this.httpService.get<Restaurante>(url).pipe(
+      map((restauranteData: any) => {
+        const restaurante = new Restaurante(restauranteData);
+        restaurante.imagen = restauranteData.imgUrl; // Asigna la imagen aquí
+        return restaurante;
+      })
+    );
+  }
+
 
   getRestaurant(): Observable<any> {
     const headers = new HttpHeaders({
