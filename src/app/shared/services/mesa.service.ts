@@ -31,7 +31,7 @@ export class MesaService {
   getMesaById(id: string): Observable<any> {
     return this.httpClient.get('http://localhost:3000/mesas/' + id);
   }
-
+  
   addMesa(mesa: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': this.tokenService.getToken()
@@ -46,7 +46,6 @@ export class MesaService {
   deleteMesa(id: string): Observable<any> {
     return this.httpClient.delete('http://localhost:3000/mesas/' + id)
   }
-
 
   setMesa(mesa: Mesa): void {
     this.mesaSeleccionada = mesa;

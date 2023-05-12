@@ -1,26 +1,23 @@
 <div class="fila">
-    <div id="actividadCard" *ngFor="let reserva of reservaciones" class="columna-30" >
-        <div  id="reservacionContent" >
-            <div id="reservacionInformacion">
-                <section id="reservacionName">{{reserva.idCliente}}</section>
-                <section id="restaurantStars"> 
-                    <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
-                    <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
-                    <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
-                    <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
-                    <fa-icon [icon]="faStarHalf" [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
-                </section>
-                <section id="reservacionDetalles"> 
-                    <section id="reservacionFecha">Fecha: {{reserva.dia}} </section>
-                    <section id="reservacionPersonas">Hora: {{ reserva.hora}} </section>
-                    <section id="reservacionPersonas">Mesa: {{reserva.mesa}} </section>
-                    <div id="botonAccion" >          
-                        <button *ngIf="isFuture"> Detalles </button>    
-                        <button *ngIf="!isFuture"> Detalles </button>
-                    </div>
-                </section>
-                
-            </div>
-        </div>  
+    <div id="actividadCard" *ngFor="let reserva of reservaciones" class="columna-100 columna-tablet-30 columna-desktop-20">
+        <div id="reservacionContent">
+            <section id="reservacionName">{{reserva.nombreComensal}}</section>
+            <section *ngIf="!isFuture" id="restaurantStars">
+                <fa-icon [icon]="reserva.calificacionResena < 1 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 0" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+                <fa-icon [icon]="reserva.calificacionResena < 2 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 1" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+                <fa-icon [icon]="reserva.calificacionResena < 3 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 2" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+                <fa-icon [icon]="reserva.calificacionResena < 4 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 3" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+                <fa-icon [icon]="reserva.calificacionResena < 5 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 4" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+            </section>
+            <section *ngIf="isFuture" id="restaurantStars"> <br> </section>
+            <section id="reservacionDetalles">
+                <section id="reservacionFecha">Fecha: {{reserva.dia}} </section>
+                <section id="reservacionPersonas">Hora: {{ reserva.hora}} </section>
+                <section id="reservacionPersonas">Mesa: {{reserva.nombreMesa}} </section>
+                <div id="botonAccion">
+                    <a routerLink="/actividad/{{reserva._id}}"> <button> Detalles </button></a>
+                </div>
+            </section>
+        </div>
     </div>
 </div>
