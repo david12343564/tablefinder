@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Restaurante } from 'src/app/shared/interfaces/restaurante';
 import { TokenService } from './token.service'; 
 
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpService } from './http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -15,6 +15,34 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class RestauranteService {
+
+  observableRestaurante: BehaviorSubject<Restaurante> | undefined
+
+  restauranteSeleccionado: Restaurante = {
+    _id: '',
+    nombre: '',
+    email: '',
+    direccion: '',
+    descripcion: '',
+    telefono: '',
+    password: '',
+    horario: {
+      lunes: ['00:00', '00:00'],
+      martes: ['00:00', '00:00'],
+      miercoles: ['00:00', '00:00'],
+      jueves: ['00:00', '00:00'],
+      viernes: ['00:00', '00:00'],
+      sabado: ['00:00', '00:00'],
+      domingo: ['00:00', '00:00']
+    },
+    imagen: '',
+    totalCalif: 0,
+    contadorCalif: 0,
+    status: '',
+    getRating: function (): number {
+      throw new Error('Function not implemented.');
+    }
+  }
 
   constructor(
     private httpClient: HttpClient, 
@@ -47,5 +75,10 @@ export class RestauranteService {
       'Authorization': this.tokenService.getToken()
     });
     return this.httpClient.put('http://localhost:3000/restaurantes', producto, { headers })
+  }
+
+  setRestaurante(rest:Restaurante){
+    this.restauranteSeleccionado = rest
+    this.observableRestaurante?.next(rest)
   }
 }

@@ -35,6 +35,7 @@ import { EditarComponent } from './pages/editar/editar.component';
 import { NuevaMesaComponent } from './pages/dashboard/nueva-mesa/nueva-mesa.component';
 import { NuevaComidaComponent } from './pages/dashboard/nueva-comida/nueva-comida.component';
 import { DetalleReservaComponent } from './pages/actividad/detalle-reserva/detalle-reserva.component';
+import { ListaComponent } from './shared/components/lista/lista.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { DetalleReservaComponent } from './pages/actividad/detalle-reserva/detal
     EditarComponent,
     NuevaMesaComponent,
     NuevaComidaComponent,
-    DetalleReservaComponent
+    DetalleReservaComponent,
+    ListaComponent
   ],
   imports: [
     BrowserModule,

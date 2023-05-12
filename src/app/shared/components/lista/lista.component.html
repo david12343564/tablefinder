@@ -1,10 +1,10 @@
-<app-lista [items]='restaurantes' (onSelected)="setRestaurante($event)"></app-lista>
-
-<!--
 <div class="card"></div>
 <div class="search-bar">
-    <input type="text" placeholder="Buscar restaurante...">
-    <button>Buscar</button>
+    <form (submit)="filtrar()">
+        <input type="text" name="buscar" placeholder="Buscar restaurante..." [(ngModel)="buscar"]>
+        <button>Buscar</button>
+    </form>
+    
 </div>
 
 <div class="container">
@@ -51,26 +51,6 @@
           
       </div>
 
-      <div class="restaurants-grid">
-        <div class="restaurant-card">
-          <img src="assets/cafe.jpg" alt="Restaurante 1">
-          <div class="restaurant-info">
-            <h3>La Cafetería Casa fuera de casa</h3>
-            <div class="rating">
-                <span class="stars">&#9733;</span>
-                <span class="stars">&#9733;</span>
-                <span class="stars">&#9733;</span>
-                <span class="stars">&#9733;</span>
-                <span class="stars">&#9733;</span>
-                <span class="score">5.0 (250 reviews)</span>
-            </div>
-            <p>Café popular que sirve bocadillos clásicos en un ambiente acogedor, 
-               cuenta con una gran terraza y un entorno arbolado.</p>
-            <button class="btn-reservar">Ver disponibilidad</button>
-            <div class="table-info">Mesas disponibles: 10</div>
-          </div>
-          
-      </div>
+      
 </div>
 </div>
-  -->
