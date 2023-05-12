@@ -39,6 +39,7 @@ const routes: Routes = [
   { path: 'reservations', component: ReservationsComponent, canActivate: [AuthGuard] },
 
   //vistas privadas Restaurante
+
   {path: 'actividad', component: ActividadComponent, canActivate: [AuthGuard]},
   {path: 'actividad/:id', component: DetalleReservaComponent, canActivate: [AuthGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
