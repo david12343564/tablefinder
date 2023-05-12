@@ -33,6 +33,7 @@ export class Restaurante {
     imagen: string = '';
     totalCalif: number = 0;
     contadorCalif: number = 0;
+    imgUrl: string = '';
     status: string = '';
 
     constructor(init?: Partial<Restaurante>) {

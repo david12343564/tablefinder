@@ -38,6 +38,7 @@ import { DetalleReservaComponent } from './pages/actividad/detalle-reserva/detal
 import { CodeComponent } from './pages/reservations/code/code.component';
 import { ReviewComponent } from './pages/reservations/review/review.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

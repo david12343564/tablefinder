@@ -23,7 +23,7 @@
         expertos.
     </span>
     <div class="card-container">
-        <div class="card" *ngFor="let restaurante of restaurantes">
+        <div class="card" *ngFor="let restaurante of restaurantes" [routerLink]="['/details', restaurante._id]">
             <img src="{{ restaurante.imagen }}" alt="{{ restaurante.nombre }}" class="card-img" />
             <div class="card-info">
                 <h3>{{ restaurante.nombre }}</h3>
