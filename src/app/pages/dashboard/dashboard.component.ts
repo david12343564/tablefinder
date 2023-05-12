@@ -50,7 +50,7 @@ export class DashboardComponent {
   }
   restaurante: BasicRestaurante = { nombre: '', descripcion: '', 
                                     direccion:'', calificacion: 0,
-                                    telefono: '', imagen: '', 
+                                    imgUrl: '',
                                     totalCalif: 0, contadorCalif: 0,
                                     horario:{
                                       lunes: ['00:00', '00:00'],

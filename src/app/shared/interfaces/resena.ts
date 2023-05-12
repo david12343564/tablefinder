@@ -1,7 +1,7 @@
 export interface Resena {
-    _id: string;
+    _id?: string;
     comentario:  string ,
-    calificacion:  Number,
+    calificacion:  Number|string,
     idRestaurante:  string,
     idCliente:  string,
     idReservacion:  string,
