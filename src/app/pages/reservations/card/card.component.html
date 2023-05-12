@@ -3,15 +3,22 @@
         <img src="assets/listado/list_res1.jpg" >
     </div>
     <div id="reservacionInformacion" class="columna-50" >
-        <section id="reservacionName">{{reserva.idCliente}}</section>
+        <section id="reservacionName">{{reserva.nombreRestaurante}}</section>
+        <section id="restaurantStars">
+            <fa-icon [icon]="reserva.calificacionResena < 1 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 0" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+            <fa-icon [icon]="reserva.calificacionResena < 2 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 1" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+            <fa-icon [icon]="reserva.calificacionResena < 3 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 2" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+            <fa-icon [icon]="reserva.calificacionResena < 4 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 3" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+            <fa-icon [icon]="reserva.calificacionResena < 5 ? faStarHalf : faStar" *ngIf="reserva.calificacionResena > 4" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+        </section>
         <section id="reservacionDetalles"> 
             <section id="reservacionFecha">Fecha: {{reserva.dia}} </section>
             <section id="reservacionPersonas">Hora: {{ reserva.hora}} </section>
-            <section id="reservacionPersonas">Mesa: {{reserva.mesa}} </section>
+            <section id="reservacionPersonas">Mesa: {{reserva.nombreMesa}} </section>
         </section>
     </div>
     <div id="botonAccion" class="columna-20" >              
-        <button *ngIf="isFuture"> Tu código </button>
-        <button *ngIf="!isFuture"> Tu experiencia </button>
+        <a *ngIf="isFuture" routerLink="/code/{{reserva._id}}"> <button> Tu código </button> </a>
+        <a *ngIf="!isFuture" routerLink="/review/{{reserva._id}}"> <button> Tu experiencia </button> </a>
     </div>
 </div>  

@@ -18,6 +18,8 @@ import { EditarComponent } from './pages/editar/editar.component';
 import { NuevaMesaComponent } from './pages/dashboard/nueva-mesa/nueva-mesa.component';
 import { NuevaComidaComponent } from './pages/dashboard/nueva-comida/nueva-comida.component';
 import { DetalleReservaComponent } from './pages/actividad/detalle-reserva/detalle-reserva.component';
+import { CodeComponent } from './pages/reservations/code/code.component';
+import { ReviewComponent } from './pages/reservations/review/review.component';
 
 
 const routes: Routes = [
@@ -45,6 +47,8 @@ const routes: Routes = [
   {path: 'mesa/:id', component: NuevaMesaComponent, canActivate: [AuthGuard]},
   {path: 'comida', component: NuevaComidaComponent, canActivate: [AuthGuard]},
   {path: 'comida/:id', component: NuevaComidaComponent, canActivate: [AuthGuard]},
+  {path: 'code/:id', component: CodeComponent, canActivate: [AuthGuard]},
+  {path: 'review/:id', component: ReviewComponent, canActivate: [AuthGuard]},
 
 ];
 
