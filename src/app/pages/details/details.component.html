@@ -7,15 +7,21 @@
     <div class="restaurant-data">
       <h1>{{ restaurante.nombre }}</h1>
       <div class="rating">
-        <span class="star" [ngClass]="{ 'filled': restaurante.getRating() >= 1 }">&#9733;</span>
-        <span class="star" [ngClass]="{ 'filled': restaurante.getRating() >= 2 }">&#9733;</span>
-        <span class="star" [ngClass]="{ 'filled': restaurante.getRating() >= 3 }">&#9733;</span>
-        <span class="star" [ngClass]="{ 'filled': restaurante.getRating() >= 4 }">&#9733;</span>
-        <span class="star" [ngClass]="{ 'filled': restaurante.getRating() >= 5 }">&#9733;</span>
+        <fa-icon [icon]="restauranteCali <= 1 ? faStarHalf : faStar" *ngIf="restauranteCali >= 0"
+          [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+        <fa-icon [icon]="restauranteCali <= 2 ? faStarHalf : faStar" *ngIf="restauranteCali >= 1"
+          [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+        <fa-icon [icon]="restauranteCali <= 3 ? faStarHalf : faStar" *ngIf="restauranteCali >= 2"
+          [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+        <fa-icon [icon]="restauranteCali <= 4 ? faStarHalf : faStar" *ngIf="restauranteCali >= 3"
+          [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+        <fa-icon [icon]="restauranteCali <= 5 ? faStarHalf : faStar" *ngIf="restauranteCali >= 4"
+          [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+        <span>{{restauranteCali}} ({{restaurante.contadorCalif}} Reseñas)</span>
       </div>
 
       <div class="location-info">
-        <span>🚩</span>
+        <fa-icon [icon]="faMapPin" [styles]="{ stroke: '#2F80ED', color: '#2F80ED' }"> </fa-icon>
         <span>{{ restaurante.direccion }}</span>
       </div>
 
@@ -24,6 +30,82 @@
         <p>{{ restaurante.descripcion }}</p>
       </div>
 
+      <div class="horario">
+        <h4>Horario</h4>
+        <div class="fila">
+          <div class="columna-50" *ngIf="isCerrado(restaurante.horario.lunes[0], restaurante.horario.lunes[1])">
+            <p>Lunes: Cerrado</p>
+          </div>
+          <div class="columna-50" *ngIf="isAllDay(restaurante.horario.lunes[0], restaurante.horario.lunes[1])">
+            <p>Lunes: Abierto 24 hrs</p>
+          </div>
+          <div class="columna-50" *ngIf="isHorario(restaurante.horario.lunes[0], restaurante.horario.lunes[1])">
+            <p>Lunes: {{restaurante.horario.lunes[0]}} - {{restaurante.horario.lunes[1]}}</p>
+          </div>
+
+          <div class="columna-50" *ngIf="isCerrado(restaurante.horario.martes[0], restaurante.horario.martes[1])">
+            <p>Martes: Cerrado</p>
+          </div>
+          <div class="columna-50" *ngIf="isAllDay(restaurante.horario.martes[0], restaurante.horario.martes[1])">
+            <p>Martes: Abierto 24 hrs</p>
+          </div>
+          <div class="columna-50" *ngIf="isHorario(restaurante.horario.martes[0], restaurante.horario.martes[1])">
+            <p>Martes: {{restaurante.horario.martes[0]}} - {{restaurante.horario.martes[1]}}</p>
+          </div>
+
+          <div class="columna-50" *ngIf="isCerrado(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])">
+            <p>Miércoles: Cerrado</p>
+          </div>
+          <div class="columna-50" *ngIf="isAllDay(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])">
+            <p>Miércoles: Abierto 24 hrs</p>
+          </div>
+          <div class="columna-50" *ngIf="isHorario(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])">
+            <p>Miércoles: {{restaurante.horario.miercoles[0]}} - {{restaurante.horario.miercoles[1]}}</p>
+          </div>
+
+          <div class="columna-50" *ngIf="isCerrado(restaurante.horario.jueves[0], restaurante.horario.jueves[1])">
+            <p>Jueves: Cerrado</p>
+          </div>
+          <div class="columna-50" *ngIf="isAllDay(restaurante.horario.jueves[0], restaurante.horario.jueves[1])">
+            <p>Jueves: Abierto 24 hrs</p>
+          </div>
+          <div class="columna-50" *ngIf="isHorario(restaurante.horario.jueves[0], restaurante.horario.jueves[1])">
+            <p>Jueves: {{restaurante.horario.jueves[0]}} - {{restaurante.horario.jueves[1]}}</p>
+          </div>
+
+          <div class="columna-50" *ngIf="isCerrado(restaurante.horario.viernes[0], restaurante.horario.viernes[1])">
+            <p>Viernes: Cerrado</p>
+          </div>
+          <div class="columna-50" *ngIf="isAllDay(restaurante.horario.viernes[0], restaurante.horario.viernes[1])">
+            <p>Viernes: Abierto 24 hrs</p>
+          </div>
+          <div class="columna-50" *ngIf="isHorario(restaurante.horario.viernes[0], restaurante.horario.viernes[1])">
+            <p>Viernes: {{restaurante.horario.viernes[0]}} - {{restaurante.horario.viernes[1]}}</p>
+          </div>
+
+          <div class="columna-50" *ngIf="isCerrado(restaurante.horario.sabado[0], restaurante.horario.sabado[1])">
+            <p>Sábado: Cerrado</p>
+          </div>
+          <div class="columna-50" *ngIf="isAllDay(restaurante.horario.sabado[0], restaurante.horario.sabado[1])">
+            <p>Sábado: Abierto 24 hrs</p>
+          </div>
+          <div class="columna-50" *ngIf="isHorario(restaurante.horario.sabado[0], restaurante.horario.sabado[1])">
+            <p>Sábado: {{restaurante.horario.sabado[0]}} - {{restaurante.horario.sabado[1]}}</p>
+          </div>
+
+          <div class="columna-50" *ngIf="isCerrado(restaurante.horario.domingo[0], restaurante.horario.domingo[1])">
+            <p>Domingo: Cerrado</p>
+          </div>
+          <div class="columna-50" *ngIf="isAllDay(restaurante.horario.domingo[0], restaurante.horario.domingo[1])">
+            <p>Domingo: Abierto 24 hrs</p>
+          </div>
+          <div class="columna-50" *ngIf="isHorario(restaurante.horario.domingo[0], restaurante.horario.domingo[1])">
+            <p>Domingo: {{restaurante.horario.domingo[0]}} - {{restaurante.horario.domingo[1]}}</p>
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
     <div class="restaurante-mapa">
@@ -39,11 +121,6 @@
                 <div class="reservation-container">📅 5:30pm</div>
               </td>
             </tr>
-            <tr>
-              <td colspan="2">
-                <div class="reservation-container">👥 2 Adultos, 1 niño</div>
-              </td>
-            </tr>
           </table>
         </div>
         <button class="reservacion-info button">Modificar Búsqueda</button>
@@ -51,54 +128,29 @@
     </div>
   </div>
 
-  <h1 class="reviews-title">Reseñas</h1>
-  <div class="container">
-    <div class="reviews">
-
-      <div class="review">
-        <img src="assets/profile.jpg" alt="user profile picture" class="profile-pic">
-        <div class="review-info">
-          <h4 class="name">Julia Perez</h4>
-          <div class="rating">
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9734;</span>
-          </div>
-          <p class="comment">Me gustaron todos los platillos pero algo elevados los precios</p>
-        </div>
-      </div>
-      <div class="review">
-        <img src="assets/profile.jpg" alt="user profile picture" class="profile-pic">
-        <div class="review-info">
-          <h4 class="name">Julia Perez</h4>
-          <div class="rating">
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9734;</span>
-          </div>
-          <p class="comment">Me gustaron todos los platillos pero algo elevados los precios</p>
-        </div>
-      </div>
-
+  <div id="mesasDisponibles">
+    <div id="checkoutHeader">
+      <section id="title">
+        <p>Mesas disponibles</p>
+      </section>
     </div>
-    <div class="reservations">
-      <h3>Mesas Disponibles</h3>
-      <ul>
-        <li>
-          <span>Mesa 1-Max 4 personas</span>
-          <span>$50</span>
-          <button class="reserve-btn">Reservar</button>
-        </li>
-        <li>
-          <span>Mesa 8-Max 6 personas</span>
-          <span>$80</span>
-          <button class="reserve-btn">Reservar</button>
-        </li>
-      </ul>
+
+    <div id="reservacionFutura">
+      <app-mesa-reservar [mesas]="mesas"></app-mesa-reservar>
+    </div>
+
+  </div>
+  
+  <div id="mesasDisponibles">
+    <div id="checkoutHeader">
+      <section id="title">
+        <p>Reseñas</p>
+      </section>
+    </div>
+
+    <div id="reservacionFutura">
+      <app-card-resena [resenas]="resenas"></app-card-resena>
     </div>
   </div>
+
 </div>

@@ -1,0 +1,49 @@
+<form [formGroup]="formDatos">
+    <input type="radio" id="allDay{{dia}}" formControlName="type{{dia}}" name="type{{dia}}" value="allDay"
+        [checked]="infoRestaurant['type'+dia]=='allDay'"
+        [(ngModel)]="infoRestaurant['type'+dia]">
+    <input type="radio" id="noOpen{{dia}}" formControlName="type{{dia}}" name="type{{dia}}" value="noOpen"
+        [checked]="infoRestaurant['type'+dia]=='noOpen'"
+        [(ngModel)]="infoRestaurant['type'+dia]">
+    <input type="radio" id="horario{{dia}}" formControlName="type{{dia}}" name="type{{dia}}" value="horario"
+        [checked]="infoRestaurant['type'+dia]=='horario'"
+        [(ngModel)]="infoRestaurant['type'+dia]">
+
+    <div class="fila selectOption">
+        <div class="columna-tablet-33 columna-100 center">
+            <label (click)="setOption($event, dia)" class="btn-{{dia}}"
+                [class.active]="infoRestaurant['apertura'+dia]=='01:00' && infoRestaurant['cierre'+dia]=='23:59'"
+                for="allDay{{dia}}" id="allDay_{{dia}}">
+                Abierto las 24 horas
+            </label>
+        </div>
+        <div class="columna-tablet-33 columna-100 center">
+            <label (click)="setOption($event, dia)" class="btn-{{dia}}"
+                [class.active]="infoRestaurant['apertura'+dia]=='00:00' && infoRestaurant['cierre'+dia]=='00:00'"
+                for="noOpen{{dia}}" id="noOpen_{{dia}}">
+                Cerrado
+            </label>
+        </div>
+        <div class="columna-tablet-33 columna-100 center">
+            <label (click)="setOption($event, dia)" class="btn-{{dia}}"
+                [class.active]="(infoRestaurant['apertura'+dia]!='01:00' && infoRestaurant['cierre'+dia]!='23:59') && ( infoRestaurant['apertura'+dia]!='00:00' && infoRestaurant['cierre'+dia]!='00:00')"
+                for="horario{{dia}}" id="horario_{{dia}}">
+                Horario
+            </label>
+        </div>
+    </div>
+    <div class="fila" id="{{dia}}">
+        <div class="columna-tablet-50 columna-100">
+            <label for="apertura{{dia}}">{{dia}} - Apertura </label>
+            <input type="time" id="apertura{{dia}}" formControlName="apertura{{dia}}" name="apertura{{dia}}"
+                [(ngModel)]="infoRestaurant['apertura'+dia]" required>
+        </div>
+        <div class="columna-tablet-50 columna-100">
+
+            <label for="cierre{{dia}}">{{dia}} - Apertura </label>
+            <input type="time" id="cierre{{dia}}" formControlName="cierre{{dia}}" name="cierre{{dia}}"
+                [(ngModel)]="infoRestaurant['cierre'+dia]" required>
+        </div>
+
+    </div>
+</form>

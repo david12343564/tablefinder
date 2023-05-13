@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { TokenService } from './token.service';
@@ -25,6 +25,14 @@ export class MesaService {
     const headers = new HttpHeaders({
       'Authorization': this.tokenService.getToken()
     });
+    return this.httpClient.get('http://localhost:3000/mesas/restaurante', { headers });
+  }
+  
+  getMesasPublico(id:string ): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': id || this.tokenService.getToken()
+    });
+    console.log(id || this.tokenService.getToken())
     return this.httpClient.get('http://localhost:3000/mesas/restaurante', { headers });
   }
 
