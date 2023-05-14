@@ -7,24 +7,23 @@
     
 </div>
 
+
+
 <div class="container">
-    <h2><span class="total-results">3 </span>Restaurantes encontrados </h2>
-    <div class="restaurants-grid">
+    <div *ngFor="let item of itemsFiltrados" class="restaurants-grid">
       <div class="restaurant-card">
         <img src="assets/resta.jpg" alt="Restaurante 1">
         <div class="restaurant-info">
-          <h3>Porfirios</h3>
+          <h3>{{item.name}}</h3>
           <div class="rating">
             <span class="stars">&#9733;</span>
             <span class="stars">&#9733;</span>
             <span class="stars">&#9733;</span>
             <span class="stars">&#9733;</span>
             <span class="stars">&#9734;</span>
-            <span class="score">4.0 (1200 reviews)</span>
+            <span class="score">{{item.rating}} ({{item.totalCalif}} reviews)</span>
           </div>
-          <p>Somos un lugar que renueva el concepto de cocina urbana contemporánea, 
-            combinando recetas caseras con acentos tomados de todos los rincones de México, 
-            llevando lo mejor DE LA CALLE A TU MESA.</p>
+          <p>{{item.descripcion}}</p>
           <button class="btn-reservar">Ver disponibilidad</button>
           <div class="table-info">Mesas disponibles: 5</div>
         </div>

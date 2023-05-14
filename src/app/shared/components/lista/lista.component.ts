@@ -19,7 +19,7 @@ export class ListaComponent implements OnChanges{
 
   filtrar(){
     const buscar = this.buscar.toLocaleLowerCase()
-    this.itemsFiltrados = this.items.filter(iitem=>{
+    this.itemsFiltrados = this.items.filter(item=>{
       return item.nombre?.toLowerCase().includes(buscar)
     })
   }
