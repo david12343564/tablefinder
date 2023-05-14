@@ -3,7 +3,7 @@
     <div  *ngFor="let resena of resenas" id="mesaCard" class="columna-100 columna-tablet-50 columna-desktop-30" >   
       <div class="review" style="padding: 10px 5%;">
         <div class="review-info">
-          <h4 class="name">{{resena.idCliente}}</h4>
+          <h4 class="name">{{resena.nombreComensal}}</h4>
           
           <section id="restaurantStars">
             <fa-icon [icon]="faStar" *ngIf="resena.calificacion > 0" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
