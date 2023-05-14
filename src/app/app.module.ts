@@ -39,6 +39,7 @@ import { CodeComponent } from './pages/reservations/code/code.component';
 import { ReviewComponent } from './pages/reservations/review/review.component';
 import { MesaReservarComponent } from './pages/details/mesa-reservar/mesa-reservar.component';
 import { CardResenaComponent } from './pages/details/card-resena/card-resena.component';
+import { ProductoCardComponent } from './pages/actividad/producto-card/producto-card.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { CardResenaComponent } from './pages/details/card-resena/card-resena.com
     CodeComponent,
     ReviewComponent,
     MesaReservarComponent,
-    CardResenaComponent
+    CardResenaComponent,
+    ProductoCardComponent
   ],
   imports: [
     BrowserModule,

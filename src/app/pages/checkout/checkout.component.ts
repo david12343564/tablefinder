@@ -152,17 +152,22 @@ export class CheckoutComponent {
     currentFecha.setDate(currentFecha.getDate() + 1)
     currentFecha.setHours(Number(this.reservation.hora.slice(0, this.reservation.hora.indexOf(':'))))
     currentFecha.setMinutes(Number(this.reservation.hora.slice(this.reservation.hora.indexOf(':') + 1)))
-
+    let ordenFinal:any = {}
+    
+    for (let key in this.orden) {
+      if (this.orden[key] > 0) ordenFinal[key] = this.orden[key]
+    }
     const reservaFinal = {
       fecha: currentFecha,
       codigo: (Math.random() + 1).toString(36).substring(3),
-      orden: this.orden,
+      orden: ordenFinal,
       peticiones: this.reservation.peticiones,
       idMesa: this.reservation.idMesa,
       idRestaurante: this.reservation.idRestaurante,
       idCliente: this.reservation.idCliente
     }
     console.log(reservaFinal)    
+
     this.reservationService.agregarReservation(reservaFinal).subscribe((data: any) => { 
       this.invalidReq = false;
       console.log(data)
@@ -170,7 +175,7 @@ export class CheckoutComponent {
      }, error => {
       this.invalidReq = true;
     });
-
+    
   }
   
 }
