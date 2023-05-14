@@ -9,12 +9,18 @@ export interface Reservation {
     hora: string,
     idMesa: string,
     codigo: string,
-    orden: [{
-        producto: string,
-        cantidad: Number
-    }],
+    orden: any,
     idRestaurante: string,
     idCliente: string,
     idReservacion?: string,
     peticiones: string
+}
+
+export interface ReservationInit {
+    dia: string,
+    hora: string,
+    peticiones?:string,
+    idMesa: string,
+    idRestaurante: string,
+    idCliente: string
 }

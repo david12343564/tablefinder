@@ -28,7 +28,7 @@ export class MesaService {
     return this.httpClient.get('http://localhost:3000/mesas/restaurante', { headers });
   }
   
-  getMesasPublico(id:string ): Observable<any> {
+  getMesasPublico(id?:string ): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': id || this.tokenService.getToken()
     });
