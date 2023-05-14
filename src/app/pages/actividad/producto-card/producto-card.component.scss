@@ -1,0 +1,76 @@
+@use 'sass:math';
+@import '/src/sass/mixins';
+
+#comidaCard {
+    min-height: 150px;
+    margin: 5px 1%;
+    box-shadow: 0 4px 37px rgba(0, 0, 0, 0.15);
+    border-radius: $default-borderRadius;
+}
+
+#reservacionImage {
+    width:100%;
+    height:100px;
+    > img { 
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        border-radius: $default-borderRadius $default-borderRadius 0 0;
+    }
+}
+#imgComida {
+    height: 100px;
+}
+
+#infoComida {
+    text-align: center;
+    margin: 5px 1%;
+    font-size: 20px;
+
+    &.center {
+        justify-content: center;
+    }
+}
+
+.fila {
+    width: 100%;
+    min-height: 1px;
+
+    >div[class ^="columna-"] {
+        float: left;
+        width: 98%;
+        box-sizing: border-box;
+    }
+
+    >div.columna-70 { width: 70%; }
+    >div.columna-50 { width: 48%; }
+    >div.columna-40 { width: 40%; }
+    >div.columna-30 { width: 30%; }
+    >div.columna-33 { width: 33.3%; }
+    >div.columna-20 { width: 20%; }
+
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@include tablet {    
+    .fila {
+        > div.columna-tablet-100 { width: 98%; }
+        > div.columna-tablet-70  { width: 68%; }
+        > div.columna-tablet-50  { width: 48%; }
+        > div.columna-tablet-30  { width: 28%; }
+    }
+}
+
+@include desktop {
+    .fila {
+        > div.columna-desktop-100 { width: 98%; }
+        > div.columna-desktop-70  { width: 68%; }
+        > div.columna-desktop-50  { width: 48%; }
+        > div.columna-desktop-30  { width: 30%; }
+        > div.columna-desktop-20  { width: 20%; }
+    }
+}
