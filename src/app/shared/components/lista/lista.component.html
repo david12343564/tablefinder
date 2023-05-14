@@ -1,0 +1,29 @@
+<div class="card"></div>
+<div class="search-bar">
+    <form (action)="filtrar()">
+        <input name="buscar" type="text" placeholder="Buscar restaurante..." [(ngModel)]="buscar">
+        <button>Buscar</button>
+    </form>
+</div>
+
+<div class="container">
+    <div *ngFor="let item of itemsFiltrados" class="restaurants-grid">
+      <div class="restaurant-card">
+        <img src= {{item.imgUrl}} alt="Restaurante Img">
+        <div class="restaurant-info">
+          <h3>{{item.nombre}}</h3>
+          <div class="rating">
+            <span class="stars" [ngClass]="{ 'filled': item.getRating() >= 1 }">&#9733;</span>
+            <span class="stars" [ngClass]="{ 'filled': item.getRating() >= 2 }">&#9733;</span>
+            <span class="stars" [ngClass]="{ 'filled': item.getRating() >= 3 }">&#9733;</span>
+            <span class="stars" [ngClass]="{ 'filled': item.getRating() >= 4 }">&#9733;</span>
+            <span class="stars" [ngClass]="{ 'filled': item.getRating() >= 5 }">&#9733;</span>
+            <span class="score">{{item.getRating()}} ({{item.contadorCalif}} reviews)</span>
+          </div>
+          <p>{{item.descripcion}}</p>
+          <button [routerLink]="['/details', item._id]" class="btn-reservar">Ver disponibilidad</button>
+        </div>
+    </div>
+</div>
+  
+
