@@ -37,8 +37,12 @@ import { NuevaComidaComponent } from './pages/dashboard/nueva-comida/nueva-comid
 import { DetalleReservaComponent } from './pages/actividad/detalle-reserva/detalle-reserva.component';
 import { CodeComponent } from './pages/reservations/code/code.component';
 import { ReviewComponent } from './pages/reservations/review/review.component';
+import { ListaComponent } from './shared/components/lista/lista.component';
 import { MesaReservarComponent } from './pages/details/mesa-reservar/mesa-reservar.component';
 import { CardResenaComponent } from './pages/details/card-resena/card-resena.component';
+import { ProductoCardComponent } from './pages/actividad/producto-card/producto-card.component';
+
+
 
 @NgModule({
   declarations: [
@@ -67,8 +71,10 @@ import { CardResenaComponent } from './pages/details/card-resena/card-resena.com
     DetalleReservaComponent,
     CodeComponent,
     ReviewComponent,
+    ListaComponent,
     MesaReservarComponent,
-    CardResenaComponent
+    CardResenaComponent,
+    ProductoCardComponent
   ],
   imports: [
     BrowserModule,

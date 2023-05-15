@@ -4,10 +4,11 @@ import { environment } from 'src/environments/environment';
 import { Restaurante } from 'src/app/shared/interfaces/restaurante';
 import { TokenService } from './token.service';
 
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpService } from './http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { ReturnStatement } from '@angular/compiler';
 
 
 
@@ -16,11 +17,17 @@ import { map } from 'rxjs/operators';
 })
 export class RestauranteService {
 
+  observableRestaurante: BehaviorSubject<Restaurante> 
+
+  restauranteSelecc: Restaurante = new Restaurante
+
   constructor(
     private httpClient: HttpClient,
     private httpService: HttpService,
     private tokenService: TokenService
-  ) { }
+  ) { 
+    this.observableRestaurante = new BehaviorSubject(this.restauranteSelecc)
+  }
 
   listarRestaurantes(): Observable<Restaurante[]> {
     const url: string = environment.apiUrl + '/restaurantes/all';
@@ -65,4 +72,11 @@ export class RestauranteService {
     return this.httpClient.get('http://localhost:3000/restaurantes/' + idRestaurant);
   }
 
+  setRestaurante(restaurante:Restaurante): void {
+    this.restauranteSelecc = restaurante
+    this.observableRestaurante.next(restaurante)
+  }
+
+
+  
 }

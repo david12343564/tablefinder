@@ -25,7 +25,7 @@ export class HomeComponent {
         restaurantes.sort((a, b) => b.contadorCalif - a.contadorCalif);
 
         // Toma los primeros 4 restaurantes de la lista ordenada
-        this.restaurantes = restaurantes.slice(0, 4);
+        this.restaurantes = restaurantes;
 
         // Filtra los restaurantes con una calificación entre 4.5 y 5
         const restaurantesFiltrados = restaurantes.filter(

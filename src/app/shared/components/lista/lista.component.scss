@@ -1,0 +1,114 @@
+.card {
+    height: 200px;
+    background: linear-gradient( #1167a4, #1167a4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -75px;
+    z-index: 1;
+}
+
+.search-bar input[type=text] {
+    width: 500px;
+    height: 30px;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+.search-bar button {
+    height: 50px;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4e7ce7;
+    color: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .restaurants-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .restaurant-card {
+    width: 700px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+  
+  .restaurant-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .restaurant-info {
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .restaurant-info h3 {
+    margin-top: 0;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: rgb(139, 130, 130);
+  }
+  
+  .rating .stars {
+    color: #ffc107;
+    font-size: 20px;
+  }
+  
+  .rating .score {
+    margin-left: 10px;
+  }
+  
+  .btn-reservar {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .table-info {
+    margin-top: 10px;
+    font-size: 0.8em;
+  }
+  

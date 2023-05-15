@@ -12,4 +12,5 @@ export class CardResenaComponent {
   
   faStar = faStar;
   faStarHalf = faStarHalf;
+
 }

@@ -110,23 +110,34 @@
     </div>
     <div class="restaurante-mapa">
       <img src="assets/mapa.jpg" alt="Mapa del restaurante">
-      <div class="reservacion-info">
-        <div class="reservation-details">
-          <table>
-            <tr>
-              <td>
-                <div class="reservation-container">📅 Abril 18, 2023</div>
-              </td>
-              <td>
-                <div class="reservation-container">📅 5:30pm</div>
-              </td>
-            </tr>
-          </table>
+      <form [formGroup]="formLogin" (submit)="filtrarMesas()">
+        <div class="reservacion-info">
+          <div class="reservation-details">
+            <table>
+              <tr>
+                <td>
+                  <div class="reservation-container">
+                    <input type="date" id="fechaReserva" name="fechaReserva"
+                    formControlName="fechaReserva" [(ngModel)]="reservaInit.dia">
+                  </div>
+
+                </td>
+                <td>
+                  <div class="reservation-container">
+                    <input type="time" id="tiempoReserva" name="tiempoReserva"
+                    formControlName="tiempoReserva" [(ngModel)]="reservaInit.hora">
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <button [disabled]="formLogin.invalid" class="reservacion-info button">Modificar Búsqueda</button>
         </div>
-        <button class="reservacion-info button">Modificar Búsqueda</button>
-      </div>
+
+      </form>
     </div>
   </div>
+
 
   <div id="mesasDisponibles">
     <div id="checkoutHeader">
@@ -136,11 +147,12 @@
     </div>
 
     <div id="reservacionFutura">
-      <app-mesa-reservar [mesas]="mesas"></app-mesa-reservar>
+      <app-mesa-reservar [mesas]="mesas" [reservacionIniciada]="reservaInit"></app-mesa-reservar>
     </div>
 
   </div>
-  
+
+
   <div id="mesasDisponibles">
     <div id="checkoutHeader">
       <section id="title">

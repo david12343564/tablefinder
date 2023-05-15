@@ -1,1 +1,31 @@
-<p>detalle-reserva works!</p>
+<div class="restaurant" >
+    <h1>Reservacion Confirmada</h1>
+    <h4>{{fecha}}</h4>
+    <h4>{{mesa}}</h4>
+    <div class="fila">
+        <div id="codeCard" class="columna-100 columna-tablet-50">  
+            <h4>Código de confirmación</h4>    
+            <div class="card" >
+                <p>{{code}}</p>
+            </div>
+        </div>
+        
+        <div id="peticionesCard" class="columna-100 columna-tablet-50">    
+            <h4>Peticiones especiales</h4>               
+            <div class="card peticiones" >
+                <p>{{peticiones}}</p>
+            </div>
+        </div>
+    </div>    
+
+    <div id="menuPedido">
+        <h1>Menu pedido</h1>
+        
+        <div id="reservacionFutura">
+            <app-producto-card [productos]="productos"></app-producto-card>
+        </div>
+        
+    </div>
+
+
+</div>
