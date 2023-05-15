@@ -44,6 +44,6 @@ export class Restaurante {
         if (this.contadorCalif === 0) {
             return 0;
         }
-        return this.totalCalif / this.contadorCalif;
+        return Number((this.totalCalif / this.contadorCalif).toFixed(2));
     }
 }

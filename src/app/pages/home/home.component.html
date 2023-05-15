@@ -9,18 +9,18 @@
         </span>
     </div>
     <div class="search-bar">
-        <input type="text" placeholder="Dónde" class="search-input" />
+        <!--<input type="text" placeholder="Dónde" class="search-input" />
         <input type="date" placeholder="Fecha" class="search-input" />
         <input type="time" placeholder="Hora" class="search-input" />
-        <input type="number" placeholder="Personas" class="search-input" />
-        <button class="search-btn">Buscar</button>
+        <input type="number" placeholder="Personas" class="search-input" />-->
+        <button [routerLink]="['/search']" class="search-btn">Buscar Restaurante</button>
     </div>
 </div>
 <div class="container">
     
     <h1>Restaurantes Populares</h1>
     <div class="card-container">
-        <div class="card" *ngFor="let restaurante of favRestaurantes">
+        <div class="card" *ngFor="let restaurante of favRestaurantes" [routerLink]="['/details', restaurante._id]"
             <img src="{{ restaurante.imagen }}" alt="{{ restaurante.nombre }}" class="card-img" />
             <div class="card-info">
                 <h3>{{ restaurante.nombre }}</h3>

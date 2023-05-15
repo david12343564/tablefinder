@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { MesaService } from 'src/app/shared/services/mesa.service';
 import { RestauranteService } from 'src/app/shared/services/restaurante.service';
 import { Restaurante } from 'src/app/shared/interfaces/restaurante';
@@ -14,6 +13,7 @@ import { ComensalService } from 'src/app/shared/services/comensal.service';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { faStar, faStarHalf, faMapPin } from '@fortawesome/free-solid-svg-icons';
 import {formatDate} from '@angular/common';
+
 
 @Component({
   selector: 'app-details',
@@ -75,6 +75,7 @@ export class DetailsComponent implements OnInit {
         console.error('Error loading restaurant:', error);
       }
     );
+
     this.mesaService.getMesasPublico(id).subscribe((data:any) => {
       this.mesas = data
       console.log(this.mesas)
