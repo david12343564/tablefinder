@@ -22,9 +22,9 @@ export class ProductoService {
     private tokenService: TokenService
   ) { this.observableProducto = new BehaviorSubject(this.productoSeleccionado); }
 
-  getProductos(): Observable<any> {
+  getProductos(id:string = this.tokenService.getToken()): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': this.tokenService.getToken()
+      'Authorization': id
     });
     return this.httpClient.get('http://localhost:3000/productos/restaurante', { headers });
   }

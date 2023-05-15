@@ -6,152 +6,269 @@
         <app-notice-covid></app-notice-covid>
     </div>
 
-    <div id="checkoutContent" class="fila">
-        <div id="checkoutForm" class="columna-100 columna-tablet-50 columna-desktop-70">
-            <section id="peticionesCard">
-                <div class="tarjeta">
-                    <div class="cabeza">
-                        <section id="peticionesDetalles"> 
-                            <fa-icon [icon]="faStar"     [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }"     size="lg" ></fa-icon>
-                            <section id="peticiones"> Peticiones Especiales </section>
-                        </section>
-                    </div>
-                    <div class="cuerpo">
-                        <section class="peticionesIndicaciones" >Las peticiones especiales no se pueden garantizar, pero el restaurante hará todo lo posible por satisfacerlas. ¡También puedes enviarnos tu petición especial cuando hayas realizado la reserva!</section>
-                        <section class="peticionesSubtitulo">Escribe tus peticiones</section>
-                        <textarea type="text" formControlName="nombre" placeholder="Opcional" name="Text1"></textarea>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="ordenCard">
-                <div class="tarjeta">
-                    <div class="cabeza">
-                        <section id="ordenDetalles"> 
-                            <fa-icon [icon]="faStar"     [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }"     size="lg" ></fa-icon>
-                            <section id="orden"> Prepara tu orden </section>
-                        </section>
-                    </div>
-                    <div class="cuerpo">
-                        <div class="tab">
-                            <button class="tablinks active" (click)="openCity($event)">Bebida</button>
-                            <button class="tablinks" (click)="openCity($event)">Entradas</button>
-                            <button class="tablinks" (click)="openCity($event)">Plato fuerte</button>
-                            <button class="tablinks" (click)="openCity($event)">Postre</button>
+    <form [formGroup]="formLogin" (submit)="nuevaReserva()">
+
+        <div id="checkoutContent" class="fila">
+            <div id="checkoutForm" class="columna-100 columna-tablet-50 columna-desktop-70">
+                <section id="peticionesCard">
+                    <div class="tarjeta">
+                        <div class="cabeza">
+                            <section id="peticionesDetalles">
+                                <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }"
+                                    size="lg"></fa-icon>
+                                <section id="peticiones"> Peticiones Especiales </section>
+                            </section>
+                        </div>
+                        <div class="cuerpo">
+                            <section class="peticionesIndicaciones">Las peticiones especiales no se pueden garantizar,
+                                pero
+                                el restaurante hará todo lo posible por satisfacerlas. ¡También puedes enviarnos tu
+                                petición
+                                especial cuando hayas realizado la reserva!</section>
+                            <section class="peticionesSubtitulo">Escribe tus peticiones</section>
+                            <textarea type="text" formControlName="peticiones" placeholder="Opcional"
+                                name="peticiones" [(ngModel)]="reservation.peticiones"></textarea>
                         </div>
                     </div>
+                </section>
 
-                    <div id="orderMenu" class="pie fila" >
-                        <div id="precioCard" class="columna-100 columna-tablet-100 columna-desktop-50">
-                                <div class="tarjeta" >
-                                    <section id="restaurantImage"> 
-                                        <img src="assets/listado/list_res1.jpg" alt="dwedwedwedwed">
-                                    </section>
-                                    <div class="cuerpo">
-                                        <section class="restaurantName">Furai Express Roll</section>
-                                        <section id="restaurantFecha"> Rollo empanizado, pepino, queso philadelphia, proteína a elección.  </section>
+                <section id="ordenCard">
+                    <div class="tarjeta">
+                        <div class="cabeza">
+                            <section id="ordenDetalles">
+                                <fa-icon [icon]="faStar" [styles]="{ stroke: '#FFFFFF', color: '#FFFFFF' }"
+                                    size="lg"></fa-icon>
+                                <section id="orden"> Prepara tu orden </section>
+                            </section>
+                        </div>
+                        <div class="cuerpo">
+                            <div class="tab">
+                                <button type="button" class="tablinks active" (click)="openCity($event, 'bebidas')">Bebidas</button>
+                                <button type="button" class="tablinks" (click)="openCity($event, 'entradas')">Entradas</button>
+                                <button type="button" class="tablinks" (click)="openCity($event, 'platoFuerte')">Plato fuerte</button>
+                                <button type="button" class="tablinks" (click)="openCity($event, 'postre')">Postre</button>
+                            </div>
+                        </div>
+                        <div id="bebidas" class="tabcontent" [style.display.]=" displayContent['bebidas'] ">
+                            <div class="fila" style="width: 96%;">
+                                <div *ngFor="let producto of productosBebida" id="comidaCard"
+                                    class="columna-100 columna-tablet-100 columna-desktop-50">
+                                    <div id="imgComida">
+                                        <div id="reservacionImage">
+                                            <img src="assets/listado/list_res1.jpg">
+                                        </div>
                                     </div>
-                                    <div class="pie">
-                                        <button onclick="contadormenos('elementId')">-</button>
-                                        <input id="elementId" type="text" style="text-align: center; width: 30px;" value="${i}">
-                                        <button onclick="contadormas('elementId')">+</button>
+                                    <div class="fila">
+                                        <div id="infoComida" class="columna-45 ">
+                                            <strong style="font-size: 16px;">{{producto.nombre}}</strong>
+                                            <div class="wrapper">
+                                                <button class="plusminus" (click)="handleMinusPrecio(producto._id)"
+                                                    type="button">-</button>
+                                                <input type="number" class="num" id="precio" name="cantidad{{producto._id}}"
+                                                formControlName="{{producto._id}}"  [(ngModel)]="orden[producto._id]">
+                                                <button class="plusminus" (click)="handlePlusPrecio(producto._id)"
+                                                    type="button">+</button>
+                                            </div>
+                                        </div>
+                                        <div id="infoComida" class="columna-45 " style="color:#4F4F4F">
+                                            {{producto.descripcion}}
+                                        </div>
                                     </div>
-                                    
                                 </div>
-                        </div>  
+                            </div>
+                        </div>
+                        <div id="entradas" class="tabcontent" [style.display.]=" displayContent['entradas'] ">
+                            <div class="fila" style="width: 96%;">
+                                <div *ngFor="let producto of productosEntrada" id="comidaCard"
+                                    class="columna-100 columna-tablet-100 columna-desktop-50">
+                                    <div id="imgComida">
+                                        <div id="reservacionImage">
+                                            <img src="assets/listado/list_res1.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="fila">
+                                        <div id="infoComida" class="columna-45 ">
+                                            <strong style="font-size: 16px;">{{producto.nombre}}</strong>
+                                            <div class="wrapper">
+                                                <button class="plusminus" (click)="handleMinusPrecio(producto._id)"
+                                                    type="button">-</button>
+                                                <input type="number" class="num" id="precio" name="cantidad{{producto._id}}"
+                                                formControlName="{{producto._id}}"  [(ngModel)]="orden[producto._id]">
+                                                <button class="plusminus" (click)="handlePlusPrecio(producto._id)"
+                                                    type="button">+</button>
+                                            </div>
+                                        </div>
+                                        <div id="infoComida" class="columna-45 " style="color:#4F4F4F">
+                                            {{producto.descripcion}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="platoFuerte" class="tabcontent" [style.display.]=" displayContent['platoFuerte'] ">
+                            <div class="fila" style="width: 96%;">
+                                <div *ngFor="let producto of productosPlatoFuerte" id="comidaCard"
+                                    class="columna-100 columna-tablet-100 columna-desktop-50">
+                                    <div id="imgComida">
+                                        <div id="reservacionImage">
+                                            <img src="assets/listado/list_res1.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="fila">
+                                        <div id="infoComida" class="columna-45 ">
+                                            <strong style="font-size: 16px;">{{producto.nombre}}</strong>
+                                            <div class="wrapper">
+                                                <button class="plusminus" (click)="handleMinusPrecio(producto._id)"
+                                                    type="button">-</button>
+                                                <input type="number" class="num" id="precio" name="cantidad{{producto._id}}"
+                                                formControlName="{{producto._id}}"  [(ngModel)]="orden[producto._id]">
+                                                <button class="plusminus" (click)="handlePlusPrecio(producto._id)"
+                                                    type="button">+</button>
+                                            </div>
+                                        </div>
+                                        <div id="infoComida" class="columna-45 " style="color:#4F4F4F">
+                                            {{producto.descripcion}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="postre" class="tabcontent" [style.display.]=" displayContent['postre'] ">
+                            <div class="fila" style="width: 96%;">
+                                <div *ngFor="let producto of productosPostre" id="comidaCard"
+                                    class="columna-100 columna-tablet-100 columna-desktop-50">
+                                    <div id="imgComida">
+                                        <div id="reservacionImage">
+                                            <img src="assets/listado/list_res1.jpg">
+                                        </div>
+                                    </div>
+                                    <div class="fila">
+                                        <div id="infoComida" class="columna-45 ">
+                                            <strong style="font-size: 16px;">{{producto.nombre}}</strong>
+                                            <div class="wrapper">
+                                                <button class="plusminus" (click)="handleMinusPrecio(producto._id)"
+                                                    type="button">-</button>
+                                                <input type="number" class="num" id="precio" name="cantidad{{producto._id}}"
+                                                formControlName="{{producto._id}}"  [(ngModel)]="orden[producto._id]">
+                                                <button class="plusminus" (click)="handlePlusPrecio(producto._id)"
+                                                    type="button">+</button>
+                                            </div>
+                                        </div>
+                                        <div id="infoComida" class="columna-45 " style="color:#4F4F4F">
+                                            {{producto.descripcion}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
+            </div>
+
+            <div id="checkoutDetail" class="columna-100 columna-tablet-50 columna-desktop-30">
+                <section id="restaurantCard">
+                    <div class="tarjeta">
+                        <section id="restaurantImage">
+                            <img src="assets/listado/list_res1.jpg" alt="dwedwedwedwed">
+                        </section>
+                        <div class="cuerpo">
+                            <section class="restaurantName">{{restaurante.nombre}}</section>
+
+                            <div class="rating">
+                                <fa-icon [icon]="restaurante.calificacion <= 1 ? faStarHalf : faStar"
+                                    *ngIf="restaurante.calificacion >= 0"
+                                    [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                                <fa-icon [icon]="restaurante.calificacion <= 2 ? faStarHalf : faStar"
+                                    *ngIf="restaurante.calificacion >= 1"
+                                    [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                                <fa-icon [icon]="restaurante.calificacion <= 3 ? faStarHalf : faStar"
+                                    *ngIf="restaurante.calificacion >= 2"
+                                    [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                                <fa-icon [icon]="restaurante.calificacion <= 4 ? faStarHalf : faStar"
+                                    *ngIf="restaurante.calificacion >= 3"
+                                    [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                                <fa-icon [icon]="restaurante.calificacion <= 5 ? faStarHalf : faStar"
+                                    *ngIf="restaurante.calificacion >= 4"
+                                    [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                                <span>{{restaurante.calificacion}} </span>
+                            </div>
+                        </div>
+                        <div class="pie">
+                            <section id="restaurantDetalles">
+                                <section id="noRefund"> Non refundable </section>
+                                <section id="restaurantFecha"> Fecha: {{fechaReserva}} </section>
+                                <section id="restaurantFecha"> Hora: {{reservation.hora}} </section>
+                                <section id="restaurantPersonas"> Mesa: {{mesa.nombreMesa}} </section>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="precioCard">
+                    <div class="tarjeta">
+                        <div class="cabeza">
+                            <section id="precioDetalles">
+                                <section id="precio"> Precio de la reservación </section>
+                            </section>
+                        </div>
+                        <div class="cuerpo">
+                            <section class="precioMesa">
+                                <p class="pull-left">Tarifa por mesa</p>
+                                <p class="pull-right">${{mesa.precio}}</p>
+                            </section>
+                            <section class="precioServicio">
+                                <p class="pull-left">Tarifa de servicio</p>
+                                <p class="pull-right">$5.00</p>
+                            </section>
+                        </div>
+                        <div class="pie">
+                            <section class="precioSubtitulo">
+                                <p class="pull-left">Total</p>
+                                <p class="pull-right">$30.00</p>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="informacionCard">
+                    <div class="tarjeta">
+                        <div class="cabeza">
+                            <section id="informacionDetalles">
+                                <section id="informacion"> Información importante </section>
+                            </section>
+                        </div>
+                        <div class="cuerpo">
+                            <ol type="1" id="informacionCondiciones">
+                                <li>Esta tarifa no es reembolsable. Si cambia o cancela su reserva, no obtendrá ningún
+                                    reembolso ni crédito.</li>
+                                <li>El personal del restaurante recibirá a los comensales a su llegada tras presentar su
+                                    recibo de la reserva.</li>
+                                <li>No se reembolsarán las llegaas tardías mayores a 10 minutos, la reserva se dará por
+                                    perdida.</li>
+                            </ol>
+                        </div>
+                        <div class="pie">
+                            <section id="botonAccion">
+                                <button>
+                                    Completa tu reserva
+                                </button>
+                            </section>
+                            <section id="informacionPoliticas">
+                                <p>
+                                    Al hacer clic en el botón, reconozco que he revisado las
+                                    <a>Políticas de Privacidad</a> y he revisado y acepto las
+                                    <a>Normas y restricciones</a> y <a>Condiciones de uso</a>.
+                                </p>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
         </div>
-
-        <div id="checkoutDetail" class="columna-100 columna-tablet-50 columna-desktop-30">
-            <section id="restaurantCard">
-                <div class="tarjeta">
-                    <section id="restaurantImage"> 
-                        <img src="assets/listado/list_res1.jpg" alt="dwedwedwedwed">
-                    </section>
-                    <div class="cuerpo">
-                        <section class="restaurantName">La Taberna del Dragón</section>
-                        <section id="restaurantStars"> 
-                            <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
-                            <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
-                            <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
-                            <fa-icon [icon]="faStar"     [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
-                            <fa-icon [icon]="faStarHalf" [styles]="{ stroke: '#F2994A', color: '#F2994A' }"     size="lg"></fa-icon>
-                        </section>
-                    </div>
-                    <div class="pie">
-                        <section id="restaurantDetalles"> 
-                            <section id="noRefund"> Non refundable </section>
-                            <section id="restaurantFecha"> Sunday, March 18, 2023 </section>
-                            <section id="restaurantPersonas"> 2 adultos, 1 niño </section>
-                            <section id="restaurantPersonas"> Mesa 1 - Max 4 personas </section>
-                        </section>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="precioCard">
-                <div class="tarjeta">
-                    <div class="cabeza">
-                        <section id="precioDetalles"> 
-                            <section id="precio"> Precio de la reservación </section>
-                        </section>
-                    </div>
-                    <div class="cuerpo">
-                        <section class="precioMesa">
-                            <p class="pull-left">Mesa 1</p>
-                            <p class="pull-right">$25.00</p>
-                        </section>
-                        <section class="precioServicio" >
-                            <p class="pull-left">Tarifa de servicio</p>
-                            <p class="pull-right">$5.00</p>
-                        </section>
-                    </div>
-                    <div class="pie">
-                        <section class="precioSubtitulo">
-                            <p class="pull-left">Total</p>
-                            <p class="pull-right">$30.00</p>
-                        </section>
-                    </div>
-                </div>
-            </section>
-
-            <section id="informacionCard">
-                <div class="tarjeta">
-                    <div class="cabeza">
-                        <section id="informacionDetalles"> 
-                            <section id="informacion"> Información importante </section>
-                        </section>
-                    </div>
-                    <div class="cuerpo">
-                        <ol type="1" id="informacionCondiciones">
-                            <li>Esta tarifa no es reembolsable. Si cambia o cancela su reserva, no obtendrá ningún reembolso ni crédito.</li>
-                            <li>El personal del restaurante recibirá a los comensales a su llegada tras presentar su recibo de la reserva.</li>
-                            <li>No se reembolsarán las llegaas tardías mayores a 10 minutos, la reserva se dará por perdida.</li>
-                        </ol>
-                    </div>
-                    <div class="pie">                
-                        <section id="botonAccion">
-                            <button>
-                                Completa tu reserva
-                            </button>
-                        </section>
-                        <section id="informacionPoliticas">
-                            <p>
-                                Al hacer clic en el botón, reconozco que he revisado las 
-                                <a>Políticas de Privacidad</a> y he revisado y acepto las 
-                                <a>Normas y restricciones</a> y <a>Condiciones de uso</a>.
-                            </p>     
-                        </section>   
-                    </div>
-                </div>
-            </section>
-            
-        </div>
-    </div>
+    </form>
 
 </div>
 
-<app-no-auth *ngIf="isRestaurant" ></app-no-auth>
+<app-no-auth *ngIf="isRestaurant"></app-no-auth>

@@ -38,6 +38,11 @@ import { DetalleReservaComponent } from './pages/actividad/detalle-reserva/detal
 import { CodeComponent } from './pages/reservations/code/code.component';
 import { ReviewComponent } from './pages/reservations/review/review.component';
 import { ListaComponent } from './shared/components/lista/lista.component';
+import { MesaReservarComponent } from './pages/details/mesa-reservar/mesa-reservar.component';
+import { CardResenaComponent } from './pages/details/card-resena/card-resena.component';
+import { ProductoCardComponent } from './pages/actividad/producto-card/producto-card.component';
+
+
 
 @NgModule({
   declarations: [
@@ -66,7 +71,10 @@ import { ListaComponent } from './shared/components/lista/lista.component';
     DetalleReservaComponent,
     CodeComponent,
     ReviewComponent,
-    ListaComponent
+    ListaComponent,
+    MesaReservarComponent,
+    CardResenaComponent,
+    ProductoCardComponent
   ],
   imports: [
     BrowserModule,

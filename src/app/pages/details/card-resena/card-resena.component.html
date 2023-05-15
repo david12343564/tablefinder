@@ -1,0 +1,19 @@
+
+<div class="fila">    
+    <div  *ngFor="let resena of resenas" id="mesaCard" class="columna-100 columna-tablet-50 columna-desktop-30" >   
+      <div class="review" style="padding: 10px 5%;">
+        <div class="review-info">
+          <h4 class="name">{{resena.nombreComensal}}</h4>
+          
+          <section id="restaurantStars">
+            <fa-icon [icon]="faStar" *ngIf="resena.calificacion > 0" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+            <fa-icon [icon]="faStar" *ngIf="resena.calificacion > 1" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+            <fa-icon [icon]="faStar" *ngIf="resena.calificacion > 2" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+            <fa-icon [icon]="faStar" *ngIf="resena.calificacion > 3" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+            <fa-icon [icon]="faStar" *ngIf="resena.calificacion > 4" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" > </fa-icon>
+        </section>
+          <p class="comment">{{resena.comentario}}</p>
+        </div>
+      </div>
+    </div>
+</div>

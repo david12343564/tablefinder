@@ -17,13 +17,10 @@
     </div>
 </div>
 <div class="container">
-    <h1>Disfruta en tu restaurante soñado</h1>
-    <span>
-        Planifique y reserve en alguno de los mejores restaurantes de la zona, garantizados por nuestro equipo de
-        expertos.
-    </span>
+    
+    <h1>Restaurantes Populares</h1>
     <div class="card-container">
-        <div class="card" *ngFor="let restaurante of restaurantes" [routerLink]="['/details', restaurante._id]">
+        <div class="card" *ngFor="let restaurante of favRestaurantes" [routerLink]="['/details', restaurante._id]"
             <img src="{{ restaurante.imagen }}" alt="{{ restaurante.nombre }}" class="card-img" />
             <div class="card-info">
                 <h3>{{ restaurante.nombre }}</h3>
@@ -31,9 +28,14 @@
             </div>
         </div>
     </div>
-    <h1>Restaurantes Populares</h1>
+    
+    <h1>Disfruta en tu restaurante soñado</h1>
+    <span>
+        Planifique y reserve en alguno de los mejores restaurantes de la zona, garantizados por nuestro equipo de
+        expertos.
+    </span>
     <div class="card-container">
-        <div class="card" *ngFor="let restaurante of favRestaurantes">
+        <div class="card" *ngFor="let restaurante of restaurantes" [routerLink]="['/details', restaurante._id]">
             <img src="{{ restaurante.imagen }}" alt="{{ restaurante.nombre }}" class="card-img" />
             <div class="card-info">
                 <h3>{{ restaurante.nombre }}</h3>
