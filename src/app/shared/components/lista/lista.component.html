@@ -1,0 +1,34 @@
+<div class="card"></div>
+<div class="search-bar">
+    <form (submit)="filtrar()">
+        <input name="buscar" type="text" placeholder="Buscar restaurante..." [(ngModel)]="buscar">
+        <button>Buscar</button>
+    </form>
+</div>
+
+<div class="container">
+    <div *ngFor="let item of itemsFiltrados" class="restaurants-grid">
+      <div class="restaurant-card">
+        <img src= {{item.imgUrl}} alt="Restaurante Img">
+        <div class="restaurant-info">
+          <h3>{{item.nombre}}</h3>
+          <div class="rating">
+            <fa-icon [icon]="item.getRating() <= 1 ? faStarHalf : faStar" *ngIf="item.getRating() >= 0"
+                [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+            <fa-icon [icon]="item.getRating() <= 2 ? faStarHalf : faStar" *ngIf="item.getRating() >= 1"
+                [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+            <fa-icon [icon]="item.getRating() <= 3 ? faStarHalf : faStar" *ngIf="item.getRating() >= 2"
+                [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+            <fa-icon [icon]="item.getRating() <= 4 ? faStarHalf : faStar" *ngIf="item.getRating() >= 3"
+                [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+            <fa-icon [icon]="item.getRating() <= 5 ? faStarHalf : faStar" *ngIf="item.getRating() >= 4"
+                [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+            <span class="score">{{item.getRating()}} ({{item.contadorCalif}} reviews)</span>
+          </div>
+          <p>{{item.descripcion}}</p>
+          <button [routerLink]="['/details', item._id]" class="btn-reservar">Ver disponibilidad</button>
+        </div>
+    </div>
+</div>
+  
+
