@@ -33,11 +33,12 @@ export class ProductoService {
     return this.httpClient.get('http://localhost:3000/productos/' + id);
   }
 
-  addProducto(producto: any): Observable<any> {
+  addProducto(data: FormData): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': this.tokenService.getToken()
+      'Authorization': this.tokenService.getToken(),
+      'enctype': 'multipart/form-data' // This is needed for sending form data
     });
-    return this.httpClient.post('http://localhost:3000/productos/', producto, { headers })
+    return this.httpClient.post('http://localhost:3000/productos/', data, { headers });
   }
 
   modifyProducto(producto: any, id: string): Observable<any> {

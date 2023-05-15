@@ -6,12 +6,13 @@
 
         <div class="fila">
             <div class="columna-50 buttonCol">
-                <div id="imgComida">
+                <div id="imgComida" *ngIf="selectedImageUrl">
                     <div id="reservacionImage">
-                        <img src="assets/listado/list_res1.jpg">
+                        <img [src]="selectedImageUrl">
                     </div>
                 </div>
-                <button class="nuevaImg" type="button">Seleccionar imagen</button>
+                <button class="nuevaImg" type="button" (click)="seleccionarImagen()">Seleccionar imagen</button>
+                <input #imageInput type="file" id="imagen" name="imagen" style="display: none" (change)="onFileSelect($event)" />
             </div>
             <div class="columna-50 buttonCol">
 
@@ -49,10 +50,6 @@
                 <button [disabled]="formLogin.invalid" class="guardar" type="submit">Guardar</button>
             </div>
         </div>
-
         <p *ngIf="invalidReq" class="error">Contraseña o correo inválido</p>
-
-
     </form>
-
 </div>

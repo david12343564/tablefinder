@@ -109,13 +109,12 @@ export class DashboardComponent {
   }
   
   getHorario():void {   
-    this.typeHorario.lunes 
     Object.entries(this.restaurante.horario).forEach(
       ([key, value]) => {
         
-        if (this.horario[key][0] == '00:00 - ' && this.horario[key][1] == '00:00'){
+        if (this.horario[key][0] == '00:00' && this.horario[key][1] == '00:00'){
           this.horario[key][0] = 'Cerrado'; this.horario[key][1] = '';
-        } else if (this.horario[key][0] == '01:00 - ' && this.horario[key][1] == '23:59'){
+        } else if (this.horario[key][0] == '00:00' && this.horario[key][1] == '23:59'){
           this.horario[key][0] = 'Abierto 24 hrs'; this.horario[key][1] = '';
         }
       });

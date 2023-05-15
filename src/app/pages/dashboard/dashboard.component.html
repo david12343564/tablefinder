@@ -1,76 +1,135 @@
-<div class="restaurant" *ngIf="isRestaurant" >
+<div class="restaurant" *ngIf="isRestaurant">
     <div class="restaurant-photo">
-        <img src="assets/resta.jpg" alt="Restaurante">
+        <img src="{{ restaurante.imgUrl }}" alt="Restaurante">
     </div>
 
     <div class="restaurant-info">
         <div class="restaurant-data">
             <h1>{{restaurante.nombre}}</h1>
             <div class="rating">
-                <fa-icon [icon]="restaurante.calificacion <= 1 ? faStarHalf : faStar" *ngIf="restaurante.calificacion >= 0" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
-                <fa-icon [icon]="restaurante.calificacion <= 2 ? faStarHalf : faStar" *ngIf="restaurante.calificacion >= 1" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
-                <fa-icon [icon]="restaurante.calificacion <= 3 ? faStarHalf : faStar" *ngIf="restaurante.calificacion >= 2" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
-                <fa-icon [icon]="restaurante.calificacion <= 4 ? faStarHalf : faStar" *ngIf="restaurante.calificacion >= 3" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
-                <fa-icon [icon]="restaurante.calificacion <= 5 ? faStarHalf : faStar" *ngIf="restaurante.calificacion >= 4" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm"> </fa-icon>
+                <fa-icon [icon]="restaurante.calificacion <= 1 ? faStarHalf : faStar"
+                    *ngIf="restaurante.calificacion >= 0" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm">
+                </fa-icon>
+                <fa-icon [icon]="restaurante.calificacion <= 2 ? faStarHalf : faStar"
+                    *ngIf="restaurante.calificacion >= 1" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm">
+                </fa-icon>
+                <fa-icon [icon]="restaurante.calificacion <= 3 ? faStarHalf : faStar"
+                    *ngIf="restaurante.calificacion >= 2" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm">
+                </fa-icon>
+                <fa-icon [icon]="restaurante.calificacion <= 4 ? faStarHalf : faStar"
+                    *ngIf="restaurante.calificacion >= 3" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm">
+                </fa-icon>
+                <fa-icon [icon]="restaurante.calificacion <= 5 ? faStarHalf : faStar"
+                    *ngIf="restaurante.calificacion >= 4" [styles]="{ stroke: '#F2994A', color: '#F2994A' }" size="sm">
+                </fa-icon>
                 <span>{{restaurante.calificacion}} ({{restaurante.contadorCalif}} Reseñas)</span>
             </div>
             <div class="location-info">
-                <fa-icon [icon]="faMapPin" [styles]="{ stroke: '#2F80ED', color: '#2F80ED' }" > </fa-icon>
-                <span>  {{restaurante.direccion}}</span>
+                <fa-icon [icon]="faMapPin" [styles]="{ stroke: '#2F80ED', color: '#2F80ED' }"> </fa-icon>
+                <span> {{restaurante.direccion}}</span>
             </div>
 
             <div class="description">
                 <h4>Descripción</h4>
                 <p>{{restaurante.descripcion}}</p>
             </div>
-            
+
             <div class="horario">
                 <h4>Horario</h4>
-                <div class="fila">    
-                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.lunes[0], restaurante.horario.lunes[1])"> <p>Lunes: Cerrado</p></div>
-                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.lunes[0], restaurante.horario.lunes[1])"> <p>Lunes: Abierto 24 hrs</p></div>
-                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.lunes[0], restaurante.horario.lunes[1])">
+                <div class="fila">
+                    <div class="columna-50"
+                        *ngIf="isCerrado(restaurante.horario.lunes[0], restaurante.horario.lunes[1])">
+                        <p>Lunes: Cerrado</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isAllDay(restaurante.horario.lunes[0], restaurante.horario.lunes[1])">
+                        <p>Lunes: Abierto 24 hrs</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isHorario(restaurante.horario.lunes[0], restaurante.horario.lunes[1])">
                         <p>Lunes: {{restaurante.horario.lunes[0]}} - {{restaurante.horario.lunes[1]}}</p>
                     </div>
-                    
-                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.martes[0], restaurante.horario.martes[1])"> <p>Martes: Cerrado</p></div>
-                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.martes[0], restaurante.horario.martes[1])"> <p>Martes: Abierto 24 hrs</p></div>
-                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.martes[0], restaurante.horario.martes[1])">
+
+                    <div class="columna-50"
+                        *ngIf="isCerrado(restaurante.horario.martes[0], restaurante.horario.martes[1])">
+                        <p>Martes: Cerrado</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isAllDay(restaurante.horario.martes[0], restaurante.horario.martes[1])">
+                        <p>Martes: Abierto 24 hrs</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isHorario(restaurante.horario.martes[0], restaurante.horario.martes[1])">
                         <p>Martes: {{restaurante.horario.martes[0]}} - {{restaurante.horario.martes[1]}}</p>
                     </div>
-                    
-                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])"> <p>Miércoles: Cerrado</p></div>
-                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])"> <p>Miércoles: Abierto 24 hrs</p></div>
-                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])">
+
+                    <div class="columna-50"
+                        *ngIf="isCerrado(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])">
+                        <p>Miércoles: Cerrado</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isAllDay(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])">
+                        <p>Miércoles: Abierto 24 hrs</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isHorario(restaurante.horario.miercoles[0], restaurante.horario.miercoles[1])">
                         <p>Miércoles: {{restaurante.horario.miercoles[0]}} - {{restaurante.horario.miercoles[1]}}</p>
                     </div>
-                    
-                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.jueves[0], restaurante.horario.jueves[1])"> <p>Jueves: Cerrado</p></div>
-                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.jueves[0], restaurante.horario.jueves[1])"> <p>Jueves: Abierto 24 hrs</p></div>
-                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.jueves[0], restaurante.horario.jueves[1])">
+
+                    <div class="columna-50"
+                        *ngIf="isCerrado(restaurante.horario.jueves[0], restaurante.horario.jueves[1])">
+                        <p>Jueves: Cerrado</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isAllDay(restaurante.horario.jueves[0], restaurante.horario.jueves[1])">
+                        <p>Jueves: Abierto 24 hrs</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isHorario(restaurante.horario.jueves[0], restaurante.horario.jueves[1])">
                         <p>Jueves: {{restaurante.horario.jueves[0]}} - {{restaurante.horario.jueves[1]}}</p>
                     </div>
-                    
-                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.viernes[0], restaurante.horario.viernes[1])"> <p>Viernes: Cerrado</p></div>
-                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.viernes[0], restaurante.horario.viernes[1])"> <p>Viernes: Abierto 24 hrs</p></div>
-                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.viernes[0], restaurante.horario.viernes[1])">
+
+                    <div class="columna-50"
+                        *ngIf="isCerrado(restaurante.horario.viernes[0], restaurante.horario.viernes[1])">
+                        <p>Viernes: Cerrado</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isAllDay(restaurante.horario.viernes[0], restaurante.horario.viernes[1])">
+                        <p>Viernes: Abierto 24 hrs</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isHorario(restaurante.horario.viernes[0], restaurante.horario.viernes[1])">
                         <p>Viernes: {{restaurante.horario.viernes[0]}} - {{restaurante.horario.viernes[1]}}</p>
                     </div>
 
-                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.sabado[0], restaurante.horario.sabado[1])"> <p>Sábado: Cerrado</p></div>
-                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.sabado[0], restaurante.horario.sabado[1])"> <p>Sábado: Abierto 24 hrs</p></div>
-                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.sabado[0], restaurante.horario.sabado[1])">
+                    <div class="columna-50"
+                        *ngIf="isCerrado(restaurante.horario.sabado[0], restaurante.horario.sabado[1])">
+                        <p>Sábado: Cerrado</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isAllDay(restaurante.horario.sabado[0], restaurante.horario.sabado[1])">
+                        <p>Sábado: Abierto 24 hrs</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isHorario(restaurante.horario.sabado[0], restaurante.horario.sabado[1])">
                         <p>Sábado: {{restaurante.horario.sabado[0]}} - {{restaurante.horario.sabado[1]}}</p>
                     </div>
-                    
-                    <div class="columna-50" *ngIf="isCerrado(restaurante.horario.domingo[0], restaurante.horario.domingo[1])"> <p>Domingo: Cerrado</p></div>
-                    <div class="columna-50" *ngIf="isAllDay(restaurante.horario.domingo[0], restaurante.horario.domingo[1])"> <p>Domingo: Abierto 24 hrs</p></div>
-                    <div class="columna-50" *ngIf="isHorario(restaurante.horario.domingo[0], restaurante.horario.domingo[1])">
+
+                    <div class="columna-50"
+                        *ngIf="isCerrado(restaurante.horario.domingo[0], restaurante.horario.domingo[1])">
+                        <p>Domingo: Cerrado</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isAllDay(restaurante.horario.domingo[0], restaurante.horario.domingo[1])">
+                        <p>Domingo: Abierto 24 hrs</p>
+                    </div>
+                    <div class="columna-50"
+                        *ngIf="isHorario(restaurante.horario.domingo[0], restaurante.horario.domingo[1])">
                         <p>Domingo: {{restaurante.horario.domingo[0]}} - {{restaurante.horario.domingo[1]}}</p>
                     </div>
 
                 </div>
-                 
+
             </div>
 
 
@@ -79,14 +138,14 @@
             <img src="assets/mapa.jpg" alt="Mapa del restaurante">
             <div class="reservacion-info" style="width: 70%;">
                 <div><a routerLink="/editar">
-                    <button class="reservacion-info button">Actualizar Información</button>
-                </a></div>
-                <div> <a routerLink="/mesa" >
-                    <button class="reservacion-info button">Agregar Mesa</button>
-                </a></div>
+                        <button class="reservacion-info button">Actualizar Información</button>
+                    </a></div>
+                <div> <a routerLink="/mesa">
+                        <button class="reservacion-info button">Agregar Mesa</button>
+                    </a></div>
                 <div> <a routerLink="/comida">
-                    <button class="reservacion-info button">Agregar Platillo</button>
-                </a></div>
+                        <button class="reservacion-info button">Agregar Platillo</button>
+                    </a></div>
             </div>
         </div>
     </div>
@@ -103,14 +162,14 @@
         </div>
 
     </div>
-    
+
     <div id="mesasDisponibles">
         <div id="checkoutHeader">
             <section id="title">
                 <p>Menú disponibles</p>
             </section>
         </div>
-        
+
         <div id="checkoutHeader">
             <section id="subtitle">
                 <p>Bebida</p>
@@ -118,9 +177,10 @@
         </div>
 
         <div id="reservacionFutura">
-            <app-comida-card (deleteProductoEvent)="eventProducto($event)" [productos]="productosBebida"></app-comida-card>
+            <app-comida-card (deleteProductoEvent)="eventProducto($event)"
+                [productos]="productosBebida"></app-comida-card>
         </div>
-        
+
         <div id="checkoutHeader">
             <section id="subtitle">
                 <p>Entradas</p>
@@ -128,9 +188,10 @@
         </div>
 
         <div id="reservacionFutura">
-            <app-comida-card (deleteProductoEvent)="eventProducto($event)" [productos]="productosEntrada"></app-comida-card>
+            <app-comida-card (deleteProductoEvent)="eventProducto($event)"
+                [productos]="productosEntrada"></app-comida-card>
         </div>
-        
+
         <div id="checkoutHeader">
             <section id="subtitle">
                 <p>Plato Fuerte</p>
@@ -138,7 +199,8 @@
         </div>
 
         <div id="reservacionFutura">
-            <app-comida-card (deleteProductoEvent)="eventProducto($event)" [productos]="productosPlatoFuerte"></app-comida-card>
+            <app-comida-card (deleteProductoEvent)="eventProducto($event)"
+                [productos]="productosPlatoFuerte"></app-comida-card>
         </div>
 
         <div id="checkoutHeader">
@@ -148,11 +210,12 @@
         </div>
 
         <div id="reservacionFutura">
-            <app-comida-card (deleteProductoEvent)="eventProducto($event)" [productos]="productosPostre"></app-comida-card>
+            <app-comida-card (deleteProductoEvent)="eventProducto($event)"
+                [productos]="productosPostre"></app-comida-card>
         </div>
 
     </div>
 
 </div>
 
-<app-no-auth *ngIf="!isRestaurant" ></app-no-auth>
+<app-no-auth *ngIf="!isRestaurant"></app-no-auth>

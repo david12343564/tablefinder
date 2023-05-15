@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { faHospital } from '@fortawesome/free-regular-svg-icons';
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
 import { PrivilegiosService } from 'src/app/shared/services/privilegios.service';
@@ -15,6 +15,9 @@ import { RestauranteService } from 'src/app/shared/services/restaurante.service'
   styleUrls: ['./editar.component.scss']
 })
 export class EditarComponent {
+  @ViewChild('imageInput', { static: false }) imagenInput!: ElementRef;
+  selectedFile: File | null = null;
+  selectedImageUrl: any = null;
   faHospital = faHospital;
   faStar = faStar;
   faStarHalf = faStarHalf;
@@ -32,7 +35,7 @@ export class EditarComponent {
       domingo: ['00:00', '00:00'],
     },
     typeLunes: 'horario', typeMartes: 'horario', typeMiercoles: 'horario',
-    typeJueves: 'horario', typeViernes: 'horario', typeSabado: 'horario', typeDomingo: 'horario',      
+    typeJueves: 'horario', typeViernes: 'horario', typeSabado: 'horario', typeDomingo: 'horario',
   };
 
   isRestaurant: boolean = false;
@@ -66,13 +69,13 @@ export class EditarComponent {
     this.formDatos = formBuilder.group({
       descripcion: ['', [Validators.required]],
       ubicacion: ['', [Validators.required]],
-      aperturaLunes: ['', [Validators.required]],     cierreLunes: ['', [Validators.required]],     typeLunes: ['', [Validators.required]],
-      aperturaMartes: ['', [Validators.required]],    cierreMartes: ['', [Validators.required]],    typeMartes: ['', [Validators.required]],
+      aperturaLunes: ['', [Validators.required]], cierreLunes: ['', [Validators.required]], typeLunes: ['', [Validators.required]],
+      aperturaMartes: ['', [Validators.required]], cierreMartes: ['', [Validators.required]], typeMartes: ['', [Validators.required]],
       aperturaMiercoles: ['', [Validators.required]], cierreMiercoles: ['', [Validators.required]], typeMiercoles: ['', [Validators.required]],
-      aperturaJueves: ['', [Validators.required]],    cierreJueves: ['', [Validators.required]],    typeJueves: ['', [Validators.required]],
-      aperturaViernes: ['', [Validators.required]],   cierreViernes: ['', [Validators.required]],   typeViernes: ['', [Validators.required]],
-      aperturaSabado: ['', [Validators.required]],    cierreSabado: ['', [Validators.required]],    typeSabado: ['', [Validators.required]],
-      aperturaDomingo: ['', [Validators.required]],   cierreDomingo: ['', [Validators.required]],   typeDomingo: ['', [Validators.required]],      
+      aperturaJueves: ['', [Validators.required]], cierreJueves: ['', [Validators.required]], typeJueves: ['', [Validators.required]],
+      aperturaViernes: ['', [Validators.required]], cierreViernes: ['', [Validators.required]], typeViernes: ['', [Validators.required]],
+      aperturaSabado: ['', [Validators.required]], cierreSabado: ['', [Validators.required]], typeSabado: ['', [Validators.required]],
+      aperturaDomingo: ['', [Validators.required]], cierreDomingo: ['', [Validators.required]], typeDomingo: ['', [Validators.required]],
 
     });
   }
@@ -106,30 +109,30 @@ export class EditarComponent {
       console.log(this.restaurante)
     });
   }
-  
-  isCerrado(entrada:string, salida: string){
+
+  isCerrado(entrada: string, salida: string) {
     return (entrada == '00:00' && salida == '00:00')
   }
-  
-  isAllDay(entrada:string, salida: string){
+
+  isAllDay(entrada: string, salida: string) {
     return (entrada == '01:00' && salida == '23:59')
   }
 
-  getType(entrada:string, salida: string){
+  getType(entrada: string, salida: string) {
     return this.isCerrado(entrada, salida) ? 'noOpen' : this.isAllDay(entrada, salida) ? 'allDay' : 'horario'
   }
-  
-  setTime(entrada:string, salida: string, type:string){
-    switch(type) {
+
+  setTime(entrada: string, salida: string, type: string) {
+    switch (type) {
       case 'noOpen':
         return ["00:00", "00:00"]
       case 'allDay':
         return ["01:00", "23:59"]
       default:
         return [entrada, salida]
-      }
+    }
   }
-  
+
   displayContent: { [index: string]: any } = {
     lunes: 'block', martes: 'none', miercoles: 'none', jueves: 'none',
     viernes: 'none', sabado: 'none', domingo: 'none'
@@ -160,20 +163,41 @@ export class EditarComponent {
       sabado: this.setTime(this.infoRestaurant.horario.sabado[0], this.infoRestaurant.horario.sabado[1], this.infoRestaurant.typeSabado),
       domingo: this.setTime(this.infoRestaurant.horario.domingo[0], this.infoRestaurant.horario.domingo[1], this.infoRestaurant.typeDomingo),
     }
-    console.log({descripcion: this.infoRestaurant.descripcion, ubicacion: this.infoRestaurant.ubicacion, horario: this.infoRestaurant.horario})
-    
-    return this.restauranteService.modifyRestaurante( {
-        descripcion: this.infoRestaurant.descripcion, 
-        ubicacion: this.infoRestaurant.ubicacion, 
-        horario: this.infoRestaurant.horario}
-    ).subscribe((data: any) => { 
-      this.invalidReq = false;
-      this.router.navigate(['/dashboard'])
-     }, error => {
-      this.invalidReq = true;
-    }); 
-    
+    console.log({ descripcion: this.infoRestaurant.descripcion, ubicacion: this.infoRestaurant.ubicacion, horario: this.infoRestaurant.horario })
+
+    const formData = new FormData();
+
+    formData.append('descripcion', this.infoRestaurant.descripcion);
+    formData.append('ubicacion', this.infoRestaurant.ubicacion);
+    formData.append('horario', JSON.stringify(this.infoRestaurant.horario));
+
+    if (this.selectedFile) {
+      formData.append('imagen', this.selectedFile, this.selectedFile.name);
+    }
+
+    return this.restauranteService.modifyRestaurante(formData)
+      .subscribe((data: any) => {
+        this.invalidReq = false;
+        this.router.navigate(['/dashboard'])
+      }, error => {
+        this.invalidReq = true;
+      });
   }
 
-}
+  seleccionarImagen() {
+    this.imagenInput.nativeElement.click();
+  }
 
+  onFileSelect(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files;
+
+    if (files && files[0]) {
+      this.selectedFile = files[0];
+      // Image preview
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.selectedImageUrl = e.target.result;
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+}

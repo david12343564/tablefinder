@@ -54,15 +54,15 @@ export class RestauranteService {
     return this.httpClient.get('http://localhost:3000/restaurantes', { headers });
   }
 
-  modifyRestaurante(producto: any): Observable<any> {
+  modifyRestaurante(data: FormData): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': this.tokenService.getToken()
     });
-    return this.httpClient.put('http://localhost:3000/restaurantes', producto, { headers })
+    return this.httpClient.put('http://localhost:3000/restaurantes', data, { headers })
   }
-   
-  getRestaurantPublico(idRestaurant:string): Observable<any> {
+
+  getRestaurantPublico(idRestaurant: string): Observable<any> {
     return this.httpClient.get('http://localhost:3000/restaurantes/' + idRestaurant);
   }
-  
+
 }

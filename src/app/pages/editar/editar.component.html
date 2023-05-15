@@ -6,7 +6,7 @@
     </div>
 
     <div id="editarContent">
-        <form [formGroup]="formDatos" (submit)="mofidicarRestaurant()">
+        <form [formGroup]="formDatos" (ngSubmit)="mofidicarRestaurant()">
 
             <section id="descripcionCard">
                 <div class="tarjeta">
@@ -132,7 +132,8 @@
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="aperturaMartes">Martes - Apertura </label>
                                         <input type="time" id="aperturaMartes" formControlName="aperturaMartes"
-                                            name="aperturaMartes" [(ngModel)]="infoRestaurant.horario.martes[0]" required>
+                                            name="aperturaMartes" [(ngModel)]="infoRestaurant.horario.martes[0]"
+                                            required>
                                     </div>
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="cierreMartes">Martes - Apertura </label>
@@ -146,14 +147,17 @@
 
                         <div id="miercoles" class="tabcontent" [style.display]="displayContent['miercoles']">
                             <section>
-                                <input type="radio" id="allDayMiercoles" formControlName="typeMiercoles" name="typeMiercoles"
-                                    value="allDay" [checked]="infoRestaurant['typeMiercoles']=='allDay'"
+                                <input type="radio" id="allDayMiercoles" formControlName="typeMiercoles"
+                                    name="typeMiercoles" value="allDay"
+                                    [checked]="infoRestaurant['typeMiercoles']=='allDay'"
                                     [(ngModel)]="infoRestaurant['typeMiercoles']">
-                                <input type="radio" id="noOpenMiercoles" formControlName="typeMiercoles" name="typeMiercoles"
-                                    value="noOpen" [checked]="infoRestaurant['typeMiercoles']=='noOpen'"
+                                <input type="radio" id="noOpenMiercoles" formControlName="typeMiercoles"
+                                    name="typeMiercoles" value="noOpen"
+                                    [checked]="infoRestaurant['typeMiercoles']=='noOpen'"
                                     [(ngModel)]="infoRestaurant['typeMiercoles']">
-                                <input type="radio" id="horarioMiercoles" formControlName="typeMiercoles" name="typeMiercoles"
-                                    value="horario" [checked]="infoRestaurant['typeMiercoles']=='horario'"
+                                <input type="radio" id="horarioMiercoles" formControlName="typeMiercoles"
+                                    name="typeMiercoles" value="horario"
+                                    [checked]="infoRestaurant['typeMiercoles']=='horario'"
                                     [(ngModel)]="infoRestaurant['typeMiercoles']">
 
                                 <div class="fila selectOption">
@@ -180,12 +184,14 @@
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="aperturaMiercoles">Miercoles - Apertura </label>
                                         <input type="time" id="aperturaMiercoles" formControlName="aperturaMiercoles"
-                                            name="aperturaMiercoles" [(ngModel)]="infoRestaurant.horario.miercoles[0]" required>
+                                            name="aperturaMiercoles" [(ngModel)]="infoRestaurant.horario.miercoles[0]"
+                                            required>
                                     </div>
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="cierreMiercoles">Miercoles - Apertura </label>
                                         <input type="time" id="cierreMiercoles" formControlName="cierreMiercoles"
-                                            name="cierreMiercoles" [(ngModel)]="infoRestaurant.horario.miercoles[1]" required>
+                                            name="cierreMiercoles" [(ngModel)]="infoRestaurant.horario.miercoles[1]"
+                                            required>
                                     </div>
                                 </div>
                             </section>
@@ -228,7 +234,8 @@
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="aperturaJueves">Jueves - Apertura </label>
                                         <input type="time" id="aperturaJueves" formControlName="aperturaJueves"
-                                            name="aperturaJueves" [(ngModel)]="infoRestaurant.horario.jueves[0]" required>
+                                            name="aperturaJueves" [(ngModel)]="infoRestaurant.horario.jueves[0]"
+                                            required>
                                     </div>
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="cierreJueves">Jueves - Apertura </label>
@@ -276,12 +283,14 @@
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="aperturaViernes">Viernes - Apertura </label>
                                         <input type="time" id="aperturaViernes" formControlName="aperturaViernes"
-                                            name="aperturaViernes" [(ngModel)]="infoRestaurant.horario.viernes[0]" required>
+                                            name="aperturaViernes" [(ngModel)]="infoRestaurant.horario.viernes[0]"
+                                            required>
                                     </div>
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="cierreViernes">Viernes - Apertura </label>
                                         <input type="time" id="cierreViernes" formControlName="cierreViernes"
-                                            name="cierreViernes" [(ngModel)]="infoRestaurant.horario.viernes[1]" required>
+                                            name="cierreViernes" [(ngModel)]="infoRestaurant.horario.viernes[1]"
+                                            required>
                                     </div>
                                 </div>
                             </section>
@@ -324,7 +333,8 @@
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="aperturaSabado">Sabado - Apertura </label>
                                         <input type="time" id="aperturaSabado" formControlName="aperturaSabado"
-                                            name="aperturaSabado" [(ngModel)]="infoRestaurant.horario.sabado[0]" required>
+                                            name="aperturaSabado" [(ngModel)]="infoRestaurant.horario.sabado[0]"
+                                            required>
                                     </div>
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="cierreSabado">Sabado - Apertura </label>
@@ -372,12 +382,14 @@
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="aperturaDomingo">Domingo - Apertura </label>
                                         <input type="time" id="aperturaDomingo" formControlName="aperturaDomingo"
-                                            name="aperturaDomingo" [(ngModel)]="infoRestaurant.horario.domingo[0]" required>
+                                            name="aperturaDomingo" [(ngModel)]="infoRestaurant.horario.domingo[0]"
+                                            required>
                                     </div>
                                     <div class="columna-tablet-50 columna-100">
                                         <label for="cierreDomingo">Domingo - Apertura </label>
                                         <input type="time" id="cierreDomingo" formControlName="cierreDomingo"
-                                            name="cierreDomingo" [(ngModel)]="infoRestaurant.horario.domingo[1]" required>
+                                            name="cierreDomingo" [(ngModel)]="infoRestaurant.horario.domingo[1]"
+                                            required>
                                     </div>
                                 </div>
                             </section>
@@ -419,12 +431,20 @@
                     <div class="cuerpo">
                         <div id="imgRestaurant">
                             <div id="restaurantImage">
-                                <img src="assets/listado/list_res1.jpg">
+                                <img *ngIf="selectedImageUrl; else defaultImage" [src]="selectedImageUrl">
+                                <ng-template #defaultImage>
+                                    <img [src]="restaurante.imgUrl">
+                                </ng-template>
                             </div>
                         </div>
 
+
                         <div id="actualizar" class="center">
-                            <button class="modificarComida">Seleccionar imagen</button>
+                            <button class="imagen" type="button" (click)="seleccionarImagen()">Seleccionar
+                                imagen</button>
+                            <input #imageInput type="file" id="imagen" name="imagen" style="display: none"
+                                (change)="onFileSelect($event)" />
+
                         </div>
                     </div>
                 </div>
@@ -435,7 +455,9 @@
                         <button class="cancel" type="cancel">Cancelar</button>
                     </a></div>
                 <div class="columna-50 buttonCol">
-                    <button class="guardar" type="submit">Guardar</button>
+                    
+                    <button type="submit" class="guardar" [disabled]="!formDatos.valid" (click)="mofidicarRestaurant()">Guardar</button>
+
                 </div>
             </div>
 

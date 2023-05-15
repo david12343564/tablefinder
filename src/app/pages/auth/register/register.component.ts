@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { PrivilegiosService } from 'src/app/shared/services/privilegios.service';
 import { Cliente } from 'src/app/shared/interfaces/cliente';
-import { BasicRestaurante } from 'src/app/shared/interfaces/restaurante';
+import { Restaurante } from 'src/app/shared/interfaces/restaurante';
 import { LoginService } from 'src/app/shared/services/login.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 
@@ -15,8 +15,20 @@ import { TokenService } from 'src/app/shared/services/token.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  formRegisterComensal: FormGroup
-  formRegisterRestaurantero: FormGroup
+  restaurante: Restaurante = new Restaurante();
+  formRegisterComensal: FormGroup;
+  formRegisterRestaurantero: FormGroup;
+  selectedFile: File | null = null;
+  selectedImageUrl: any = null;
+  isRestaurant: boolean = false;
+  invalidReq: boolean = false;
+  formError: string | null = null;
+  cliente: Cliente = {
+    nombre: '',
+    apellido: '',
+    email: '',
+    password: ''
+  };
 
   constructor(
     formBuilder: FormBuilder,
@@ -25,10 +37,10 @@ export class RegisterComponent {
     private router: Router,
     private privilegioService: PrivilegiosService
   ) {
-    
+
     this.privilegioService.isRestaurant.subscribe((privilegio: boolean) => {
       this.isRestaurant = privilegio;
-      console.log(this.isRestaurant)  
+      console.log(this.isRestaurant)
     });
 
     this.formRegisterComensal = formBuilder.group({
@@ -42,7 +54,7 @@ export class RegisterComponent {
         validator: this.confirmPassword('password', 'repeatPassword'),
       }
     )
-      
+
     this.formRegisterRestaurantero = formBuilder.group({
       nombreRestaurante: ['', Validators.required],
       descripcion: ['', Validators.required],
@@ -54,36 +66,6 @@ export class RegisterComponent {
         validator: this.confirmPassword('password', 'repeatPassword'),
       }
     )
-  }
-
-  isRestaurant: boolean = false;
-  invalidReq: boolean = false;
-  cliente: Cliente = {
-    nombre: '',
-    apellido: '',
-    email: '',
-    password: ''
-  }
-  
-  restaurante: BasicRestaurante = {
-    email: '',
-    password: '',
-    nombre: '',
-    direccion: '',
-    descripcion: '',
-    imgUrl:'',
-    totalCalif: 0,
-    contadorCalif: 0,
-    calificacion: 0,
-    horario: {
-      lunes: ['09:00', '18:00'],
-      martes: ['09:00', '18:00'],
-      miercoles: ['09:00', '18:00'],
-      jueves: ['09:00', '18:00'],
-      viernes: ['09:00', '18:00'],
-      sabado: ['09:00', '18:00'],
-      domingo: ['09:00', '18:00'],
-    }
   }
 
   confirmPassword(password: string, matchingPassword: string) {
@@ -101,26 +83,83 @@ export class RegisterComponent {
   }
 
   registrarComensal() {
-    this.loginService.registerCliente(this.cliente).subscribe((data: any) => {
-      // Recibimos el token
-      this.tokenService.setToken(data.token);
-      // Enviar a home
-      this.router.navigate(['/']);
-    });
-
+    if (!this.formRegisterComensal.valid) {
+      this.formError = 'Todos los campos son obligatorios.';
+      return;
+    }
+    this.loginService.registerCliente(this.cliente).subscribe(
+      (data: any) => {
+        // Recibimos el token
+        this.tokenService.setToken(data.token);
+        // Enviar a home
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        if (error.status === 0) {
+          this.formError = 'Error de red. Por favor, comprueba tu conexión a Internet.';
+        } else if (error.message) {
+          this.formError = error.message;
+        } else {
+          this.formError = 'Ha ocurrido un error desconocido.';
+        }
+      }
+    );
   }
 
-  registrarRestaurante(){
+  registrarRestaurante() {
+    if (!this.formRegisterRestaurantero.valid) {
+      this.formError = 'Todos los campos son obligatorios.';
+      return;
+    }
     console.log('registro restaurante')
     console.log(this.restaurante)
-    
-    this.loginService.registerRestaurante(this.restaurante).subscribe((data: any) => {
-      // Recibimos el token
-      this.tokenService.setToken(data.token);
-      // Enviar a home
-      this.router.navigate(['/dashboard']);
-    });
+    if (this.formRegisterRestaurantero.valid) {
+      const formData = new FormData();
+      // Añadir la imagen si se ha seleccionado
+      if (this.selectedFile) {
+        formData.append('imagen', this.selectedFile);
+      }
+
+      // Añadir los otros campos
+      formData.append('nombre', this.restaurante.nombre);
+      formData.append('descripcion', this.restaurante.descripcion);
+      if (this.restaurante.email && this.restaurante.password) {
+        formData.append('email', this.restaurante.email);
+        formData.append('password', this.restaurante.password);
+      } else {
+        this.formError = 'Email y contraseña requeridos.';
+      }
+
+      this.loginService.registerRestaurante(formData).subscribe((data: any) => {
+        // Recibimos el token
+        this.tokenService.setToken(data.token);
+        // Enviar a home
+        this.router.navigate(['/dashboard']);
+      },
+        (error) => {
+          if (error.status === 0) {
+            this.formError = 'Error de red. Por favor, comprueba tu conexión a Internet.';
+          } else if (error.message) {
+            this.formError = error.message;
+          } else {
+            this.formError = 'Ha ocurrido un error desconocido.';
+          }
+        }
+      );
+    }
   }
 
+  onFileSelect(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files;
+
+    if (files && files[0]) {
+      this.selectedFile = files[0];
+      // Image preview
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.selectedImageUrl = e.target.result;
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
 
 }

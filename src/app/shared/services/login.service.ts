@@ -24,9 +24,9 @@ export class LoginService {
     registerCliente(cliente: Cliente): Observable<any> {
         return this.httpClient.post('http://localhost:3000/clientes', cliente);
     }
-    
-    registerRestaurante(restaurante: any): Observable<any> {
-        return this.httpClient.post('http://localhost:3000/restaurantes', restaurante);
-    }
 
+    registerRestaurante(formData: FormData): Observable<any> {
+        console.log('Este es el form data: '+ formData);
+        return this.httpClient.post('http://localhost:3000/restaurantes', formData);
+    }
 }
