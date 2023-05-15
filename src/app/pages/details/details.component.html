@@ -1,6 +1,6 @@
 <div class="restaurant">
   <div class="restaurant-photo">
-    <img src="assets/resta.jpg" alt="Restaurante">
+    <img src="{{ restaurante.imagen }}" alt="Restaurante">
   </div>
 
   <div class="restaurant-info">
@@ -117,15 +117,15 @@
               <tr>
                 <td>
                   <div class="reservation-container">
-                    <input type="date" id="fechaReserva" name="fechaReserva"
-                    formControlName="fechaReserva" [(ngModel)]="reservaInit.dia">
+                    <input type="date" id="fechaReserva" name="fechaReserva" formControlName="fechaReserva"
+                      [(ngModel)]="reservaInit.dia">
                   </div>
 
                 </td>
                 <td>
                   <div class="reservation-container">
-                    <input type="time" id="tiempoReserva" name="tiempoReserva"
-                    formControlName="tiempoReserva" [(ngModel)]="reservaInit.hora">
+                    <input type="time" id="tiempoReserva" name="tiempoReserva" formControlName="tiempoReserva"
+                      [(ngModel)]="reservaInit.hora">
                   </div>
                 </td>
               </tr>

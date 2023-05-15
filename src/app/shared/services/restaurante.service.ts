@@ -17,7 +17,7 @@ import { ReturnStatement } from '@angular/compiler';
 })
 export class RestauranteService {
 
-  observableRestaurante: BehaviorSubject<Restaurante> 
+  observableRestaurante: BehaviorSubject<Restaurante>
 
   restauranteSelecc: Restaurante = new Restaurante
 
@@ -25,7 +25,7 @@ export class RestauranteService {
     private httpClient: HttpClient,
     private httpService: HttpService,
     private tokenService: TokenService
-  ) { 
+  ) {
     this.observableRestaurante = new BehaviorSubject(this.restauranteSelecc)
   }
 
@@ -48,6 +48,7 @@ export class RestauranteService {
       map((restauranteData: any) => {
         const restaurante = new Restaurante(restauranteData);
         restaurante.imagen = restauranteData.imgUrl; // Asigna la imagen aquí
+        console.log('Servicio get rest: ', restaurante);
         return restaurante;
       })
     );
@@ -61,22 +62,22 @@ export class RestauranteService {
     return this.httpClient.get('http://localhost:3000/restaurantes', { headers });
   }
 
-  modifyRestaurante(producto: any): Observable<any> {
+  modifyRestaurante(data: FormData): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': this.tokenService.getToken()
     });
-    return this.httpClient.put('http://localhost:3000/restaurantes', producto, { headers })
+    return this.httpClient.put('http://localhost:3000/restaurantes', data, { headers })
   }
-   
-  getRestaurantPublico(idRestaurant:string): Observable<any> {
+
+  getRestaurantPublico(idRestaurant: string): Observable<any> {
     return this.httpClient.get('http://localhost:3000/restaurantes/' + idRestaurant);
   }
 
-  setRestaurante(restaurante:Restaurante): void {
+  setRestaurante(restaurante: Restaurante): void {
     this.restauranteSelecc = restaurante
     this.observableRestaurante.next(restaurante)
   }
 
 
-  
+
 }
